@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace C.A.T.S.Auto_Fighter
+namespace CATSBot
 {
     static class Program
     {

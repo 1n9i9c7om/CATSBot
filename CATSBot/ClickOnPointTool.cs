@@ -3,7 +3,7 @@ using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
-namespace C.A.T.S.Auto_Fighter
+namespace CATSBot
 {
     //Thanks to Antonio Bakula from StackOverflow: http://stackoverflow.com/a/10355905
     public class ClickOnPointTool

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace C.A.T.S.Auto_Fighter.Properties {
+namespace CATSBot {
     using System;
     
     

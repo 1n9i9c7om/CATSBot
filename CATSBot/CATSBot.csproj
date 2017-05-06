@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{4DDDD552-9696-4EDE-B5E4-083DCF29A05E}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>C.A.T.S.Auto_Fighter</RootNamespace>
-    <AssemblyName>C.A.T.S.Auto_Fighter</AssemblyName>
+    <RootNamespace>CATSBot</RootNamespace>
+    <AssemblyName>CATSBot</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

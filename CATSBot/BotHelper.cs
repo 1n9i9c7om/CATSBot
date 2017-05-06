@@ -2,7 +2,7 @@
 using System.Threading;
 using System.Windows.Forms;
 
-namespace C.A.T.S.Auto_Fighter
+namespace CATSBot
 {
     public static class BotHelper
     {

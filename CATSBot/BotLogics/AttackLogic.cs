@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.Threading;
 
-namespace C.A.T.S.Auto_Fighter.BotLogics
+namespace CATSBot.BotLogics
 {
     public static class AttackLogic
     {
@@ -16,9 +16,9 @@ namespace C.A.T.S.Auto_Fighter.BotLogics
         public static void checkDefense()
         {
             BotHelper.Log("Successful defense check");
-            if (ImageRecognition.getPictureLocation(Properties.Resources.button_defend, BotHelper.memu) != pNull)
+            if (ImageRecognition.getPictureLocation(Resources.button_defend, BotHelper.memu) != pNull)
             {
-                ClickOnPointTool.ClickOnPoint(BotHelper.memu, ImageRecognition.getRandomLoc(Properties.Resources.button_defend, BotHelper.memu));
+                ClickOnPointTool.ClickOnPoint(BotHelper.memu, ImageRecognition.getRandomLoc(Resources.button_defend, BotHelper.memu));
                 BotHelper.Log("Yup, we defended");
                 BotHelper.randomDelay(1000, 100);
             }
@@ -29,10 +29,10 @@ namespace C.A.T.S.Auto_Fighter.BotLogics
         {
             BotHelper.Log("Attempting to press the Duell button");
 
-            if (ImageRecognition.getPictureLocation(Properties.Resources.button_fight, BotHelper.memu) != pNull)
+            if (ImageRecognition.getPictureLocation(Resources.button_fight, BotHelper.memu) != pNull)
             {
                 BotHelper.Log("Button found! FeelsGoodMan.");
-                ClickOnPointTool.ClickOnPoint(BotHelper.memu, ImageRecognition.getRandomLoc(Properties.Resources.button_fight, BotHelper.memu));
+                ClickOnPointTool.ClickOnPoint(BotHelper.memu, ImageRecognition.getRandomLoc(Resources.button_fight, BotHelper.memu));
             }
             else
             {
@@ -51,7 +51,7 @@ namespace C.A.T.S.Auto_Fighter.BotLogics
                 BotHelper.Log(" " + checks, false);
                 Thread.Sleep(100);
                 checks++;
-            } while (ImageRecognition.getPictureLocation(Properties.Resources.button_skip, BotHelper.memu) == pNull && checks <= 55);
+            } while (ImageRecognition.getPictureLocation(Resources.button_skip, BotHelper.memu) == pNull && checks <= 55);
 
             if (checks >= 55)
             {
@@ -83,8 +83,8 @@ namespace C.A.T.S.Auto_Fighter.BotLogics
                 // We have to check multiple images because of this, but we got an easy detection whether 
                 // we won or not. :) 
 
-                locOK = ImageRecognition.getPictureLocation(Properties.Resources.button_ok, BotHelper.memu);
-                locOKDefeat = ImageRecognition.getPictureLocation(Properties.Resources.button_ok_defeat, BotHelper.memu);
+                locOK = ImageRecognition.getPictureLocation(Resources.button_ok, BotHelper.memu);
+                locOKDefeat = ImageRecognition.getPictureLocation(Resources.button_ok_defeat, BotHelper.memu);
             } while ((locOK == pNull && locOKDefeat == pNull) && checks <= 55);
 
             if (checks >= 55)
@@ -103,7 +103,7 @@ namespace C.A.T.S.Auto_Fighter.BotLogics
                     return;
                 }
 
-                Point rndP = ImageRecognition.getRandomLoc(locOKDefeat, Properties.Resources.button_ok_defeat);
+                Point rndP = ImageRecognition.getRandomLoc(locOKDefeat, Resources.button_ok_defeat);
                 BotHelper.Log("Clicked on: X = " + rndP.X + "; Y = " + rndP.Y);
 
                 ClickOnPointTool.ClickOnPoint(BotHelper.memu, rndP);
@@ -114,7 +114,7 @@ namespace C.A.T.S.Auto_Fighter.BotLogics
             {
                 BotHelper.Log("We won! FeelsGoodMan :)");
                 wins++;
-                Point rndP = ImageRecognition.getRandomLoc(locOK, Properties.Resources.button_ok);
+                Point rndP = ImageRecognition.getRandomLoc(locOK, Resources.button_ok);
                 BotHelper.Log("Clicked on: X = " + rndP.X + "; Y = " + rndP.Y);
                 ClickOnPointTool.ClickOnPoint(BotHelper.memu, rndP);
             }

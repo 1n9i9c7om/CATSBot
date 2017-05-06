@@ -1,4 +1,4 @@
-﻿namespace C.A.T.S.Auto_Fighter
+﻿namespace CATSBot
 {
     partial class frmMain
     {
@@ -115,7 +115,7 @@
             this.Controls.Add(this.lblStats);
             this.Controls.Add(this.btnStart);
             this.Name = "frmMain";
-            this.Text = "D.O.G.S. - C.A.T.S. Bot";
+            this.Text = "CATSBot | catsbot.net";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.tabMain.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);

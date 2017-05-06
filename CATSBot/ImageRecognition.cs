@@ -5,7 +5,7 @@ using System.Drawing.Imaging;
 using System.Linq;
 using System.Runtime.InteropServices;
 
-namespace C.A.T.S.Auto_Fighter
+namespace CATSBot
 {
     //Thanks to Wowa from StackOverflow: http://stackoverflow.com/a/11345850
     public static class ImageRecognition
