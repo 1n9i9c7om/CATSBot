@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -29,6 +30,11 @@ namespace CATSBot
                 }
 
                 BotHelper.memu = Process.GetProcessesByName("MEmu").First().MainWindowHandle;
+
+                if (chkUseSidebar.Checked)
+                    ClickOnPointTool.ResizeWindow(BotHelper.memu, 1329, 758);
+                else
+                    ClickOnPointTool.ResizeWindow(BotHelper.memu, 1288, 758);
 
                 btnStart.Text = "Stop";
 

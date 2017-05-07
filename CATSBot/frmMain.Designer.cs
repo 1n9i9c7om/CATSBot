@@ -34,17 +34,20 @@
             this.tabMain = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.chkUseSidebar = new System.Windows.Forms.CheckBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.tabMain.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnStart
             // 
-            this.btnStart.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.btnStart.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnStart.Location = new System.Drawing.Point(6, 537);
             this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(304, 42);
+            this.btnStart.Size = new System.Drawing.Size(274, 42);
             this.btnStart.TabIndex = 0;
             this.btnStart.Text = "Start";
             this.btnStart.UseVisualStyleBackColor = true;
@@ -59,7 +62,7 @@
             this.txtLog.Multiline = true;
             this.txtLog.Name = "txtLog";
             this.txtLog.ReadOnly = true;
-            this.txtLog.Size = new System.Drawing.Size(288, 491);
+            this.txtLog.Size = new System.Drawing.Size(258, 487);
             this.txtLog.TabIndex = 2;
             // 
             // lblStats
@@ -82,7 +85,7 @@
             this.tabMain.Location = new System.Drawing.Point(6, 6);
             this.tabMain.Name = "tabMain";
             this.tabMain.SelectedIndex = 0;
-            this.tabMain.Size = new System.Drawing.Size(308, 529);
+            this.tabMain.Size = new System.Drawing.Size(278, 525);
             this.tabMain.TabIndex = 4;
             // 
             // tabPage1
@@ -91,26 +94,49 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(300, 503);
+            this.tabPage1.Size = new System.Drawing.Size(270, 499);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Log";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.label2);
+            this.tabPage2.Controls.Add(this.chkUseSidebar);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(300, 503);
+            this.tabPage2.Size = new System.Drawing.Size(270, 499);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Settings";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // chkUseSidebar
+            // 
+            this.chkUseSidebar.AutoSize = true;
+            this.chkUseSidebar.Checked = true;
+            this.chkUseSidebar.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkUseSidebar.Location = new System.Drawing.Point(6, 38);
+            this.chkUseSidebar.Name = "chkUseSidebar";
+            this.chkUseSidebar.Size = new System.Drawing.Size(142, 17);
+            this.chkUseSidebar.TabIndex = 0;
+            this.chkUseSidebar.Text = "MEmu Sidebar enabled?";
+            this.chkUseSidebar.UseVisualStyleBackColor = true;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(5, 9);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(168, 26);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Uncheck this, if you have the bar \r\non the right side in MEmu disabled";
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(318, 605);
+            this.ClientSize = new System.Drawing.Size(288, 605);
             this.Controls.Add(this.tabMain);
             this.Controls.Add(this.lblStats);
             this.Controls.Add(this.btnStart);
@@ -120,6 +146,8 @@
             this.tabMain.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -132,6 +160,8 @@
         private System.Windows.Forms.TabPage tabPage2;
         public System.Windows.Forms.Label lblStats;
         public System.Windows.Forms.TextBox txtLog;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.CheckBox chkUseSidebar;
     }
 }
 

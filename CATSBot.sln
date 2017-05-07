@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.26228.10
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CATSBot", "CATSBot\CATSBot.csproj", "{4DDDD552-9696-4EDE-B5E4-083DCF29A05E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CATSBot-Updater", "CATSBot-Updater\CATSBot-Updater.csproj", "{FE2DB885-F1A0-446C-97B4-808601F17B3F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{4DDDD552-9696-4EDE-B5E4-083DCF29A05E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4DDDD552-9696-4EDE-B5E4-083DCF29A05E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4DDDD552-9696-4EDE-B5E4-083DCF29A05E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE2DB885-F1A0-446C-97B4-808601F17B3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE2DB885-F1A0-446C-97B4-808601F17B3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE2DB885-F1A0-446C-97B4-808601F17B3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE2DB885-F1A0-446C-97B4-808601F17B3F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -16,6 +16,10 @@ namespace CATSBot
             RightUp = 0x10
         }
 
+        [DllImport("user32.dll", SetLastError = true)]
+        internal static extern bool MoveWindow(IntPtr hWnd, int X, int Y, int nWidth, int nHeight, bool bRepaint);
+
+
         [DllImport("user32.dll")]
         public static extern void mouse_event
             (MouseEventType dwFlags, int dx, int dy, int cButtons, int dwExtraInfo);
@@ -55,7 +59,13 @@ namespace CATSBot
 
 #pragma warning restore 649
 
+        public static void ResizeWindow(IntPtr wndHandle, int x, int y)
+        {
+            Point windowPos = new Point(0,0);
+            ClientToScreen(wndHandle, ref windowPos);
 
+            MoveWindow(wndHandle, windowPos.X, windowPos.Y, x, y, true);
+        }
         public static void ClickOnPoint(IntPtr wndHandle, Point clientPoint)
         {
             Point oldPos = Cursor.Position;

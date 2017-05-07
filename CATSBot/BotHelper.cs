@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -34,5 +35,23 @@ namespace CATSBot
         {
             main.lblStats.Text = "Wins: " + wins + " | Losses: " + losses;
         }
+
+        /* public static void SetDebugPic(Bitmap bmp)
+        {
+            main.picDebug.Invoke((MethodInvoker)delegate
+            {
+                main.picDebug.Image = bmp;
+            });
+
+            SetScreenshot();
+        }
+
+        public static void SetScreenshot()
+        {
+            main.picScreenshot.Invoke((MethodInvoker)delegate
+            {
+                main.picScreenshot.Image = ImageRecognition.CaptureApplication(memu);
+            });
+        } */
     }
 }

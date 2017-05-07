@@ -16,9 +16,10 @@ namespace CATSBot.BotLogics
         public static void checkDefense()
         {
             BotHelper.Log("Successful defense check");
-            if (ImageRecognition.getPictureLocation(Resources.button_defend, BotHelper.memu) != pNull)
+
+            if (ImageRecognition.getPictureLocation(Properties.Resources.button_defend, BotHelper.memu) != pNull)
             {
-                ClickOnPointTool.ClickOnPoint(BotHelper.memu, ImageRecognition.getRandomLoc(Resources.button_defend, BotHelper.memu));
+                ClickOnPointTool.ClickOnPoint(BotHelper.memu, ImageRecognition.getRandomLoc(Properties.Resources.button_defend, BotHelper.memu));
                 BotHelper.Log("Yup, we defended");
                 BotHelper.randomDelay(1000, 100);
             }
@@ -28,11 +29,12 @@ namespace CATSBot.BotLogics
         public static void searchDuell()
         {
             BotHelper.Log("Attempting to press the Duell button");
-
-            if (ImageRecognition.getPictureLocation(Resources.button_fight, BotHelper.memu) != pNull)
+            if (ImageRecognition.getPictureLocation(Properties.Resources.button_fight, BotHelper.memu) != pNull)
             {
+                Point dbgPoint = ImageRecognition.getPictureLocation(Properties.Resources.button_fight, BotHelper.memu);
                 BotHelper.Log("Button found! FeelsGoodMan.");
-                ClickOnPointTool.ClickOnPoint(BotHelper.memu, ImageRecognition.getRandomLoc(Resources.button_fight, BotHelper.memu));
+                BotHelper.Log("Button found at: X = " + dbgPoint.X + "; Y = " + dbgPoint.Y);
+                ClickOnPointTool.ClickOnPoint(BotHelper.memu, ImageRecognition.getRandomLoc(Properties.Resources.button_fight, BotHelper.memu));
             }
             else
             {
@@ -44,14 +46,13 @@ namespace CATSBot.BotLogics
         public static void waitDuell()
         {
             BotHelper.Log("Waiting for the duell to start....");
-
             int checks = 0;
             do
             {
                 BotHelper.Log(" " + checks, false);
                 Thread.Sleep(100);
                 checks++;
-            } while (ImageRecognition.getPictureLocation(Resources.button_skip, BotHelper.memu) == pNull && checks <= 55);
+            } while (ImageRecognition.getPictureLocation(Properties.Resources.button_skip, BotHelper.memu) == pNull && checks <= 55);
 
             if (checks >= 55)
             {
@@ -83,8 +84,8 @@ namespace CATSBot.BotLogics
                 // We have to check multiple images because of this, but we got an easy detection whether 
                 // we won or not. :) 
 
-                locOK = ImageRecognition.getPictureLocation(Resources.button_ok, BotHelper.memu);
-                locOKDefeat = ImageRecognition.getPictureLocation(Resources.button_ok_defeat, BotHelper.memu);
+                locOK = ImageRecognition.getPictureLocation(Properties.Resources.button_ok, BotHelper.memu);
+                locOKDefeat = ImageRecognition.getPictureLocation(Properties.Resources.button_ok_defeat, BotHelper.memu);
             } while ((locOK == pNull && locOKDefeat == pNull) && checks <= 55);
 
             if (checks >= 55)
@@ -103,7 +104,7 @@ namespace CATSBot.BotLogics
                     return;
                 }
 
-                Point rndP = ImageRecognition.getRandomLoc(locOKDefeat, Resources.button_ok_defeat);
+                Point rndP = ImageRecognition.getRandomLoc(locOKDefeat, Properties.Resources.button_ok_defeat);
                 BotHelper.Log("Clicked on: X = " + rndP.X + "; Y = " + rndP.Y);
 
                 ClickOnPointTool.ClickOnPoint(BotHelper.memu, rndP);
@@ -114,7 +115,7 @@ namespace CATSBot.BotLogics
             {
                 BotHelper.Log("We won! FeelsGoodMan :)");
                 wins++;
-                Point rndP = ImageRecognition.getRandomLoc(locOK, Resources.button_ok);
+                Point rndP = ImageRecognition.getRandomLoc(locOK, Properties.Resources.button_ok);
                 BotHelper.Log("Clicked on: X = " + rndP.X + "; Y = " + rndP.Y);
                 ClickOnPointTool.ClickOnPoint(BotHelper.memu, rndP);
             }
