@@ -83,16 +83,6 @@ namespace CATSBot.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap button_fight_marek {
-            get {
-                object obj = ResourceManager.GetObject("button_fight_marek", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap button_ok {
             get {
                 object obj = ResourceManager.GetObject("button_ok", resourceCulture);
@@ -106,16 +96,6 @@ namespace CATSBot.Properties {
         internal static System.Drawing.Bitmap button_ok_defeat {
             get {
                 object obj = ResourceManager.GetObject("button_ok_defeat", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap button_ok_defeat2 {
-            get {
-                object obj = ResourceManager.GetObject("button_ok_defeat2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

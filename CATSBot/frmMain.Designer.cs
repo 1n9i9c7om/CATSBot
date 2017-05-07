@@ -71,9 +71,9 @@
             this.lblStats.AutoSize = true;
             this.lblStats.Location = new System.Drawing.Point(12, 583);
             this.lblStats.Name = "lblStats";
-            this.lblStats.Size = new System.Drawing.Size(96, 13);
+            this.lblStats.Size = new System.Drawing.Size(149, 13);
             this.lblStats.TabIndex = 3;
-            this.lblStats.Text = "Wins: 0 | Losses: 0";
+            this.lblStats.Text = "Wins: 0 (0 Crowns) | Losses: 0";
             // 
             // tabMain
             // 

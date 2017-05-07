@@ -81,18 +81,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -103,24 +103,6 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Ressources\button_fight.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Ressources\button_ok.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Ressources\button_skip.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Ressources\button_defend.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Ressources\button_ok_defeat.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Ressources\button_ok_defeat2.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
@@ -146,9 +128,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\button_skip.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Ressources\button_fight_marek.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -11,6 +11,8 @@ namespace CATSBot.BotLogics
 
         static int wins = 0;
         static int losses = 0;
+        static int winsInARow = 0;
+        static int crowns = 0;
 
         //Check if we defended, if yes, click that filthy "Claim" button that's prevent us from clicking "QUICK FIGHT" ;)
         public static void checkDefense()
@@ -110,17 +112,20 @@ namespace CATSBot.BotLogics
                 ClickOnPointTool.ClickOnPoint(BotHelper.memu, rndP);
                 BotHelper.Log("We lost! FeelsBadMan :(");
                 losses++;
+                winsInARow = 0;
             }
             else //we won!
             {
                 BotHelper.Log("We won! FeelsGoodMan :)");
                 wins++;
+                winsInARow++;
+                if ((winsInARow % 5) == 0) crowns++;
                 Point rndP = ImageRecognition.getRandomLoc(locOK, Properties.Resources.button_ok);
                 BotHelper.Log("Clicked on: X = " + rndP.X + "; Y = " + rndP.Y);
                 ClickOnPointTool.ClickOnPoint(BotHelper.memu, rndP);
             }
 
-            BotHelper.UpdateStats(wins, losses);
+            BotHelper.UpdateStats(wins, losses, crowns);
             BotHelper.Log("Returning to main screen");
         }
 
