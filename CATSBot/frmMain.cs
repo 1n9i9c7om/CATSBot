@@ -21,15 +21,11 @@ namespace CATSBot
         {
             if(btnStart.Text == "Start")
             {
-                // Check if the MEmu process is running
-                Process[] pname = Process.GetProcessesByName("MEmu");
-                if (pname.Length == 0)
+                if(!BotHelper.setMemuIntPtr())
                 {
                     MessageBox.Show("MEmu is not running!");
                     return;
                 }
-
-                BotHelper.memu = Process.GetProcessesByName("MEmu").First().MainWindowHandle;
 
                 if (chkUseSidebar.Checked)
                     ClickOnPointTool.ResizeWindow(BotHelper.memu, 1328, 758);
@@ -67,6 +63,11 @@ namespace CATSBot
                 thread.Suspend(); // TODO: Proper Multithreading
 
             Application.Exit();
+        }
+
+        private void btnSaveDebug_Click(object sender, EventArgs e)
+        {
+            BotHelper.saveDebugInformation();
         }
     }
 }

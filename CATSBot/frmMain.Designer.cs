@@ -36,6 +36,7 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.label2 = new System.Windows.Forms.Label();
             this.chkUseSidebar = new System.Windows.Forms.CheckBox();
+            this.btnSaveDebug = new System.Windows.Forms.Button();
             this.tabMain.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -101,6 +102,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.btnSaveDebug);
             this.tabPage2.Controls.Add(this.label2);
             this.tabPage2.Controls.Add(this.chkUseSidebar);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
@@ -132,6 +134,16 @@
             this.chkUseSidebar.Text = "MEmu Sidebar enabled?";
             this.chkUseSidebar.UseVisualStyleBackColor = true;
             // 
+            // btnSaveDebug
+            // 
+            this.btnSaveDebug.Location = new System.Drawing.Point(8, 470);
+            this.btnSaveDebug.Name = "btnSaveDebug";
+            this.btnSaveDebug.Size = new System.Drawing.Size(256, 23);
+            this.btnSaveDebug.TabIndex = 2;
+            this.btnSaveDebug.Text = "Save Debug Information";
+            this.btnSaveDebug.UseVisualStyleBackColor = true;
+            this.btnSaveDebug.Click += new System.EventHandler(this.btnSaveDebug_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -162,6 +174,7 @@
         public System.Windows.Forms.TextBox txtLog;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckBox chkUseSidebar;
+        private System.Windows.Forms.Button btnSaveDebug;
     }
 }
 
