@@ -33,7 +33,10 @@ namespace CATSBot
         // Update the stats label. To be improved in future releases
         public static void UpdateStats(int wins, int losses, int crowns)
         {
-            main.lblStats.Text = "Wins: " + wins + " (" + crowns + " Crowns) | Losses: " + losses;
+            main.lblStats.Invoke((MethodInvoker)delegate
+            {
+                main.lblStats.Text = "Wins: " + wins + " (" + crowns + " Crowns) | Losses: " + losses;
+            });
         }
 
         /* public static void SetDebugPic(Bitmap bmp)

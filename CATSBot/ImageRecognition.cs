@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AForge.Imaging;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
@@ -12,8 +13,11 @@ namespace CATSBot
     {
         static Random rnd = new Random();
         static Point pNull = new Point(0, 0);
-        public static List<Point> GetSubPositions(Bitmap main, Bitmap sub)
+        public static List<Point> GetSubPositions(Bitmap main, Bitmap sub, bool useNew = true)
         {
+            if (useNew)
+                return GetSubPositionsAForge(main, sub);
+
             List<Point> possiblepos = new List<Point>();
 
             int mainwidth = main.Width;
@@ -75,6 +79,49 @@ namespace CATSBot
             return possiblepos;
         }
 
+        public static Bitmap ConvertToFormat(this System.Drawing.Image image, PixelFormat format)
+        {
+            Bitmap copy = new Bitmap(image.Width/4, image.Height/4, format);
+            using (Graphics gr = Graphics.FromImage(copy))
+            {
+                gr.DrawImage(image, new Rectangle(0, 0, copy.Width, copy.Height));
+            } 
+            return copy;
+        }
+
+
+        public static List<Point> GetSubPositionsAForge(Bitmap main, Bitmap sub)
+        {
+            List<Point> possiblepos = new List<Point>();
+            System.Drawing.Bitmap sourceImage = ConvertToFormat(main, PixelFormat.Format24bppRgb);
+            System.Drawing.Bitmap template = ConvertToFormat(sub, PixelFormat.Format24bppRgb);
+            // create template matching algorithm's instance
+            // (set similarity threshold to 92.1%)
+
+            ExhaustiveTemplateMatching tm = new ExhaustiveTemplateMatching(0.941f);
+            // find all matchings with specified above similarity
+
+            TemplateMatch[] matchings = tm.ProcessImage(sourceImage, template);
+            // highlight found matchings
+
+            BitmapData data = sourceImage.LockBits(
+                 new Rectangle(0, 0, sourceImage.Width, sourceImage.Height),
+                 ImageLockMode.ReadWrite, sourceImage.PixelFormat);
+
+            foreach (TemplateMatch m in matchings)
+            {
+                Point picPoint = m.Rectangle.Location;
+                picPoint.X = picPoint.X * 4;
+                picPoint.Y = picPoint.Y * 4;
+                possiblepos.Add(picPoint);
+
+                //sourceImage.UnlockBits(data);
+                //return possiblepos; //1 result is enough
+            }
+
+            sourceImage.UnlockBits(data);
+            return possiblepos;
+        }
         private static MyColor GetColor(Point point, int stride, byte[] data)
         {
             return GetColor(point.X, point.Y, stride, data);
@@ -126,7 +173,7 @@ namespace CATSBot
             int width = rect.right - rect.left;
             int height = rect.bottom - rect.top;
 
-            var bmp = new Bitmap(width, height, PixelFormat.Format32bppArgb);
+            var bmp = new Bitmap(width, height, PixelFormat.Format24bppRgb);
             Graphics graphics = Graphics.FromImage(bmp);
             graphics.CopyFromScreen(rect.left, rect.top, 0, 0, new Size(width, height), CopyPixelOperation.SourceCopy);
 

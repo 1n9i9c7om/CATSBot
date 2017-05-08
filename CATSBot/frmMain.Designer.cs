@@ -34,8 +34,8 @@
             this.tabMain = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.chkUseSidebar = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.chkUseSidebar = new System.Windows.Forms.CheckBox();
             this.tabMain.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -111,6 +111,15 @@
             this.tabPage2.Text = "Settings";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(5, 9);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(168, 26);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Uncheck this, if you have the bar \r\non the right side in MEmu disabled";
+            // 
             // chkUseSidebar
             // 
             this.chkUseSidebar.AutoSize = true;
@@ -122,15 +131,6 @@
             this.chkUseSidebar.TabIndex = 0;
             this.chkUseSidebar.Text = "MEmu Sidebar enabled?";
             this.chkUseSidebar.UseVisualStyleBackColor = true;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(5, 9);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(168, 26);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Uncheck this, if you have the bar \r\non the right side in MEmu disabled";
             // 
             // frmMain
             // 

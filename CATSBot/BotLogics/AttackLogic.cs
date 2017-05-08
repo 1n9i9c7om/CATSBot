@@ -9,6 +9,7 @@ namespace CATSBot.BotLogics
         static Point pNull = new Point(0, 0);
         static Random rnd = new Random();
 
+        //This is disabled until re-implemented. ;)
         static int wins = 0;
         static int losses = 0;
         static int winsInARow = 0;
@@ -74,7 +75,6 @@ namespace CATSBot.BotLogics
             BotHelper.Log("Waiting for the duell to end.");
             int checks = 0;
             Point locOK = new Point();
-            Point locOKDefeat = new Point();
             do
             {
                 BotHelper.Log(" " + checks, false);
@@ -87,8 +87,8 @@ namespace CATSBot.BotLogics
                 // we won or not. :) 
 
                 locOK = ImageRecognition.getPictureLocation(Properties.Resources.button_ok, BotHelper.memu);
-                locOKDefeat = ImageRecognition.getPictureLocation(Properties.Resources.button_ok_defeat, BotHelper.memu);
-            } while ((locOK == pNull && locOKDefeat == pNull) && checks <= 55);
+                //locOKDefeat = ImageRecognition.getPictureLocation(Properties.Resources.button_ok_defeat, BotHelper.memu);
+            } while ((locOK == pNull /* && locOKDefeat == pNull */) && checks <= 55);
 
             if (checks >= 55)
             {
@@ -96,36 +96,22 @@ namespace CATSBot.BotLogics
             }
 
             BotHelper.randomDelay(500, 50);
-            if (locOK.X == 0 && locOK.Y == 0) //we lost :( (because the OK-button for winning couldn't be located)
+            if (locOK.X == 0 && locOK.Y == 0) //something went wrong (note: the code should never enter this)
             {
-                if (locOKDefeat.X == 0 && locOKDefeat.Y == 0)
-                {
-                    // HOTFIX
-                    // It still returns 0,0 sometimes. I have no idea why, but this seems to fix this issue.
-                    startDuell();
-                    return;
-                }
-
-                Point rndP = ImageRecognition.getRandomLoc(locOKDefeat, Properties.Resources.button_ok_defeat);
-                BotHelper.Log("Clicked on: X = " + rndP.X + "; Y = " + rndP.Y);
-
-                ClickOnPointTool.ClickOnPoint(BotHelper.memu, rndP);
-                BotHelper.Log("We lost! FeelsBadMan :(");
-                losses++;
-                winsInARow = 0;
+                BotHelper.Log("Something weird happened.");
+                startDuell();
+                return;
             }
             else //we won!
             {
-                BotHelper.Log("We won! FeelsGoodMan :)");
-                wins++;
-                winsInARow++;
-                if ((winsInARow % 5) == 0) crowns++;
+                BotHelper.Log("Battle finished.");
+
                 Point rndP = ImageRecognition.getRandomLoc(locOK, Properties.Resources.button_ok);
                 BotHelper.Log("Clicked on: X = " + rndP.X + "; Y = " + rndP.Y);
                 ClickOnPointTool.ClickOnPoint(BotHelper.memu, rndP);
             }
 
-            BotHelper.UpdateStats(wins, losses, crowns);
+            //BotHelper.UpdateStats(wins, losses, crowns);
             BotHelper.Log("Returning to main screen");
         }
 
