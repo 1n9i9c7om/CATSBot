@@ -103,6 +103,16 @@ namespace CATSBot.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap button_reconnect {
+            get {
+                object obj = ResourceManager.GetObject("button_reconnect", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap button_skip {
             get {
                 object obj = ResourceManager.GetObject("button_skip", resourceCulture);

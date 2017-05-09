@@ -81,6 +81,7 @@
   <ItemGroup>
     <Compile Include="BotHelper.cs" />
     <Compile Include="BotLogics\AttackLogic.cs" />
+    <Compile Include="BotLogics\ReconnectLogic.cs" />
     <Compile Include="ClickOnPointTool.cs" />
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
