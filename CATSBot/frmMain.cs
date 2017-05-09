@@ -74,23 +74,7 @@ namespace CATSBot
         {
             this.Style = color;
             metroStyle.Style = color;
-        }
-
-        //The color change buttons. Names should indicate color
-        private void btn_styleBlu_Click(object sender, EventArgs e)
-        {
-            changeStyle(MetroColorStyle.Blue);
-        }
-
-        private void btn_styleRed_Click(object sender, EventArgs e)
-        {
-            changeStyle(MetroColorStyle.Red);
-        }
-
-        private void btn_styleBlack_Click(object sender, EventArgs e)
-        {
-            changeStyle(MetroColorStyle.Black);
-        }
+        }     
 
         private void btnSaveDebug_Click(object sender, EventArgs e)
         {
