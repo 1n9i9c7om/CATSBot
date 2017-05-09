@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MetroFramework;
+using System;
 using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -69,58 +70,28 @@ namespace CATSBot
             Application.Exit();
         }
 
-        //###############################################################################################
-        //Down here is all the stuff for the style changer/ appereance of the program
-        //Made by PalOne because i am too bad for complex stuff :P
-
-        //The styles have a corresponding number which are as follows: 
-        /*
-        0 = Default
-        1 = Black
-        2 = White
-        3 = Silver
-        4 = Blue
-        5 = Green
-        6 = Lime
-        7 = Teal
-        8 = Orange
-        9 = Brown
-        10 = Pink
-        11 = Magenta
-        12 = Purple
-        13 = Red
-        14 = Yellow
-        */
-
-
-        private void changeStyle(int colorcode)
+        private void changeStyle(MetroColorStyle color)
         {
-            //The Framework is poorly documented (videos only wtf) which also seem to be outdated (????) 
-            //so that stuff might be not the BEST of solutions
-
-            //Change the style of every control that supports it using the colorcode number
-            this.Style = (MetroFramework.MetroColorStyle)colorcode;
-            btnStart.Style = (MetroFramework.MetroColorStyle)colorcode;
-            tabMain.Style = (MetroFramework.MetroColorStyle)colorcode;
-            chkUseSidebar.Style = (MetroFramework.MetroColorStyle)colorcode;
-            Refresh();
-
+            this.Style = color;
+            metroStyle.Style = color;
         }
 
-        //The buttons. Names shozuld indicate color
+        //The color change buttons. Names should indicate color
         private void btn_styleBlu_Click(object sender, EventArgs e)
         {
-            changeStyle(4);
+            changeStyle(MetroColorStyle.Blue);
         }
 
         private void btn_styleRed_Click(object sender, EventArgs e)
         {
-            changeStyle(13);
+            changeStyle(MetroColorStyle.Red);
         }
 
         private void btn_styleBlack_Click(object sender, EventArgs e)
         {
-            changeStyle(1);
+            changeStyle(MetroColorStyle.Black);
+        }
+
         private void btnSaveDebug_Click(object sender, EventArgs e)
         {
             BotHelper.saveDebugInformation();

@@ -28,23 +28,30 @@ namespace CATSBot
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.tabMain = new MetroFramework.Controls.MetroTabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.txtLog = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.chkAutoReconnect = new MetroFramework.Controls.MetroCheckBox();
+            this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
             this.chkUseSidebar = new MetroFramework.Controls.MetroCheckBox();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.btn_styleBlack = new MetroFramework.Controls.MetroTile();
+            this.btn_styleRed = new MetroFramework.Controls.MetroTile();
+            this.lbl_style = new MetroFramework.Controls.MetroLabel();
+            this.btn_styleBlu = new MetroFramework.Controls.MetroTile();
             this.btnStart = new MetroFramework.Controls.MetroTile();
             this.lblStats = new MetroFramework.Controls.MetroLabel();
-            this.btn_styleBlu = new MetroFramework.Controls.MetroTile();
-            this.lbl_style = new MetroFramework.Controls.MetroLabel();
-            this.btn_styleRed = new MetroFramework.Controls.MetroTile();
-            this.btn_styleBlack = new MetroFramework.Controls.MetroTile();
+            this.metroStyle = new MetroFramework.Components.MetroStyleManager(this.components);
+            this.nudReconnectTime = new System.Windows.Forms.NumericUpDown();
             this.tabMain.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.metroStyle)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudReconnectTime)).BeginInit();
             this.SuspendLayout();
             // 
             // tabMain
@@ -54,7 +61,7 @@ namespace CATSBot
             this.tabMain.Controls.Add(this.tabPage3);
             this.tabMain.Location = new System.Drawing.Point(8, 53);
             this.tabMain.Name = "tabMain";
-            this.tabMain.SelectedIndex = 0;
+            this.tabMain.SelectedIndex = 1;
             this.tabMain.Size = new System.Drawing.Size(274, 459);
             this.tabMain.TabIndex = 0;
             this.tabMain.UseSelectable = true;
@@ -79,6 +86,9 @@ namespace CATSBot
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.White;
+            this.tabPage2.Controls.Add(this.nudReconnectTime);
+            this.tabPage2.Controls.Add(this.chkAutoReconnect);
+            this.tabPage2.Controls.Add(this.metroLabel2);
             this.tabPage2.Controls.Add(this.chkUseSidebar);
             this.tabPage2.Controls.Add(this.metroLabel1);
             this.tabPage2.Location = new System.Drawing.Point(4, 38);
@@ -86,6 +96,28 @@ namespace CATSBot
             this.tabPage2.Size = new System.Drawing.Size(266, 417);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Settings";
+            // 
+            // chkAutoReconnect
+            // 
+            this.chkAutoReconnect.AutoSize = true;
+            this.chkAutoReconnect.Checked = true;
+            this.chkAutoReconnect.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkAutoReconnect.Location = new System.Drawing.Point(6, 130);
+            this.chkAutoReconnect.Name = "chkAutoReconnect";
+            this.chkAutoReconnect.Size = new System.Drawing.Size(170, 15);
+            this.chkAutoReconnect.TabIndex = 3;
+            this.chkAutoReconnect.Text = "Yes, after                  minutes.";
+            this.chkAutoReconnect.UseSelectable = true;
+            // 
+            // metroLabel2
+            // 
+            this.metroLabel2.AutoSize = true;
+            this.metroLabel2.Location = new System.Drawing.Point(1, 69);
+            this.metroLabel2.Name = "metroLabel2";
+            this.metroLabel2.Size = new System.Drawing.Size(230, 57);
+            this.metroLabel2.TabIndex = 2;
+            this.metroLabel2.Text = "Reconnect automatically after being \r\ndisconnected because another device \r\nused " +
+    "the account?";
             // 
             // chkUseSidebar
             // 
@@ -119,7 +151,52 @@ namespace CATSBot
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Size = new System.Drawing.Size(266, 417);
             this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Appereance";
+            this.tabPage3.Text = "Appearance";
+            // 
+            // btn_styleBlack
+            // 
+            this.btn_styleBlack.ActiveControl = null;
+            this.btn_styleBlack.Location = new System.Drawing.Point(10, 130);
+            this.btn_styleBlack.Name = "btn_styleBlack";
+            this.btn_styleBlack.Size = new System.Drawing.Size(150, 43);
+            this.btn_styleBlack.Style = MetroFramework.MetroColorStyle.Black;
+            this.btn_styleBlack.TabIndex = 3;
+            this.btn_styleBlack.Text = "Black";
+            this.btn_styleBlack.UseSelectable = true;
+            this.btn_styleBlack.Click += new System.EventHandler(this.btn_styleBlack_Click);
+            // 
+            // btn_styleRed
+            // 
+            this.btn_styleRed.ActiveControl = null;
+            this.btn_styleRed.Location = new System.Drawing.Point(10, 80);
+            this.btn_styleRed.Name = "btn_styleRed";
+            this.btn_styleRed.Size = new System.Drawing.Size(150, 43);
+            this.btn_styleRed.Style = MetroFramework.MetroColorStyle.Red;
+            this.btn_styleRed.TabIndex = 2;
+            this.btn_styleRed.Text = "Red";
+            this.btn_styleRed.UseSelectable = true;
+            this.btn_styleRed.Click += new System.EventHandler(this.btn_styleRed_Click);
+            // 
+            // lbl_style
+            // 
+            this.lbl_style.AutoSize = true;
+            this.lbl_style.Location = new System.Drawing.Point(10, 5);
+            this.lbl_style.Name = "lbl_style";
+            this.lbl_style.Size = new System.Drawing.Size(91, 19);
+            this.lbl_style.TabIndex = 1;
+            this.lbl_style.Text = "Choose color:";
+            // 
+            // btn_styleBlu
+            // 
+            this.btn_styleBlu.ActiveControl = null;
+            this.btn_styleBlu.Location = new System.Drawing.Point(10, 30);
+            this.btn_styleBlu.Name = "btn_styleBlu";
+            this.btn_styleBlu.Size = new System.Drawing.Size(150, 43);
+            this.btn_styleBlu.Style = MetroFramework.MetroColorStyle.Blue;
+            this.btn_styleBlu.TabIndex = 1;
+            this.btn_styleBlu.Text = "Blue";
+            this.btn_styleBlu.UseSelectable = true;
+            this.btn_styleBlu.Click += new System.EventHandler(this.btn_styleBlu_Click);
             // 
             // btnStart
             // 
@@ -142,50 +219,26 @@ namespace CATSBot
             this.lblStats.TabIndex = 2;
             this.lblStats.Text = "Wins: 0 (0 Crowns) | Losses: 0";
             // 
-            // btn_styleBlu
+            // metroStyle
             // 
-            this.btn_styleBlu.ActiveControl = null;
-            this.btn_styleBlu.Location = new System.Drawing.Point(10, 30);
-            this.btn_styleBlu.Name = "btn_styleBlu";
-            this.btn_styleBlu.Size = new System.Drawing.Size(150, 43);
-            this.btn_styleBlu.Style = MetroFramework.MetroColorStyle.Blue;
-            this.btn_styleBlu.TabIndex = 1;
-            this.btn_styleBlu.Text = "Blue";
-            this.btn_styleBlu.UseSelectable = true;
-            this.btn_styleBlu.Click += new System.EventHandler(this.btn_styleBlu_Click);
+            this.metroStyle.Owner = this;
             // 
-            // lbl_style
+            // nudReconnectTime
             // 
-            this.lbl_style.AutoSize = true;
-            this.lbl_style.Location = new System.Drawing.Point(10, 5);
-            this.lbl_style.Name = "lbl_style";
-            this.lbl_style.Size = new System.Drawing.Size(91, 19);
-            this.lbl_style.TabIndex = 1;
-            this.lbl_style.Text = "Choose color:";
-            // 
-            // btn_styleRed
-            // 
-            this.btn_styleRed.ActiveControl = null;
-            this.btn_styleRed.Location = new System.Drawing.Point(10, 80);
-            this.btn_styleRed.Name = "btn_styleRed";
-            this.btn_styleRed.Size = new System.Drawing.Size(150, 43);
-            this.btn_styleRed.Style = MetroFramework.MetroColorStyle.Red;
-            this.btn_styleRed.TabIndex = 2;
-            this.btn_styleRed.Text = "Red";
-            this.btn_styleRed.UseSelectable = true;
-            this.btn_styleRed.Click += new System.EventHandler(this.btn_styleRed_Click);
-            // 
-            // btn_styleBlack
-            // 
-            this.btn_styleBlack.ActiveControl = null;
-            this.btn_styleBlack.Location = new System.Drawing.Point(10, 130);
-            this.btn_styleBlack.Name = "btn_styleBlack";
-            this.btn_styleBlack.Size = new System.Drawing.Size(150, 43);
-            this.btn_styleBlack.Style = MetroFramework.MetroColorStyle.Black;
-            this.btn_styleBlack.TabIndex = 3;
-            this.btn_styleBlack.Text = "Black";
-            this.btn_styleBlack.UseSelectable = true;
-            this.btn_styleBlack.Click += new System.EventHandler(this.btn_styleBlack_Click);
+            this.nudReconnectTime.Location = new System.Drawing.Point(78, 128);
+            this.nudReconnectTime.Maximum = new decimal(new int[] {
+            120,
+            0,
+            0,
+            0});
+            this.nudReconnectTime.Name = "nudReconnectTime";
+            this.nudReconnectTime.Size = new System.Drawing.Size(41, 20);
+            this.nudReconnectTime.TabIndex = 4;
+            this.nudReconnectTime.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
             // 
             // frmMain
             // 
@@ -205,6 +258,8 @@ namespace CATSBot
             this.tabPage2.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.metroStyle)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudReconnectTime)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -225,5 +280,9 @@ namespace CATSBot
         private MetroFramework.Controls.MetroTile btn_styleBlu;
         private MetroFramework.Controls.MetroTile btn_styleBlack;
         private MetroFramework.Controls.MetroTile btn_styleRed;
+        private MetroFramework.Controls.MetroCheckBox chkAutoReconnect;
+        private MetroFramework.Controls.MetroLabel metroLabel2;
+        private MetroFramework.Components.MetroStyleManager metroStyle;
+        private System.Windows.Forms.NumericUpDown nudReconnectTime;
     }
 }
