@@ -1,4 +1,4 @@
-﻿namespace CATSBot
+namespace CATSBot
 {
     partial class frmMain
     {
@@ -227,4 +227,3 @@
         private MetroFramework.Controls.MetroTile btn_styleRed;
     }
 }
-

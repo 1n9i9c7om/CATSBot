@@ -13,10 +13,10 @@ namespace CATSBot
     {
         static Random rnd = new Random();
         static Point pNull = new Point(0, 0);
-        public static List<Point> GetSubPositions(Bitmap main, Bitmap sub, bool useNew = true)
+        public static List<Point> GetSubPositions(Bitmap main, Bitmap sub, float similarityThreshold = 0.941f, bool useNew = true)
         {
             if (useNew)
-                return GetSubPositionsAForge(main, sub);
+                return GetSubPositionsAForge(main, sub, similarityThreshold);
 
             List<Point> possiblepos = new List<Point>();
 
@@ -90,7 +90,7 @@ namespace CATSBot
         }
 
 
-        public static List<Point> GetSubPositionsAForge(Bitmap main, Bitmap sub)
+        public static List<Point> GetSubPositionsAForge(Bitmap main, Bitmap sub, float similarityThreshold)
         {
             List<Point> possiblepos = new List<Point>();
             System.Drawing.Bitmap sourceImage = ConvertToFormat(main, PixelFormat.Format24bppRgb);
@@ -195,10 +195,10 @@ namespace CATSBot
             public static extern IntPtr GetWindowRect(IntPtr hWnd, ref Rect rect);
         }
 
-        public static Point getPictureLocation(Bitmap sub, IntPtr windowHandle)
+        public static Point getPictureLocation(Bitmap sub, IntPtr windowHandle, float similarityThreshold = 0.941f)
         {
             Bitmap screenshot = CaptureApplication(windowHandle);
-            return GetSubPositions(screenshot, sub).FirstOrDefault();
+            return GetSubPositions(screenshot, sub, similarityThreshold).FirstOrDefault();
         }
 
         public static Point getRandomLoc(Point loc, Bitmap sub)

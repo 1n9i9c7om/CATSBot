@@ -21,15 +21,11 @@ namespace CATSBot
         {
             if(btnStart.Text == "Start")
             {
-                // Check if the MEmu process is running
-                Process[] pname = Process.GetProcessesByName("MEmu");
-                if (pname.Length == 0)
+                if(!BotHelper.setMemuIntPtr())
                 {
                     MetroFramework.MetroMessageBox.Show(this,"MEmu is not running!");
                     return;
                 }
-
-                BotHelper.memu = Process.GetProcessesByName("MEmu").First().MainWindowHandle;
 
                 if (chkUseSidebar.Checked)
                     ClickOnPointTool.ResizeWindow(BotHelper.memu, 1328, 758);
@@ -56,6 +52,10 @@ namespace CATSBot
         public void doLoop()
         {
             BotHelper.Log("(Re-)Starting main loop.");
+
+            if (chkAutoReconnect.Checked)
+                BotLogics.ReconnectLogic.doLogic();
+
             BotLogics.AttackLogic.doLogic();
 
             doLoop();
@@ -68,7 +68,6 @@ namespace CATSBot
 
             Application.Exit();
         }
-
 
         //###############################################################################################
         //Down here is all the stuff for the style changer/ appereance of the program
@@ -122,6 +121,14 @@ namespace CATSBot
         private void btn_styleBlack_Click(object sender, EventArgs e)
         {
             changeStyle(1);
+        private void btnSaveDebug_Click(object sender, EventArgs e)
+        {
+            BotHelper.saveDebugInformation();
+        }
+
+        private void nudReconnectTime_ValueChanged(object sender, EventArgs e)
+        {
+            BotLogics.ReconnectLogic.reconnectTime = Convert.ToInt32(nudReconnectTime.Value);
         }
     }
 }
