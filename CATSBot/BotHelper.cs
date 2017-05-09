@@ -82,7 +82,7 @@ namespace CATSBot
         {
             string debugInformation = "";
             debugInformation += "CATSBot Debug Information" + Environment.NewLine;
-            debugInformation += "Time: " + DateTime.Now.ToString("yyyy:MM:dd", CultureInfo.InvariantCulture) + Environment.NewLine;
+            debugInformation += "Time: " + DateTime.Now.ToString("yyyy.MM.dd HH:mm:ss", CultureInfo.InvariantCulture) + Environment.NewLine;
             debugInformation += "Operating System: " + Environment.OSVersion.VersionString + Environment.NewLine + Environment.NewLine;
 
             int screenCounter = 1;
@@ -91,7 +91,7 @@ namespace CATSBot
                 debugInformation += "Screen " + screenCounter + ": " + Environment.NewLine;
                 debugInformation += "Name: " + screen.DeviceName + Environment.NewLine;
                 debugInformation += "Resolution: " + screen.Bounds.Height + "x" + screen.WorkingArea.Width + Environment.NewLine;
-                debugInformation += "Is Primary: " + screen.Primary.ToString() + Environment.NewLine;
+                debugInformation += "Is Primary: " + screen.Primary.ToString() + Environment.NewLine + Environment.NewLine;
                 screenCounter++;
             }
 
