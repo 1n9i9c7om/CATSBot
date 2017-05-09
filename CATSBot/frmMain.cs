@@ -15,6 +15,7 @@ namespace CATSBot
         {
             InitializeComponent();
             BotHelper.main = this;
+            StyleManager = metroStyleManager;
         }
 
         private void btnStart_Click(object sender, EventArgs e)
@@ -99,12 +100,12 @@ namespace CATSBot
             //so that stuff might be not the BEST of solutions
 
             //Change the style of every control that supports it using the colorcode number
-            this.Style = (MetroFramework.MetroColorStyle)colorcode;
-            btnStart.Style = (MetroFramework.MetroColorStyle)colorcode;
-            tabMain.Style = (MetroFramework.MetroColorStyle)colorcode;
-            chkUseSidebar.Style = (MetroFramework.MetroColorStyle)colorcode;
-            chkAutoReconnect.Style = (MetroFramework.MetroColorStyle)colorcode;
-            Refresh();
+            metroStyleManager.Style = (MetroFramework.MetroColorStyle)colorcode;
+            //btnStart.Style = (MetroFramework.MetroColorStyle)colorcode;
+            //tabMain.Style = (MetroFramework.MetroColorStyle)colorcode;
+            //chkUseSidebar.Style = (MetroFramework.MetroColorStyle)colorcode;
+            //chkAutoReconnect.Style = (MetroFramework.MetroColorStyle)colorcode;
+            //Refresh();
 
         }
 
@@ -112,6 +113,7 @@ namespace CATSBot
         private void btn_styleBlu_Click(object sender, EventArgs e)
         {
             changeStyle(4);
+            metroStyleManager.Theme = MetroFramework.MetroThemeStyle.Dark;
         }
 
         private void btn_styleRed_Click(object sender, EventArgs e)

@@ -28,6 +28,7 @@ namespace CATSBot
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.tabMain = new MetroFramework.Controls.MetroTabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.txtLog = new System.Windows.Forms.TextBox();
@@ -43,11 +44,13 @@ namespace CATSBot
             this.lblStats = new MetroFramework.Controls.MetroLabel();
             this.chkAutoReconnect = new MetroFramework.Controls.MetroCheckBox();
             this.nudReconnectTime = new System.Windows.Forms.NumericUpDown();
+            this.metroStyleManager = new MetroFramework.Components.MetroStyleManager(this.components);
             this.tabMain.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudReconnectTime)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.metroStyleManager)).BeginInit();
             this.SuspendLayout();
             // 
             // tabMain
@@ -60,7 +63,7 @@ namespace CATSBot
             this.tabMain.Controls.Add(this.tabPage3);
             this.tabMain.Location = new System.Drawing.Point(8, 53);
             this.tabMain.Name = "tabMain";
-            this.tabMain.SelectedIndex = 0;
+            this.tabMain.SelectedIndex = 2;
             this.tabMain.Size = new System.Drawing.Size(295, 454);
             this.tabMain.TabIndex = 0;
             this.tabMain.UseSelectable = true;
@@ -130,7 +133,7 @@ namespace CATSBot
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Size = new System.Drawing.Size(287, 412);
             this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Appereance";
+            this.tabPage3.Text = "Appearance";
             // 
             // btn_styleBlack
             // 
@@ -225,6 +228,10 @@ namespace CATSBot
             0,
             0});
             // 
+            // metroStyleManager
+            // 
+            this.metroStyleManager.Owner = this;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -244,6 +251,7 @@ namespace CATSBot
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudReconnectTime)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.metroStyleManager)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -266,5 +274,6 @@ namespace CATSBot
         private MetroFramework.Controls.MetroTile btn_styleRed;
         private MetroFramework.Controls.MetroCheckBox chkAutoReconnect;
         private System.Windows.Forms.NumericUpDown nudReconnectTime;
+        private MetroFramework.Components.MetroStyleManager metroStyleManager;
     }
 }
