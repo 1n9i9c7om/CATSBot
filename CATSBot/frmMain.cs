@@ -103,6 +103,7 @@ namespace CATSBot
             btnStart.Style = (MetroFramework.MetroColorStyle)colorcode;
             tabMain.Style = (MetroFramework.MetroColorStyle)colorcode;
             chkUseSidebar.Style = (MetroFramework.MetroColorStyle)colorcode;
+            chkAutoReconnect.Style = (MetroFramework.MetroColorStyle)colorcode;
             Refresh();
 
         }
@@ -121,6 +122,8 @@ namespace CATSBot
         private void btn_styleBlack_Click(object sender, EventArgs e)
         {
             changeStyle(1);
+        }
+
         private void btnSaveDebug_Click(object sender, EventArgs e)
         {
             BotHelper.saveDebugInformation();
