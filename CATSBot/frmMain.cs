@@ -52,6 +52,10 @@ namespace CATSBot
         public void doLoop()
         {
             BotHelper.Log("(Re-)Starting main loop.");
+
+            if (chkAutoReconnect.Checked)
+                BotLogics.ReconnectLogic.doLogic();
+
             BotLogics.AttackLogic.doLogic();
 
             doLoop();
@@ -68,6 +72,11 @@ namespace CATSBot
         private void btnSaveDebug_Click(object sender, EventArgs e)
         {
             BotHelper.saveDebugInformation();
+        }
+
+        private void nudReconnectTime_ValueChanged(object sender, EventArgs e)
+        {
+            BotLogics.ReconnectLogic.reconnectTime = Convert.ToInt32(nudReconnectTime.Value);
         }
     }
 }

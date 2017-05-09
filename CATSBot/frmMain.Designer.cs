@@ -34,12 +34,19 @@
             this.tabMain = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.nudReconnectTime = new System.Windows.Forms.NumericUpDown();
+            this.chkAutoReconnect = new System.Windows.Forms.CheckBox();
+            this.btnSaveDebug = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.chkUseSidebar = new System.Windows.Forms.CheckBox();
-            this.btnSaveDebug = new System.Windows.Forms.Button();
+            this.picMemu = new System.Windows.Forms.PictureBox();
+            this.picReconnect = new System.Windows.Forms.PictureBox();
             this.tabMain.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudReconnectTime)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picMemu)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picReconnect)).BeginInit();
             this.SuspendLayout();
             // 
             // btnStart
@@ -48,7 +55,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnStart.Location = new System.Drawing.Point(6, 537);
             this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(274, 42);
+            this.btnStart.Size = new System.Drawing.Size(282, 42);
             this.btnStart.TabIndex = 0;
             this.btnStart.Text = "Start";
             this.btnStart.UseVisualStyleBackColor = true;
@@ -63,7 +70,7 @@
             this.txtLog.Multiline = true;
             this.txtLog.Name = "txtLog";
             this.txtLog.ReadOnly = true;
-            this.txtLog.Size = new System.Drawing.Size(258, 487);
+            this.txtLog.Size = new System.Drawing.Size(368, 487);
             this.txtLog.TabIndex = 2;
             // 
             // lblStats
@@ -86,7 +93,7 @@
             this.tabMain.Location = new System.Drawing.Point(6, 6);
             this.tabMain.Name = "tabMain";
             this.tabMain.SelectedIndex = 0;
-            this.tabMain.Size = new System.Drawing.Size(278, 525);
+            this.tabMain.Size = new System.Drawing.Size(286, 525);
             this.tabMain.TabIndex = 4;
             // 
             // tabPage1
@@ -95,23 +102,67 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(270, 499);
+            this.tabPage1.Size = new System.Drawing.Size(380, 499);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Log";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.nudReconnectTime);
+            this.tabPage2.Controls.Add(this.chkAutoReconnect);
             this.tabPage2.Controls.Add(this.btnSaveDebug);
             this.tabPage2.Controls.Add(this.label2);
             this.tabPage2.Controls.Add(this.chkUseSidebar);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(270, 499);
+            this.tabPage2.Size = new System.Drawing.Size(278, 499);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Settings";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // nudReconnectTime
+            // 
+            this.nudReconnectTime.Location = new System.Drawing.Point(165, 61);
+            this.nudReconnectTime.Maximum = new decimal(new int[] {
+            120,
+            0,
+            0,
+            0});
+            this.nudReconnectTime.Name = "nudReconnectTime";
+            this.nudReconnectTime.Size = new System.Drawing.Size(39, 20);
+            this.nudReconnectTime.TabIndex = 4;
+            this.nudReconnectTime.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.nudReconnectTime.ValueChanged += new System.EventHandler(this.nudReconnectTime_ValueChanged);
+            // 
+            // chkAutoReconnect
+            // 
+            this.chkAutoReconnect.AutoSize = true;
+            this.chkAutoReconnect.Checked = true;
+            this.chkAutoReconnect.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkAutoReconnect.Location = new System.Drawing.Point(6, 62);
+            this.chkAutoReconnect.Name = "chkAutoReconnect";
+            this.chkAutoReconnect.Size = new System.Drawing.Size(247, 17);
+            this.chkAutoReconnect.TabIndex = 3;
+            this.chkAutoReconnect.Text = "Automatically reconnect after               minutes.";
+            this.chkAutoReconnect.UseVisualStyleBackColor = true;
+            // 
+            // btnSaveDebug
+            // 
+            this.btnSaveDebug.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSaveDebug.Location = new System.Drawing.Point(8, 470);
+            this.btnSaveDebug.Name = "btnSaveDebug";
+            this.btnSaveDebug.Size = new System.Drawing.Size(264, 23);
+            this.btnSaveDebug.TabIndex = 2;
+            this.btnSaveDebug.Text = "Save Debug Information";
+            this.btnSaveDebug.UseVisualStyleBackColor = true;
+            this.btnSaveDebug.Click += new System.EventHandler(this.btnSaveDebug_Click);
             // 
             // label2
             // 
@@ -134,21 +185,27 @@
             this.chkUseSidebar.Text = "MEmu Sidebar enabled?";
             this.chkUseSidebar.UseVisualStyleBackColor = true;
             // 
-            // btnSaveDebug
+            // picMemu
             // 
-            this.btnSaveDebug.Location = new System.Drawing.Point(8, 470);
-            this.btnSaveDebug.Name = "btnSaveDebug";
-            this.btnSaveDebug.Size = new System.Drawing.Size(256, 23);
-            this.btnSaveDebug.TabIndex = 2;
-            this.btnSaveDebug.Text = "Save Debug Information";
-            this.btnSaveDebug.UseVisualStyleBackColor = true;
-            this.btnSaveDebug.Click += new System.EventHandler(this.btnSaveDebug_Click);
+            this.picMemu.Location = new System.Drawing.Point(5, 36);
+            this.picMemu.Name = "picMemu";
+            this.picMemu.Size = new System.Drawing.Size(373, 210);
+            this.picMemu.TabIndex = 0;
+            this.picMemu.TabStop = false;
+            // 
+            // picReconnect
+            // 
+            this.picReconnect.Location = new System.Drawing.Point(5, 252);
+            this.picReconnect.Name = "picReconnect";
+            this.picReconnect.Size = new System.Drawing.Size(146, 48);
+            this.picReconnect.TabIndex = 1;
+            this.picReconnect.TabStop = false;
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(288, 605);
+            this.ClientSize = new System.Drawing.Size(296, 605);
             this.Controls.Add(this.tabMain);
             this.Controls.Add(this.lblStats);
             this.Controls.Add(this.btnStart);
@@ -160,6 +217,9 @@
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudReconnectTime)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picMemu)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picReconnect)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -175,6 +235,10 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckBox chkUseSidebar;
         private System.Windows.Forms.Button btnSaveDebug;
+        private System.Windows.Forms.NumericUpDown nudReconnectTime;
+        private System.Windows.Forms.CheckBox chkAutoReconnect;
+        private System.Windows.Forms.PictureBox picReconnect;
+        private System.Windows.Forms.PictureBox picMemu;
     }
 }
 
