@@ -39,15 +39,15 @@ namespace CATSBot
             this.chkUseSidebar = new MetroFramework.Controls.MetroCheckBox();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.btnLightTheme = new MetroFramework.Controls.MetroButton();
+            this.btnDarkTheme = new MetroFramework.Controls.MetroButton();
+            this.metroLabel3 = new MetroFramework.Controls.MetroLabel();
+            this.btnChangeStyle = new MetroFramework.Controls.MetroTile();
+            this.styleBox = new MetroFramework.Controls.MetroComboBox();
             this.lbl_style = new MetroFramework.Controls.MetroLabel();
             this.btnStart = new MetroFramework.Controls.MetroTile();
             this.lblStats = new MetroFramework.Controls.MetroLabel();
             this.metroStyle = new MetroFramework.Components.MetroStyleManager(this.components);
-            this.styleBox = new MetroFramework.Controls.MetroComboBox();
-            this.btnChangeStyle = new MetroFramework.Controls.MetroTile();
-            this.metroLabel3 = new MetroFramework.Controls.MetroLabel();
-            this.btnDarkTheme = new MetroFramework.Controls.MetroButton();
-            this.btnLightTheme = new MetroFramework.Controls.MetroButton();
             this.tabMain.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -85,12 +85,13 @@ namespace CATSBot
             this.txtLog.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtLog.BackColor = System.Drawing.Color.White;
             this.txtLog.Location = new System.Drawing.Point(0, 1);
             this.txtLog.Multiline = true;
             this.txtLog.Name = "txtLog";
             this.txtLog.ReadOnly = true;
             this.txtLog.Size = new System.Drawing.Size(266, 416);
-            this.txtLog.TabIndex = 1;
+            this.txtLog.TabIndex = 0;
             // 
             // tabPage2
             // 
@@ -108,6 +109,8 @@ namespace CATSBot
             // 
             // nudReconnectTime
             // 
+            this.nudReconnectTime.BackColor = System.Drawing.Color.White;
+            this.nudReconnectTime.ForeColor = System.Drawing.Color.Black;
             this.nudReconnectTime.Location = new System.Drawing.Point(78, 128);
             this.nudReconnectTime.Maximum = new decimal(new int[] {
             120,
@@ -181,6 +184,75 @@ namespace CATSBot
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Appearance";
             // 
+            // btnLightTheme
+            // 
+            this.btnLightTheme.Location = new System.Drawing.Point(137, 156);
+            this.btnLightTheme.Name = "btnLightTheme";
+            this.btnLightTheme.Size = new System.Drawing.Size(117, 40);
+            this.btnLightTheme.TabIndex = 6;
+            this.btnLightTheme.Text = "Light Theme";
+            this.btnLightTheme.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.btnLightTheme.UseSelectable = true;
+            this.btnLightTheme.Click += new System.EventHandler(this.btnLightTheme_Click);
+            // 
+            // btnDarkTheme
+            // 
+            this.btnDarkTheme.Location = new System.Drawing.Point(11, 156);
+            this.btnDarkTheme.Name = "btnDarkTheme";
+            this.btnDarkTheme.Size = new System.Drawing.Size(120, 40);
+            this.btnDarkTheme.TabIndex = 5;
+            this.btnDarkTheme.Text = "Dark Theme";
+            this.btnDarkTheme.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.btnDarkTheme.UseSelectable = true;
+            this.btnDarkTheme.Click += new System.EventHandler(this.btnDarkTheme_Click);
+            // 
+            // metroLabel3
+            // 
+            this.metroLabel3.AutoSize = true;
+            this.metroLabel3.Location = new System.Drawing.Point(10, 134);
+            this.metroLabel3.Name = "metroLabel3";
+            this.metroLabel3.Size = new System.Drawing.Size(100, 19);
+            this.metroLabel3.TabIndex = 4;
+            this.metroLabel3.Text = "Choose Theme:";
+            // 
+            // btnChangeStyle
+            // 
+            this.btnChangeStyle.ActiveControl = null;
+            this.btnChangeStyle.Location = new System.Drawing.Point(10, 65);
+            this.btnChangeStyle.Name = "btnChangeStyle";
+            this.btnChangeStyle.Size = new System.Drawing.Size(120, 40);
+            this.btnChangeStyle.TabIndex = 3;
+            this.btnChangeStyle.Text = "Change Style";
+            this.btnChangeStyle.UseSelectable = true;
+            this.btnChangeStyle.Click += new System.EventHandler(this.btnChangeStyle_Click);
+            // 
+            // styleBox
+            // 
+            this.styleBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.styleBox.FormattingEnabled = true;
+            this.styleBox.ItemHeight = 23;
+            this.styleBox.Items.AddRange(new object[] {
+            "Black",
+            "White",
+            "Silver",
+            "Blue",
+            "Green",
+            "Lime",
+            "Teal",
+            "Orange",
+            "Brown",
+            "Pink",
+            "Magenta",
+            "Purple",
+            "Red",
+            "Yellow"});
+            this.styleBox.Location = new System.Drawing.Point(10, 30);
+            this.styleBox.Name = "styleBox";
+            this.styleBox.Size = new System.Drawing.Size(244, 29);
+            this.styleBox.TabIndex = 2;
+            this.styleBox.UseSelectable = true;
+            // 
             // lbl_style
             // 
             this.lbl_style.AutoSize = true;
@@ -217,75 +289,6 @@ namespace CATSBot
             // metroStyle
             // 
             this.metroStyle.Owner = this;
-            // 
-            // styleBox
-            // 
-            this.styleBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.styleBox.FormattingEnabled = true;
-            this.styleBox.ItemHeight = 23;
-            this.styleBox.Items.AddRange(new object[] {
-            "Black",
-            "White",
-            "Silver",
-            "Blue",
-            "Green",
-            "Lime",
-            "Teal",
-            "Orange",
-            "Brown",
-            "Pink",
-            "Magenta",
-            "Purple",
-            "Red",
-            "Yellow"});
-            this.styleBox.Location = new System.Drawing.Point(10, 30);
-            this.styleBox.Name = "styleBox";
-            this.styleBox.Size = new System.Drawing.Size(244, 29);
-            this.styleBox.TabIndex = 2;
-            this.styleBox.UseSelectable = true;
-            // 
-            // btnChangeStyle
-            // 
-            this.btnChangeStyle.ActiveControl = null;
-            this.btnChangeStyle.Location = new System.Drawing.Point(10, 65);
-            this.btnChangeStyle.Name = "btnChangeStyle";
-            this.btnChangeStyle.Size = new System.Drawing.Size(120, 40);
-            this.btnChangeStyle.TabIndex = 3;
-            this.btnChangeStyle.Text = "Change Style";
-            this.btnChangeStyle.UseSelectable = true;
-            this.btnChangeStyle.Click += new System.EventHandler(this.btnChangeStyle_Click);
-            // 
-            // metroLabel3
-            // 
-            this.metroLabel3.AutoSize = true;
-            this.metroLabel3.Location = new System.Drawing.Point(10, 134);
-            this.metroLabel3.Name = "metroLabel3";
-            this.metroLabel3.Size = new System.Drawing.Size(100, 19);
-            this.metroLabel3.TabIndex = 4;
-            this.metroLabel3.Text = "Choose Theme:";
-            // 
-            // btnDarkTheme
-            // 
-            this.btnDarkTheme.Location = new System.Drawing.Point(11, 156);
-            this.btnDarkTheme.Name = "btnDarkTheme";
-            this.btnDarkTheme.Size = new System.Drawing.Size(120, 40);
-            this.btnDarkTheme.TabIndex = 5;
-            this.btnDarkTheme.Text = "Dark Theme";
-            this.btnDarkTheme.Theme = MetroFramework.MetroThemeStyle.Dark;
-            this.btnDarkTheme.UseSelectable = true;
-            this.btnDarkTheme.Click += new System.EventHandler(this.btnDarkTheme_Click);
-            // 
-            // btnLightTheme
-            // 
-            this.btnLightTheme.Location = new System.Drawing.Point(137, 156);
-            this.btnLightTheme.Name = "btnLightTheme";
-            this.btnLightTheme.Size = new System.Drawing.Size(117, 40);
-            this.btnLightTheme.TabIndex = 6;
-            this.btnLightTheme.Text = "Light Theme";
-            this.btnLightTheme.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.btnLightTheme.UseSelectable = true;
-            this.btnLightTheme.Click += new System.EventHandler(this.btnLightTheme_Click);
             // 
             // frmMain
             // 
