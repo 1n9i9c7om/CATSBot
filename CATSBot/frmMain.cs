@@ -11,6 +11,7 @@ namespace CATSBot
     public partial class frmMain : MetroFramework.Forms.MetroForm
     {
         Thread thread;
+        bool isRunning = false;
 
         public frmMain()
         {
@@ -20,7 +21,7 @@ namespace CATSBot
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            if(btnStart.Text == "Start")
+            if(!isRunning)
             {
                 if(!BotHelper.setMemuIntPtr())
                 {
@@ -34,6 +35,7 @@ namespace CATSBot
                     ClickOnPointTool.ResizeWindow(BotHelper.memu, 1288, 758);
 
                 btnStart.Text = "Stop";
+                isRunning = true;
 
                 // Start the Bot thread
                 Thread.Sleep(100);
@@ -47,6 +49,7 @@ namespace CATSBot
                     thread.Suspend(); // TODO: Proper Multithreading
 
                 btnStart.Text = "Start";
+                isRunning = false;
             }
         }
 
