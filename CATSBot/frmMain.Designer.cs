@@ -86,6 +86,7 @@ namespace CATSBot
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtLog.BackColor = System.Drawing.Color.White;
+            this.txtLog.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtLog.Location = new System.Drawing.Point(0, 1);
             this.txtLog.Multiline = true;
             this.txtLog.Name = "txtLog";
