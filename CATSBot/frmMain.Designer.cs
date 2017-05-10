@@ -86,6 +86,7 @@ namespace CATSBot
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtLog.BackColor = System.Drawing.Color.White;
+            this.txtLog.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtLog.Location = new System.Drawing.Point(0, 1);
             this.txtLog.Multiline = true;
             this.txtLog.Name = "txtLog";
@@ -125,6 +126,7 @@ namespace CATSBot
             0,
             0,
             0});
+            this.nudReconnectTime.ValueChanged += new System.EventHandler(this.nudReconnectTime_ValueChanged);
             // 
             // chkAutoReconnect
             // 
@@ -137,6 +139,7 @@ namespace CATSBot
             this.chkAutoReconnect.TabIndex = 3;
             this.chkAutoReconnect.Text = "Yes, after                  minutes.";
             this.chkAutoReconnect.UseSelectable = true;
+            this.chkAutoReconnect.CheckedChanged += new System.EventHandler(this.chkAutoReconnect_CheckedChanged);
             // 
             // metroLabel2
             // 
@@ -159,6 +162,7 @@ namespace CATSBot
             this.chkUseSidebar.TabIndex = 1;
             this.chkUseSidebar.Text = "MEmu Sidebar enabled?";
             this.chkUseSidebar.UseSelectable = true;
+            this.chkUseSidebar.CheckedChanged += new System.EventHandler(this.chkUseSidebar_CheckedChanged);
             // 
             // metroLabel1
             // 
@@ -322,20 +326,20 @@ namespace CATSBot
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage3;
-        private MetroFramework.Controls.MetroCheckBox chkUseSidebar;
         private MetroFramework.Controls.MetroLabel metroLabel1;
         public MetroFramework.Controls.MetroTile btnStart;
         public MetroFramework.Controls.MetroLabel lblStats;
         public System.Windows.Forms.TextBox txtLog;
         private MetroFramework.Controls.MetroLabel lbl_style;
-        private MetroFramework.Controls.MetroCheckBox chkAutoReconnect;
         private MetroFramework.Controls.MetroLabel metroLabel2;
-        private MetroFramework.Components.MetroStyleManager metroStyle;
-        private System.Windows.Forms.NumericUpDown nudReconnectTime;
         public MetroFramework.Controls.MetroComboBox styleBox;
         private MetroFramework.Controls.MetroTile btnChangeStyle;
         private MetroFramework.Controls.MetroLabel metroLabel3;
         private MetroFramework.Controls.MetroButton btnLightTheme;
         private MetroFramework.Controls.MetroButton btnDarkTheme;
+        public MetroFramework.Components.MetroStyleManager metroStyle;
+        public MetroFramework.Controls.MetroCheckBox chkUseSidebar;
+        public MetroFramework.Controls.MetroCheckBox chkAutoReconnect;
+        public System.Windows.Forms.NumericUpDown nudReconnectTime;
     }
 }

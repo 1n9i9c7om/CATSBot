@@ -2,12 +2,15 @@
 using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
+using System.Xml;
+using System.Xml.Serialization;
 
-namespace CATSBot
+namespace CATSBot.Helper
 {
     //This class provides random helper methods.
     public static class BotHelper
@@ -30,7 +33,6 @@ namespace CATSBot
             Process[] pname = Process.GetProcessesByName("MEmu");
             if (pname.Length == 0)
             {
-                MessageBox.Show("MEmu is not running!");
                 return false;
             }
 
@@ -65,7 +67,7 @@ namespace CATSBot
                 main.lblStats.Text = "Wins: " + wins + " (" + crowns + " Crowns) | Losses: " + losses;
             });
         }
-
+        #region Debug Information Gathering
         [DllImport("user32.dll", SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool GetWindowRect(IntPtr hWnd, ref RECT lpRect);
@@ -121,9 +123,60 @@ namespace CATSBot
             System.IO.File.WriteAllText("CATSBot_Debuginformation.txt", debugInformation);
             Process.Start("CATSBot_Debuginformation.txt");
         }
+        #endregion
 
-        
+        #region XML (De-)Serializer
+        public static bool Serialize<T>(this T value, string fileName)
+        {
+            if (value == null)
+            {
+                return false;
+            }
+            try
+            {
 
+                var xmlserializer = new XmlSerializer(typeof(T));
+                using (StringWriter stringWriter = new StringWriter())
+                {
+                    using (var writer = XmlWriter.Create(stringWriter))
+                    {
+                        xmlserializer.Serialize(writer, value);
+                        File.WriteAllText(fileName, stringWriter.ToString());
+                        return true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.InnerException.Message);
+                return false;
+            }
+        }
 
+        public static T Deserialize<T>(string fileName)
+        {
+            if (fileName == null || fileName == "")
+            {
+                return default(T); //"null"
+            }
+            try
+            {
+                var xmlserializer = new XmlSerializer(typeof(T)); 
+                using (StreamReader streamReader = new StreamReader(fileName))
+                {
+                    using (var reader = XmlReader.Create(streamReader)) 
+                    {
+                        return (T)xmlserializer.Deserialize(reader); 
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return default(T); //"null"
+            }
+        }
+        #endregion
     }
 }
