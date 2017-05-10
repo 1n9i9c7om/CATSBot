@@ -33,7 +33,6 @@ namespace CATSBot.Helper
             Process[] pname = Process.GetProcessesByName("MEmu");
             if (pname.Length == 0)
             {
-                MessageBox.Show("MEmu is not running!");
                 return false;
             }
 
