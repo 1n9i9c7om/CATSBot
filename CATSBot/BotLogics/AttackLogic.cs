@@ -36,7 +36,7 @@ namespace CATSBot.BotLogics
             {
                 Point dbgPoint = ImageRecognition.getPictureLocation(Properties.Resources.button_fight, BotHelper.memu);
                 BotHelper.Log("Button found! FeelsGoodMan.");
-                BotHelper.Log("Button found at: X = " + dbgPoint.X + "; Y = " + dbgPoint.Y);
+                BotHelper.Log("Button found at: X = " + dbgPoint.X + "; Y = " + dbgPoint.Y, true, true);
                 ClickOnPointTool.ClickOnPoint(BotHelper.memu, ImageRecognition.getRandomLoc(Properties.Resources.button_fight, BotHelper.memu));
             }
             else
@@ -107,7 +107,7 @@ namespace CATSBot.BotLogics
                 BotHelper.Log("Battle finished.");
 
                 Point rndP = ImageRecognition.getRandomLoc(locOK, Properties.Resources.button_ok);
-                BotHelper.Log("Clicked on: X = " + rndP.X + "; Y = " + rndP.Y);
+                BotHelper.Log("Clicked on: X = " + rndP.X + "; Y = " + rndP.Y, true, true);
                 ClickOnPointTool.ClickOnPoint(BotHelper.memu, rndP);
             }
 

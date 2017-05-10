@@ -9,12 +9,11 @@ namespace CATSBot.BotLogics
 {
     public static class ReconnectLogic
     {
-        public static int reconnectTime = 5; //in minutes
-
         public static void doLogic()
         {
             if(checkReconnect())
             {
+                int reconnectTime = Settings.getInstance().reconnectTime;
                 BotHelper.Log("Reconnect Button found. Pressing it in " + reconnectTime + " minutes.");
 
                 int sleepTime = 0;
@@ -31,7 +30,9 @@ namespace CATSBot.BotLogics
                 BotHelper.Log("Reconnect Button pressed.");
             }
             else
+            {
                 BotHelper.Log("Reconnect Button check completed; Button not found.", true, true);
+            }
         }
 
         private static bool checkReconnect()

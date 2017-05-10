@@ -17,6 +17,7 @@ namespace CATSBot
         {
             InitializeComponent();
             BotHelper.main = this;
+            Settings.getInstance().loadSettings(this);
         }
 
         private void btnStart_Click(object sender, EventArgs e)
@@ -70,23 +71,59 @@ namespace CATSBot
             if(thread != null && thread.IsAlive)
                 thread.Suspend(); // TODO: Proper Multithreading
 
+            Settings.getInstance().saveSettings();
+
             Application.Exit();
         }
-
-        private void changeStyle(MetroColorStyle color)
-        {
-            this.Style = color;
-            metroStyle.Style = color;
-        }     
 
         private void btnSaveDebug_Click(object sender, EventArgs e)
         {
             BotHelper.saveDebugInformation();
         }
 
-        private void nudReconnectTime_ValueChanged(object sender, EventArgs e)
+        #region Style-related events
+        public void changeStyle(MetroColorStyle color)
         {
-            BotLogics.ReconnectLogic.reconnectTime = Convert.ToInt32(nudReconnectTime.Value);
+            Settings.getInstance().metroStyle = (int)color;
+            this.Style = color;
+            metroStyle.Style = color;
+        }
+
+        public void changeTheme(MetroThemeStyle theme)
+        {
+            Settings.getInstance().metroTheme = (int)theme;
+            if (theme == MetroThemeStyle.Light)
+            {
+                this.Theme = MetroThemeStyle.Light;
+                metroStyle.Theme = MetroThemeStyle.Light;
+
+                txtLog.BackColor = System.Drawing.Color.White;
+                txtLog.ForeColor = System.Drawing.Color.Black;
+
+                foreach (TabPage tp in tabMain.Controls)
+                {
+                    tp.BackColor = System.Drawing.Color.White;
+                }
+
+                nudReconnectTime.BackColor = System.Drawing.Color.White;
+                nudReconnectTime.ForeColor = System.Drawing.Color.Black;
+            }
+            else if (theme == MetroThemeStyle.Dark)
+            {
+                this.Theme = MetroThemeStyle.Dark;
+                metroStyle.Theme = MetroThemeStyle.Dark;
+
+                txtLog.BackColor = System.Drawing.ColorTranslator.FromHtml("#111111");
+                txtLog.ForeColor = System.Drawing.Color.White;
+
+                foreach (TabPage tp in tabMain.Controls)
+                {
+                    tp.BackColor = System.Drawing.ColorTranslator.FromHtml("#111111");
+                }
+
+                nudReconnectTime.BackColor = System.Drawing.ColorTranslator.FromHtml("#111111");
+                nudReconnectTime.ForeColor = System.Drawing.Color.White;
+            }
         }
 
         private void btnChangeStyle_Click(object sender, EventArgs e)
@@ -96,36 +133,31 @@ namespace CATSBot
 
         private void btnLightTheme_Click(object sender, EventArgs e)
         {
-            this.Theme = MetroThemeStyle.Light;
-            metroStyle.Theme = MetroThemeStyle.Light;
-
-            txtLog.BackColor = System.Drawing.Color.White;
-            txtLog.ForeColor = System.Drawing.Color.Black;
-
-            foreach (TabPage tp in tabMain.Controls)
-            {
-                tp.BackColor = System.Drawing.Color.White;
-            }
-
-            nudReconnectTime.BackColor = System.Drawing.Color.White;
-            nudReconnectTime.ForeColor = System.Drawing.Color.Black;
+            changeTheme(MetroThemeStyle.Light);
         }
 
         private void btnDarkTheme_Click(object sender, EventArgs e)
         {
-            this.Theme = MetroThemeStyle.Dark;
-            metroStyle.Theme = MetroThemeStyle.Dark;
-
-            txtLog.BackColor = System.Drawing.ColorTranslator.FromHtml("#111111");
-            txtLog.ForeColor = System.Drawing.Color.White;
-
-            foreach (TabPage tp in tabMain.Controls)
-            {
-                tp.BackColor = System.Drawing.ColorTranslator.FromHtml("#111111");
-            }
-
-            nudReconnectTime.BackColor = System.Drawing.ColorTranslator.FromHtml("#111111");
-            nudReconnectTime.ForeColor = System.Drawing.Color.White;
+            changeTheme(MetroThemeStyle.Dark);
         }
+        #endregion
+
+        #region Setting-saving "dummys"
+        //These are just for setting-saving purposes
+        private void chkUseSidebar_CheckedChanged(object sender, EventArgs e)
+        {
+            Settings.getInstance().memuSidebarEnabled = chkUseSidebar.Checked;
+        }
+
+        private void chkAutoReconnect_CheckedChanged(object sender, EventArgs e)
+        {
+            Settings.getInstance().automaticReconnectEnabled = chkAutoReconnect.Checked;
+        }
+
+        private void nudReconnectTime_ValueChanged(object sender, EventArgs e)
+        {
+            Settings.getInstance().reconnectTime = Convert.ToInt32(nudReconnectTime.Value);
+        }
+        #endregion
     }
 }
