@@ -74,23 +74,7 @@ namespace CATSBot
         {
             this.Style = color;
             metroStyle.Style = color;
-        }
-
-        //The color change buttons. Names should indicate color
-        private void btn_styleBlu_Click(object sender, EventArgs e)
-        {
-            changeStyle(MetroColorStyle.Blue);
-        }
-
-        private void btn_styleRed_Click(object sender, EventArgs e)
-        {
-            changeStyle(MetroColorStyle.Red);
-        }
-
-        private void btn_styleBlack_Click(object sender, EventArgs e)
-        {
-            changeStyle(MetroColorStyle.Black);
-        }
+        }     
 
         private void btnSaveDebug_Click(object sender, EventArgs e)
         {
@@ -100,6 +84,41 @@ namespace CATSBot
         private void nudReconnectTime_ValueChanged(object sender, EventArgs e)
         {
             BotLogics.ReconnectLogic.reconnectTime = Convert.ToInt32(nudReconnectTime.Value);
+        }
+
+        private void btnChangeStyle_Click(object sender, EventArgs e)
+        {
+            changeStyle((MetroColorStyle)styleBox.SelectedIndex + 1);
+        }
+
+        private void btnLightTheme_Click(object sender, EventArgs e)
+        {
+            this.Theme = MetroThemeStyle.Light;
+            metroStyle.Theme = MetroThemeStyle.Light;
+
+            txtLog.BackColor = System.Drawing.Color.White;
+            txtLog.ForeColor = System.Drawing.Color.Black;
+
+            tabPage2.BackColor = System.Drawing.Color.White;
+            tabPage3.BackColor = System.Drawing.Color.White;
+
+            nudReconnectTime.BackColor = System.Drawing.Color.White;
+            nudReconnectTime.ForeColor = System.Drawing.Color.Black;
+        }
+
+        private void btnDarkTheme_Click(object sender, EventArgs e)
+        {
+            this.Theme = MetroThemeStyle.Dark;
+            metroStyle.Theme = MetroThemeStyle.Dark;
+
+            txtLog.BackColor = System.Drawing.ColorTranslator.FromHtml("#111111");
+            txtLog.ForeColor = System.Drawing.Color.White;
+
+            tabPage2.BackColor = System.Drawing.ColorTranslator.FromHtml("#111111");
+            tabPage3.BackColor = System.Drawing.ColorTranslator.FromHtml("#111111");
+
+            nudReconnectTime.BackColor = System.Drawing.ColorTranslator.FromHtml("#111111");
+            nudReconnectTime.ForeColor = System.Drawing.Color.White;
         }
     }
 }
