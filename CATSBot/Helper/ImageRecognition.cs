@@ -6,7 +6,7 @@ using System.Drawing.Imaging;
 using System.Linq;
 using System.Runtime.InteropServices;
 
-namespace CATSBot
+namespace CATSBot.Helper
 {
     //Thanks to Wowa from StackOverflow: http://stackoverflow.com/a/11345850
     public static class ImageRecognition

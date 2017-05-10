@@ -2,6 +2,8 @@
 using System.Drawing;
 using System.Threading;
 
+using CATSBot.Helper;
+
 namespace CATSBot.BotLogics
 {
     public static class AttackLogic
@@ -18,7 +20,7 @@ namespace CATSBot.BotLogics
         //Check if we defended, if yes, click that filthy "Claim" button that's prevent us from clicking "QUICK FIGHT" ;)
         public static void checkDefense()
         {
-            BotHelper.Log("Successful defense check");
+            Helper.BotHelper.Log("Successful defense check");
 
             if (ImageRecognition.getPictureLocation(Properties.Resources.button_defend, BotHelper.memu) != pNull)
             {
@@ -36,7 +38,7 @@ namespace CATSBot.BotLogics
             {
                 Point dbgPoint = ImageRecognition.getPictureLocation(Properties.Resources.button_fight, BotHelper.memu);
                 BotHelper.Log("Button found! FeelsGoodMan.");
-                BotHelper.Log("Button found at: X = " + dbgPoint.X + "; Y = " + dbgPoint.Y);
+                BotHelper.Log("Button found at: X = " + dbgPoint.X + "; Y = " + dbgPoint.Y, true, true);
                 ClickOnPointTool.ClickOnPoint(BotHelper.memu, ImageRecognition.getRandomLoc(Properties.Resources.button_fight, BotHelper.memu));
             }
             else
@@ -107,7 +109,7 @@ namespace CATSBot.BotLogics
                 BotHelper.Log("Battle finished.");
 
                 Point rndP = ImageRecognition.getRandomLoc(locOK, Properties.Resources.button_ok);
-                BotHelper.Log("Clicked on: X = " + rndP.X + "; Y = " + rndP.Y);
+                BotHelper.Log("Clicked on: X = " + rndP.X + "; Y = " + rndP.Y, true, true);
                 ClickOnPointTool.ClickOnPoint(BotHelper.memu, rndP);
             }
 
