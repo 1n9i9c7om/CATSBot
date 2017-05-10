@@ -2,6 +2,8 @@
 using System.Drawing;
 using System.Threading;
 
+using CATSBot.Helper;
+
 namespace CATSBot.BotLogics
 {
     public static class AttackLogic
@@ -18,7 +20,7 @@ namespace CATSBot.BotLogics
         //Check if we defended, if yes, click that filthy "Claim" button that's prevent us from clicking "QUICK FIGHT" ;)
         public static void checkDefense()
         {
-            BotHelper.Log("Successful defense check");
+            Helper.BotHelper.Log("Successful defense check");
 
             if (ImageRecognition.getPictureLocation(Properties.Resources.button_defend, BotHelper.memu) != pNull)
             {

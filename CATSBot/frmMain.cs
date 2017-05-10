@@ -6,6 +6,8 @@ using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
 
+using CATSBot.Helper;
+
 namespace CATSBot
 {
     public partial class frmMain : MetroFramework.Forms.MetroForm

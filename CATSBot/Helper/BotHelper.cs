@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace CATSBot
+namespace CATSBot.Helper
 {
     //This class provides random helper methods.
     public static class BotHelper

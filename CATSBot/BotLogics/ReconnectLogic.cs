@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
+using CATSBot.Helper;
+
 namespace CATSBot.BotLogics
 {
     public static class ReconnectLogic

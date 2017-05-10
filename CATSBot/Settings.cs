@@ -20,7 +20,7 @@ namespace CATSBot
             {
                 if(System.IO.File.Exists("settings.xml"))
                 {
-                    settings = BotHelper.Deserialize<Settings>("settings.xml");
+                    settings = Helper.BotHelper.Deserialize<Settings>("settings.xml");
                 }
                 else
                 {
@@ -42,7 +42,7 @@ namespace CATSBot
 
         public bool saveSettings()
         {
-           return BotHelper.Serialize(this, "settings.xml");
+           return Helper.BotHelper.Serialize(this, "settings.xml");
         }
 
         public void loadSettings(frmMain main)
