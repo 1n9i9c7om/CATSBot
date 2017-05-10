@@ -31,7 +31,7 @@ namespace CATSBot.BotLogics
         }
 
         // Try to find the "Quick Fight" button and click on it.
-        public static void searchDuell()
+        public static bool searchDuell()
         {
             BotHelper.Log("Attempting to press the Duell button");
             if (ImageRecognition.getPictureLocation(Properties.Resources.button_fight, BotHelper.memu) != pNull)
@@ -40,15 +40,17 @@ namespace CATSBot.BotLogics
                 BotHelper.Log("Button found! FeelsGoodMan.");
                 BotHelper.Log("Button found at: X = " + dbgPoint.X + "; Y = " + dbgPoint.Y, true, true);
                 ClickOnPointTool.ClickOnPoint(BotHelper.memu, ImageRecognition.getRandomLoc(Properties.Resources.button_fight, BotHelper.memu));
+                return true;
             }
             else
             {
                 BotHelper.Log("Button not found! FeelsBadMan.");
+                return false;
             }
         }
 
         //Check for the skip button. If it's there, an opponent has been found.
-        public static void waitDuell()
+        public static bool waitDuell()
         {
             BotHelper.Log("Waiting for the duell to start....");
             int checks = 0;
@@ -62,13 +64,15 @@ namespace CATSBot.BotLogics
             if (checks >= 55)
             {
                 BotHelper.Log("Oops, we timed out.");
+                return false;
             }
 
             BotHelper.randomDelay(500, 50);
+            return true;
         }
 
         // Start the fight by clicking anywhere and wait for it to end (by searching for the "OK" button)
-        public static void startDuell()
+        public static bool startDuell(int attempt = 1)
         {
             ClickOnPointTool.ClickOnPoint(BotHelper.memu, new Point(rnd.Next(670 - 100, 670 + 100), rnd.Next(400 - 100, 400 + 100))); //Click anywhere to start the battle
             BotHelper.randomDelay(500, 50);
@@ -101,8 +105,10 @@ namespace CATSBot.BotLogics
             if (locOK.X == 0 && locOK.Y == 0) //something went wrong (note: the code should never enter this)
             {
                 BotHelper.Log("Something weird happened.");
-                startDuell();
-                return;
+                if (attempt < 3)
+                    return startDuell(attempt + 1);
+                else
+                    return false; // TODO: Restart CATS?
             }
             else //we won!
             {
@@ -115,6 +121,8 @@ namespace CATSBot.BotLogics
 
             //BotHelper.UpdateStats(wins, losses, crowns);
             BotHelper.Log("Returning to main screen");
+
+            return true;
         }
 
         //Attack Logic
@@ -122,9 +130,28 @@ namespace CATSBot.BotLogics
         {
             BotHelper.randomDelay(4000, 1000);
             checkDefense();
-            searchDuell();
-            waitDuell();
-            startDuell();
+            if (searchDuell())
+            {
+                if (waitDuell())
+                {
+                    if (startDuell())
+                    {
+                        BotHelper.Log("AttackLogic successfully completed.");
+                    }
+                    else
+                    {
+                        BotHelper.Log("AttackLogic failed during startDuell");
+                    }
+                }
+                else
+                {
+                    BotHelper.Log("AttackLogic failed during waitDUell");
+                }
+            }           
+            else
+            {
+                BotHelper.Log("AttackLogic failed during searchDuell");
+            }
         }
     }
 }
