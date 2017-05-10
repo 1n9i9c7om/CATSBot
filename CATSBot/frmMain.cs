@@ -24,7 +24,7 @@ namespace CATSBot
             {
                 if(!BotHelper.setMemuIntPtr())
                 {
-                    MetroFramework.MetroMessageBox.Show(this,"MEmu is not running!");
+                    MetroFramework.MetroMessageBox.Show(this, "MEmu is not running!");
                     return;
                 }
 
@@ -99,8 +99,10 @@ namespace CATSBot
             txtLog.BackColor = System.Drawing.Color.White;
             txtLog.ForeColor = System.Drawing.Color.Black;
 
-            tabPage2.BackColor = System.Drawing.Color.White;
-            tabPage3.BackColor = System.Drawing.Color.White;
+            foreach (TabPage tp in tabMain.Controls)
+            {
+                tp.BackColor = System.Drawing.Color.White;
+            }
 
             nudReconnectTime.BackColor = System.Drawing.Color.White;
             nudReconnectTime.ForeColor = System.Drawing.Color.Black;
@@ -114,8 +116,10 @@ namespace CATSBot
             txtLog.BackColor = System.Drawing.ColorTranslator.FromHtml("#111111");
             txtLog.ForeColor = System.Drawing.Color.White;
 
-            tabPage2.BackColor = System.Drawing.ColorTranslator.FromHtml("#111111");
-            tabPage3.BackColor = System.Drawing.ColorTranslator.FromHtml("#111111");
+            foreach (TabPage tp in tabMain.Controls)
+            {
+                tp.BackColor = System.Drawing.ColorTranslator.FromHtml("#111111");
+            }
 
             nudReconnectTime.BackColor = System.Drawing.ColorTranslator.FromHtml("#111111");
             nudReconnectTime.ForeColor = System.Drawing.Color.White;
