@@ -1,4 +1,4 @@
-﻿namespace CATSBot
+namespace CATSBot
 {
     partial class frmMain
     {
@@ -28,60 +28,33 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnStart = new System.Windows.Forms.Button();
-            this.txtLog = new System.Windows.Forms.TextBox();
-            this.lblStats = new System.Windows.Forms.Label();
-            this.tabMain = new System.Windows.Forms.TabControl();
+            this.components = new System.ComponentModel.Container();
+            this.tabMain = new MetroFramework.Controls.MetroTabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.txtLog = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.nudReconnectTime = new System.Windows.Forms.NumericUpDown();
-            this.chkAutoReconnect = new System.Windows.Forms.CheckBox();
-            this.btnSaveDebug = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.chkUseSidebar = new System.Windows.Forms.CheckBox();
-            this.picMemu = new System.Windows.Forms.PictureBox();
-            this.picReconnect = new System.Windows.Forms.PictureBox();
+            this.chkAutoReconnect = new MetroFramework.Controls.MetroCheckBox();
+            this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
+            this.chkUseSidebar = new MetroFramework.Controls.MetroCheckBox();
+            this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.btnLightTheme = new MetroFramework.Controls.MetroButton();
+            this.btnDarkTheme = new MetroFramework.Controls.MetroButton();
+            this.metroLabel3 = new MetroFramework.Controls.MetroLabel();
+            this.btnChangeStyle = new MetroFramework.Controls.MetroTile();
+            this.styleBox = new MetroFramework.Controls.MetroComboBox();
+            this.lbl_style = new MetroFramework.Controls.MetroLabel();
+            this.btnStart = new MetroFramework.Controls.MetroTile();
+            this.lblStats = new MetroFramework.Controls.MetroLabel();
+            this.metroStyle = new MetroFramework.Components.MetroStyleManager(this.components);
             this.tabMain.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudReconnectTime)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picMemu)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picReconnect)).BeginInit();
+            this.tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.metroStyle)).BeginInit();
             this.SuspendLayout();
-            // 
-            // btnStart
-            // 
-            this.btnStart.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnStart.Location = new System.Drawing.Point(6, 537);
-            this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(282, 42);
-            this.btnStart.TabIndex = 0;
-            this.btnStart.Text = "Start";
-            this.btnStart.UseVisualStyleBackColor = true;
-            this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
-            // 
-            // txtLog
-            // 
-            this.txtLog.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtLog.Location = new System.Drawing.Point(6, 6);
-            this.txtLog.Multiline = true;
-            this.txtLog.Name = "txtLog";
-            this.txtLog.ReadOnly = true;
-            this.txtLog.Size = new System.Drawing.Size(368, 487);
-            this.txtLog.TabIndex = 2;
-            // 
-            // lblStats
-            // 
-            this.lblStats.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblStats.AutoSize = true;
-            this.lblStats.Location = new System.Drawing.Point(12, 583);
-            this.lblStats.Name = "lblStats";
-            this.lblStats.Size = new System.Drawing.Size(149, 13);
-            this.lblStats.TabIndex = 3;
-            this.lblStats.Text = "Wins: 0 (0 Crowns) | Losses: 0";
             // 
             // tabMain
             // 
@@ -90,48 +63,63 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabMain.Controls.Add(this.tabPage1);
             this.tabMain.Controls.Add(this.tabPage2);
-            this.tabMain.Location = new System.Drawing.Point(6, 6);
+            this.tabMain.Controls.Add(this.tabPage3);
+            this.tabMain.Location = new System.Drawing.Point(8, 53);
             this.tabMain.Name = "tabMain";
             this.tabMain.SelectedIndex = 0;
-            this.tabMain.Size = new System.Drawing.Size(286, 525);
-            this.tabMain.TabIndex = 4;
+            this.tabMain.Size = new System.Drawing.Size(274, 459);
+            this.tabMain.TabIndex = 0;
+            this.tabMain.UseSelectable = true;
             // 
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.txtLog);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Location = new System.Drawing.Point(4, 38);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(380, 499);
+            this.tabPage1.Size = new System.Drawing.Size(266, 417);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Log";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // txtLog
+            // 
+            this.txtLog.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtLog.BackColor = System.Drawing.Color.White;
+            this.txtLog.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtLog.Location = new System.Drawing.Point(0, 1);
+            this.txtLog.Multiline = true;
+            this.txtLog.Name = "txtLog";
+            this.txtLog.ReadOnly = true;
+            this.txtLog.Size = new System.Drawing.Size(266, 416);
+            this.txtLog.TabIndex = 0;
             // 
             // tabPage2
             // 
+            this.tabPage2.BackColor = System.Drawing.Color.White;
             this.tabPage2.Controls.Add(this.nudReconnectTime);
             this.tabPage2.Controls.Add(this.chkAutoReconnect);
-            this.tabPage2.Controls.Add(this.btnSaveDebug);
-            this.tabPage2.Controls.Add(this.label2);
+            this.tabPage2.Controls.Add(this.metroLabel2);
             this.tabPage2.Controls.Add(this.chkUseSidebar);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Controls.Add(this.metroLabel1);
+            this.tabPage2.Location = new System.Drawing.Point(4, 38);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(278, 499);
+            this.tabPage2.Size = new System.Drawing.Size(266, 417);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Settings";
-            this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // nudReconnectTime
             // 
-            this.nudReconnectTime.Location = new System.Drawing.Point(165, 61);
+            this.nudReconnectTime.BackColor = System.Drawing.Color.White;
+            this.nudReconnectTime.ForeColor = System.Drawing.Color.Black;
+            this.nudReconnectTime.Location = new System.Drawing.Point(78, 128);
             this.nudReconnectTime.Maximum = new decimal(new int[] {
             120,
             0,
             0,
             0});
             this.nudReconnectTime.Name = "nudReconnectTime";
-            this.nudReconnectTime.Size = new System.Drawing.Size(39, 20);
+            this.nudReconnectTime.Size = new System.Drawing.Size(41, 20);
             this.nudReconnectTime.TabIndex = 4;
             this.nudReconnectTime.Value = new decimal(new int[] {
             5,
@@ -145,70 +133,176 @@
             this.chkAutoReconnect.AutoSize = true;
             this.chkAutoReconnect.Checked = true;
             this.chkAutoReconnect.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkAutoReconnect.Location = new System.Drawing.Point(6, 62);
+            this.chkAutoReconnect.Location = new System.Drawing.Point(6, 130);
             this.chkAutoReconnect.Name = "chkAutoReconnect";
-            this.chkAutoReconnect.Size = new System.Drawing.Size(247, 17);
+            this.chkAutoReconnect.Size = new System.Drawing.Size(170, 15);
             this.chkAutoReconnect.TabIndex = 3;
-            this.chkAutoReconnect.Text = "Automatically reconnect after               minutes.";
-            this.chkAutoReconnect.UseVisualStyleBackColor = true;
+            this.chkAutoReconnect.Text = "Yes, after                  minutes.";
+            this.chkAutoReconnect.UseSelectable = true;
+            this.chkAutoReconnect.CheckedChanged += new System.EventHandler(this.chkAutoReconnect_CheckedChanged);
             // 
-            // btnSaveDebug
+            // metroLabel2
             // 
-            this.btnSaveDebug.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSaveDebug.Location = new System.Drawing.Point(8, 470);
-            this.btnSaveDebug.Name = "btnSaveDebug";
-            this.btnSaveDebug.Size = new System.Drawing.Size(264, 23);
-            this.btnSaveDebug.TabIndex = 2;
-            this.btnSaveDebug.Text = "Save Debug Information";
-            this.btnSaveDebug.UseVisualStyleBackColor = true;
-            this.btnSaveDebug.Click += new System.EventHandler(this.btnSaveDebug_Click);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(5, 9);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(168, 26);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Uncheck this, if you have the bar \r\non the right side in MEmu disabled";
+            this.metroLabel2.AutoSize = true;
+            this.metroLabel2.Location = new System.Drawing.Point(1, 69);
+            this.metroLabel2.Name = "metroLabel2";
+            this.metroLabel2.Size = new System.Drawing.Size(230, 57);
+            this.metroLabel2.TabIndex = 2;
+            this.metroLabel2.Text = "Reconnect automatically after being \r\ndisconnected because another device \r\nused " +
+    "the account.";
             // 
             // chkUseSidebar
             // 
             this.chkUseSidebar.AutoSize = true;
             this.chkUseSidebar.Checked = true;
             this.chkUseSidebar.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkUseSidebar.Location = new System.Drawing.Point(6, 38);
+            this.chkUseSidebar.Location = new System.Drawing.Point(5, 45);
             this.chkUseSidebar.Name = "chkUseSidebar";
-            this.chkUseSidebar.Size = new System.Drawing.Size(142, 17);
-            this.chkUseSidebar.TabIndex = 0;
+            this.chkUseSidebar.Size = new System.Drawing.Size(150, 15);
+            this.chkUseSidebar.TabIndex = 1;
             this.chkUseSidebar.Text = "MEmu Sidebar enabled?";
-            this.chkUseSidebar.UseVisualStyleBackColor = true;
+            this.chkUseSidebar.UseSelectable = true;
+            this.chkUseSidebar.CheckedChanged += new System.EventHandler(this.chkUseSidebar_CheckedChanged);
             // 
-            // picMemu
+            // metroLabel1
             // 
-            this.picMemu.Location = new System.Drawing.Point(5, 36);
-            this.picMemu.Name = "picMemu";
-            this.picMemu.Size = new System.Drawing.Size(373, 210);
-            this.picMemu.TabIndex = 0;
-            this.picMemu.TabStop = false;
+            this.metroLabel1.AutoSize = true;
+            this.metroLabel1.Location = new System.Drawing.Point(1, 0);
+            this.metroLabel1.Name = "metroLabel1";
+            this.metroLabel1.Size = new System.Drawing.Size(216, 76);
+            this.metroLabel1.TabIndex = 0;
+            this.metroLabel1.Text = "Uncheck this, if you have the bar \r\non the right side in MEmu disabled.\r\n\r\n";
             // 
-            // picReconnect
+            // tabPage3
             // 
-            this.picReconnect.Location = new System.Drawing.Point(5, 252);
-            this.picReconnect.Name = "picReconnect";
-            this.picReconnect.Size = new System.Drawing.Size(146, 48);
-            this.picReconnect.TabIndex = 1;
-            this.picReconnect.TabStop = false;
+            this.tabPage3.BackColor = System.Drawing.Color.White;
+            this.tabPage3.Controls.Add(this.btnLightTheme);
+            this.tabPage3.Controls.Add(this.btnDarkTheme);
+            this.tabPage3.Controls.Add(this.metroLabel3);
+            this.tabPage3.Controls.Add(this.btnChangeStyle);
+            this.tabPage3.Controls.Add(this.styleBox);
+            this.tabPage3.Controls.Add(this.lbl_style);
+            this.tabPage3.Location = new System.Drawing.Point(4, 38);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(266, 417);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Appearance";
+            // 
+            // btnLightTheme
+            // 
+            this.btnLightTheme.Location = new System.Drawing.Point(137, 156);
+            this.btnLightTheme.Name = "btnLightTheme";
+            this.btnLightTheme.Size = new System.Drawing.Size(117, 40);
+            this.btnLightTheme.TabIndex = 6;
+            this.btnLightTheme.Text = "Light Theme";
+            this.btnLightTheme.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.btnLightTheme.UseSelectable = true;
+            this.btnLightTheme.Click += new System.EventHandler(this.btnLightTheme_Click);
+            // 
+            // btnDarkTheme
+            // 
+            this.btnDarkTheme.Location = new System.Drawing.Point(11, 156);
+            this.btnDarkTheme.Name = "btnDarkTheme";
+            this.btnDarkTheme.Size = new System.Drawing.Size(120, 40);
+            this.btnDarkTheme.TabIndex = 5;
+            this.btnDarkTheme.Text = "Dark Theme";
+            this.btnDarkTheme.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.btnDarkTheme.UseSelectable = true;
+            this.btnDarkTheme.Click += new System.EventHandler(this.btnDarkTheme_Click);
+            // 
+            // metroLabel3
+            // 
+            this.metroLabel3.AutoSize = true;
+            this.metroLabel3.Location = new System.Drawing.Point(10, 134);
+            this.metroLabel3.Name = "metroLabel3";
+            this.metroLabel3.Size = new System.Drawing.Size(100, 19);
+            this.metroLabel3.TabIndex = 4;
+            this.metroLabel3.Text = "Choose Theme:";
+            // 
+            // btnChangeStyle
+            // 
+            this.btnChangeStyle.ActiveControl = null;
+            this.btnChangeStyle.Location = new System.Drawing.Point(10, 65);
+            this.btnChangeStyle.Name = "btnChangeStyle";
+            this.btnChangeStyle.Size = new System.Drawing.Size(120, 40);
+            this.btnChangeStyle.TabIndex = 3;
+            this.btnChangeStyle.Text = "Change Style";
+            this.btnChangeStyle.UseSelectable = true;
+            this.btnChangeStyle.Click += new System.EventHandler(this.btnChangeStyle_Click);
+            // 
+            // styleBox
+            // 
+            this.styleBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.styleBox.FormattingEnabled = true;
+            this.styleBox.ItemHeight = 23;
+            this.styleBox.Items.AddRange(new object[] {
+            "Black",
+            "White",
+            "Silver",
+            "Blue",
+            "Green",
+            "Lime",
+            "Teal",
+            "Orange",
+            "Brown",
+            "Pink",
+            "Magenta",
+            "Purple",
+            "Red",
+            "Yellow"});
+            this.styleBox.Location = new System.Drawing.Point(10, 30);
+            this.styleBox.Name = "styleBox";
+            this.styleBox.Size = new System.Drawing.Size(244, 29);
+            this.styleBox.TabIndex = 2;
+            this.styleBox.UseSelectable = true;
+            // 
+            // lbl_style
+            // 
+            this.lbl_style.AutoSize = true;
+            this.lbl_style.Location = new System.Drawing.Point(10, 8);
+            this.lbl_style.Name = "lbl_style";
+            this.lbl_style.Size = new System.Drawing.Size(138, 19);
+            this.lbl_style.TabIndex = 1;
+            this.lbl_style.Text = "Choose color scheme:";
+            // 
+            // btnStart
+            // 
+            this.btnStart.ActiveControl = null;
+            this.btnStart.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnStart.Location = new System.Drawing.Point(12, 519);
+            this.btnStart.Name = "btnStart";
+            this.btnStart.Size = new System.Drawing.Size(266, 51);
+            this.btnStart.TabIndex = 0;
+            this.btnStart.Text = "Start";
+            this.btnStart.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
+            this.btnStart.UseSelectable = true;
+            this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
+            // 
+            // lblStats
+            // 
+            this.lblStats.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblStats.AutoSize = true;
+            this.lblStats.Location = new System.Drawing.Point(12, 578);
+            this.lblStats.Name = "lblStats";
+            this.lblStats.Size = new System.Drawing.Size(178, 19);
+            this.lblStats.TabIndex = 2;
+            this.lblStats.Text = "Wins: 0 (0 Crowns) | Losses: 0";
+            // 
+            // metroStyle
+            // 
+            this.metroStyle.Owner = this;
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(296, 605);
-            this.Controls.Add(this.tabMain);
+            this.ClientSize = new System.Drawing.Size(289, 605);
             this.Controls.Add(this.lblStats);
             this.Controls.Add(this.btnStart);
+            this.Controls.Add(this.tabMain);
+            this.MinimumSize = new System.Drawing.Size(289, 605);
             this.Name = "frmMain";
             this.Text = "CATSBot | catsbot.net";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
@@ -218,27 +312,34 @@
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudReconnectTime)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picMemu)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picReconnect)).EndInit();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.metroStyle)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.Button btnStart;
-        private System.Windows.Forms.TabControl tabMain;
+
+        private MetroFramework.Controls.MetroTabControl tabMain;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
-        public System.Windows.Forms.Label lblStats;
+        private System.Windows.Forms.TabPage tabPage3;
+        private MetroFramework.Controls.MetroLabel metroLabel1;
+        public MetroFramework.Controls.MetroTile btnStart;
+        public MetroFramework.Controls.MetroLabel lblStats;
         public System.Windows.Forms.TextBox txtLog;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.CheckBox chkUseSidebar;
-        private System.Windows.Forms.Button btnSaveDebug;
-        private System.Windows.Forms.NumericUpDown nudReconnectTime;
-        private System.Windows.Forms.CheckBox chkAutoReconnect;
-        private System.Windows.Forms.PictureBox picReconnect;
-        private System.Windows.Forms.PictureBox picMemu;
+        private MetroFramework.Controls.MetroLabel lbl_style;
+        private MetroFramework.Controls.MetroLabel metroLabel2;
+        public MetroFramework.Controls.MetroComboBox styleBox;
+        private MetroFramework.Controls.MetroTile btnChangeStyle;
+        private MetroFramework.Controls.MetroLabel metroLabel3;
+        private MetroFramework.Controls.MetroButton btnLightTheme;
+        private MetroFramework.Controls.MetroButton btnDarkTheme;
+        public MetroFramework.Components.MetroStyleManager metroStyle;
+        public MetroFramework.Controls.MetroCheckBox chkUseSidebar;
+        public MetroFramework.Controls.MetroCheckBox chkAutoReconnect;
+        public System.Windows.Forms.NumericUpDown nudReconnectTime;
     }
 }
-
