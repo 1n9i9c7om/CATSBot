@@ -24,14 +24,14 @@ namespace CATSBot
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            if (!BotHelper.setMemuIntPtr())
-            {
-                MetroFramework.MetroMessageBox.Show(this, "MEmu is not running!");
-                return;
-            }
-
             if (!isRunning)
             {
+                if (!BotHelper.setMemuIntPtr())
+                {
+                    MetroFramework.MetroMessageBox.Show(this, "MEmu is not running!");
+                    return;
+                }
+                
                 if (chkUseSidebar.Checked)
                     ClickOnPointTool.ResizeWindow(BotHelper.memu, 1328, 758);
                 else
