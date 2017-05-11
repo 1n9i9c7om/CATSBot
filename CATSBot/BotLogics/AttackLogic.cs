@@ -114,6 +114,27 @@ namespace CATSBot.BotLogics
             {
                 BotHelper.Log("Battle finished.");
 
+                int winloss = checkWin();
+                if(winloss == 1)
+                {
+                    BotHelper.Log("We won!");
+                    wins++;
+                    winsInARow++;
+                    if ((winsInARow % 5) == 0) crowns++;
+                }
+                else if(winloss == 2)
+                {
+                    BotHelper.Log("We lost. :(");
+                    losses++;
+                    winsInARow = 0;
+                }
+                else
+                {
+                    BotHelper.Log("Error checking win/loss, not counting stats");
+                }
+
+                BotHelper.updateStats(wins, losses, crowns);
+
                 Point rndP = ImageRecognition.getRandomLoc(locOK, Properties.Resources.button_ok);
                 BotHelper.Log("Clicked on: X = " + rndP.X + "; Y = " + rndP.Y, true, true);
                 ClickOnPointTool.ClickOnPoint(BotHelper.memu, rndP);
@@ -123,6 +144,24 @@ namespace CATSBot.BotLogics
             BotHelper.Log("Returning to main screen");
 
             return true;
+        }
+
+        //returns 1 for win, 2 for loss and 0 for error
+        private static int checkWin()
+        {
+            Point win = ImageRecognition.getPictureLocation(Properties.Resources.label_victory, BotHelper.memu);
+            Point defeat = ImageRecognition.getPictureLocation(Properties.Resources.label_defeat, BotHelper.memu);
+
+            if(win.X != 0 && win.Y != 0)
+            {
+                return 1;
+            }
+            else if(defeat.X != 0 && defeat.Y != 0)
+            {
+                return 2;
+            }
+
+            return 0;
         }
 
         //Attack Logic
