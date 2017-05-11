@@ -190,6 +190,8 @@ namespace CATSBot.BotLogics
             else
             {
                 BotHelper.Log("AttackLogic failed during searchDuell");
+                BotHelper.Log("Please make sure that your games language is set to English and that MEmu is set to 1280x720 in windowed mode.");
+                Thread.Sleep(5000); //give the user time to see this message :P
             }
         }
     }
