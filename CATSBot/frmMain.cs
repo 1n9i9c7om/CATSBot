@@ -24,14 +24,14 @@ namespace CATSBot
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            if(!isRunning)
+            if (!isRunning)
             {
-                if(!BotHelper.setMemuIntPtr())
+                if (!BotHelper.setMemuIntPtr())
                 {
                     MetroFramework.MetroMessageBox.Show(this, "MEmu is not running!");
                     return;
                 }
-
+                
                 if (chkUseSidebar.Checked)
                     ClickOnPointTool.ResizeWindow(BotHelper.memu, 1328, 758);
                 else
@@ -161,5 +161,10 @@ namespace CATSBot
             Settings.getInstance().reconnectTime = Convert.ToInt32(nudReconnectTime.Value);
         }
         #endregion
+
+        private void btnResetStats_Click(object sender, EventArgs e)
+        {
+            BotLogics.AttackLogic.resetStats();
+        }
     }
 }

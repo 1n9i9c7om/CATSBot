@@ -17,6 +17,16 @@ namespace CATSBot.BotLogics
         static int winsInARow = 0;
         static int crowns = 0;
 
+        public static void resetStats()
+        {
+            wins = 0;
+            losses = 0;
+            winsInARow = 0;
+            crowns = 0;
+
+            BotHelper.updateStats(0, 0, 0);
+        }
+
         //Check if we defended, if yes, click that filthy "Claim" button that's prevent us from clicking "QUICK FIGHT" ;)
         public static void checkDefense()
         {
@@ -114,6 +124,27 @@ namespace CATSBot.BotLogics
             {
                 BotHelper.Log("Battle finished.");
 
+                int winloss = checkWin();
+                if(winloss == 1)
+                {
+                    BotHelper.Log("We won!");
+                    wins++;
+                    winsInARow++;
+                    if ((winsInARow % 5) == 0) crowns++;
+                }
+                else if(winloss == 2)
+                {
+                    BotHelper.Log("We lost. :(");
+                    losses++;
+                    winsInARow = 0;
+                }
+                else
+                {
+                    BotHelper.Log("Error checking win/loss, not counting stats");
+                }
+
+                BotHelper.updateStats(wins, losses, crowns);
+
                 Point rndP = ImageRecognition.getRandomLoc(locOK, Properties.Resources.button_ok);
                 BotHelper.Log("Clicked on: X = " + rndP.X + "; Y = " + rndP.Y, true, true);
                 ClickOnPointTool.ClickOnPoint(BotHelper.memu, rndP);
@@ -123,6 +154,24 @@ namespace CATSBot.BotLogics
             BotHelper.Log("Returning to main screen");
 
             return true;
+        }
+
+        //returns 1 for win, 2 for loss and 0 for error
+        private static int checkWin()
+        {
+            Point win = ImageRecognition.getPictureLocation(Properties.Resources.label_victory, BotHelper.memu);
+            Point defeat = ImageRecognition.getPictureLocation(Properties.Resources.label_defeat, BotHelper.memu);
+
+            if(win.X != 0 && win.Y != 0)
+            {
+                return 1;
+            }
+            else if(defeat.X != 0 && defeat.Y != 0)
+            {
+                return 2;
+            }
+
+            return 0;
         }
 
         //Attack Logic
@@ -151,6 +200,8 @@ namespace CATSBot.BotLogics
             else
             {
                 BotHelper.Log("AttackLogic failed during searchDuell");
+                BotHelper.Log("Please make sure that your games language is set to English and that MEmu is set to 1280x720 in windowed mode.");
+                Thread.Sleep(5000); //give the user time to see this message :P
             }
         }
     }
