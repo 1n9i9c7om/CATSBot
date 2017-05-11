@@ -17,6 +17,16 @@ namespace CATSBot.BotLogics
         static int winsInARow = 0;
         static int crowns = 0;
 
+        public static void resetStats()
+        {
+            wins = 0;
+            losses = 0;
+            winsInARow = 0;
+            crowns = 0;
+
+            BotHelper.updateStats(0, 0, 0);
+        }
+
         //Check if we defended, if yes, click that filthy "Claim" button that's prevent us from clicking "QUICK FIGHT" ;)
         public static void checkDefense()
         {

@@ -161,5 +161,10 @@ namespace CATSBot
             Settings.getInstance().reconnectTime = Convert.ToInt32(nudReconnectTime.Value);
         }
         #endregion
+
+        private void btnResetStats_Click(object sender, EventArgs e)
+        {
+            BotLogics.AttackLogic.resetStats();
+        }
     }
 }

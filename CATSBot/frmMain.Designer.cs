@@ -48,6 +48,7 @@ namespace CATSBot
             this.btnStart = new MetroFramework.Controls.MetroTile();
             this.lblStats = new MetroFramework.Controls.MetroLabel();
             this.metroStyle = new MetroFramework.Components.MetroStyleManager(this.components);
+            this.btnResetStats = new MetroFramework.Controls.MetroTile();
             this.tabMain.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -66,7 +67,7 @@ namespace CATSBot
             this.tabMain.Controls.Add(this.tabPage3);
             this.tabMain.Location = new System.Drawing.Point(8, 53);
             this.tabMain.Name = "tabMain";
-            this.tabMain.SelectedIndex = 0;
+            this.tabMain.SelectedIndex = 1;
             this.tabMain.Size = new System.Drawing.Size(274, 459);
             this.tabMain.TabIndex = 0;
             this.tabMain.UseSelectable = true;
@@ -97,6 +98,7 @@ namespace CATSBot
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.White;
+            this.tabPage2.Controls.Add(this.btnResetStats);
             this.tabPage2.Controls.Add(this.nudReconnectTime);
             this.tabPage2.Controls.Add(this.chkAutoReconnect);
             this.tabPage2.Controls.Add(this.metroLabel2);
@@ -294,6 +296,17 @@ namespace CATSBot
             // 
             this.metroStyle.Owner = this;
             // 
+            // btnResetStats
+            // 
+            this.btnResetStats.ActiveControl = null;
+            this.btnResetStats.Location = new System.Drawing.Point(11, 370);
+            this.btnResetStats.Name = "btnResetStats";
+            this.btnResetStats.Size = new System.Drawing.Size(243, 40);
+            this.btnResetStats.TabIndex = 5;
+            this.btnResetStats.Text = "Reset Stats";
+            this.btnResetStats.UseSelectable = true;
+            this.btnResetStats.Click += new System.EventHandler(this.btnResetStats_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -341,5 +354,6 @@ namespace CATSBot
         public MetroFramework.Controls.MetroCheckBox chkUseSidebar;
         public MetroFramework.Controls.MetroCheckBox chkAutoReconnect;
         public System.Windows.Forms.NumericUpDown nudReconnectTime;
+        private MetroFramework.Controls.MetroTile btnResetStats;
     }
 }
