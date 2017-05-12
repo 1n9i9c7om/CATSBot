@@ -44,6 +44,8 @@ namespace CATSBot.BotLogics
         public static bool searchDuell()
         {
             BotHelper.Log("Attempting to press the Duell button");
+            BotHelper.setDebugPic(ImageRecognition.CaptureApplication(BotHelper.memu));
+            return false;
             if (ImageRecognition.getPictureLocation(Properties.Resources.button_fight, BotHelper.memu) != pNull)
             {
                 Point dbgPoint = ImageRecognition.getPictureLocation(Properties.Resources.button_fight, BotHelper.memu);
@@ -96,11 +98,6 @@ namespace CATSBot.BotLogics
                 BotHelper.Log(" " + checks, false);
                 Thread.Sleep(500);
                 checks++;
-
-                // Apparently, there are multiple "OK"-Buttons that all look the same at a first glance,
-                // but there's a difference in them that the tool is able to detect. 
-                // We have to check multiple images because of this, but we got an easy detection whether 
-                // we won or not. :) 
 
                 locOK = ImageRecognition.getPictureLocation(Properties.Resources.button_ok, BotHelper.memu);
                 //locOKDefeat = ImageRecognition.getPictureLocation(Properties.Resources.button_ok_defeat, BotHelper.memu);

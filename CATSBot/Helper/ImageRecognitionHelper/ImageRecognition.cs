@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.Linq;
 using System.Runtime.InteropServices;
+using static CATSBot.Helper.BotHelper;
 
 namespace CATSBot.Helper
 {
@@ -165,7 +166,7 @@ namespace CATSBot.Helper
             }
         }
 
-        public static Bitmap CaptureApplication(IntPtr windowHandle)
+        public static Bitmap CaptureApplication(IntPtr windowHandle, bool old)
         {
             var rect = new User32.Rect();
             User32.GetWindowRect(windowHandle, ref rect);
@@ -179,6 +180,28 @@ namespace CATSBot.Helper
 
             return bmp;
         }
+
+        [DllImport("user32.dll")]
+        public static extern bool GetWindowRect(IntPtr hWnd, out ImageRecognitionHelper.RECT lpRect);
+        [DllImport("user32.dll")]
+        public static extern bool PrintWindow(IntPtr hWnd, IntPtr hdcBlt, int nFlags);
+
+        /* public static Bitmap CaptureApplication(IntPtr windowHandle)
+        {
+            ImageRecognitionHelper.RECT rc;
+            GetWindowRect(windowHandle, out rc);
+
+            Bitmap bmp = new Bitmap(rc.Width, rc.Height, PixelFormat.Format32bppArgb);
+            Graphics gfxBmp = Graphics.FromImage(bmp);
+            IntPtr hdcBitmap = gfxBmp.GetHdc();
+
+            PrintWindow(windowHandle, hdcBitmap, 1);
+
+            gfxBmp.ReleaseHdc(hdcBitmap);
+            gfxBmp.Dispose();
+
+            return bmp;
+        } */
 
         private class User32
         {
@@ -222,5 +245,45 @@ namespace CATSBot.Helper
         {
             return getRandomLoc(getPictureLocation(sub, windowHandle), sub);
         }
+
+        public static Bitmap CaptureApplication(IntPtr windowHandle)
+        {
+            ImageRecognitionHelper.RECT wRect;
+            GetWindowRect(windowHandle, out wRect);
+            IntPtr hDesk = GetDesktopWindow();
+            IntPtr hSrce = GetWindowDC(hDesk);
+            IntPtr hDest = CreateCompatibleDC(hSrce);
+            IntPtr hBmp = CreateCompatibleBitmap(hSrce, wRect.Width, wRect.Height);
+            IntPtr hOldBmp = SelectObject(hDest, hBmp);
+            bool b = BitBlt(hDest, 0, 0, wRect.Width, wRect.Height, hSrce, wRect.X, wRect.Y, CopyPixelOperation.SourceCopy | CopyPixelOperation.CaptureBlt);
+            Bitmap bmp = Bitmap.FromHbitmap(hBmp);
+            SelectObject(hDest, hOldBmp);
+            DeleteObject(hBmp);
+            DeleteDC(hDest);
+            ReleaseDC(hDesk, hSrce);
+
+            return bmp;
+        }
+
+        // P/Invoke declarations
+        [DllImport("gdi32.dll")]
+        static extern bool BitBlt(IntPtr hdcDest, int xDest, int yDest, int
+        wDest, int hDest, IntPtr hdcSource, int xSrc, int ySrc, CopyPixelOperation rop);
+        [DllImport("user32.dll")]
+        static extern bool ReleaseDC(IntPtr hWnd, IntPtr hDc);
+        [DllImport("gdi32.dll")]
+        static extern IntPtr DeleteDC(IntPtr hDc);
+        [DllImport("gdi32.dll")]
+        static extern IntPtr DeleteObject(IntPtr hDc);
+        [DllImport("gdi32.dll")]
+        static extern IntPtr CreateCompatibleBitmap(IntPtr hdc, int nWidth, int nHeight);
+        [DllImport("gdi32.dll")]
+        static extern IntPtr CreateCompatibleDC(IntPtr hdc);
+        [DllImport("gdi32.dll")]
+        static extern IntPtr SelectObject(IntPtr hdc, IntPtr bmp);
+        [DllImport("user32.dll")]
+        public static extern IntPtr GetDesktopWindow();
+        [DllImport("user32.dll")]
+        public static extern IntPtr GetWindowDC(IntPtr ptr);
     }
 }

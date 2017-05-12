@@ -33,6 +33,8 @@ namespace CATSBot
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.txtLog = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.btnHideMemu = new MetroFramework.Controls.MetroTile();
+            this.btnResetStats = new MetroFramework.Controls.MetroTile();
             this.nudReconnectTime = new System.Windows.Forms.NumericUpDown();
             this.chkAutoReconnect = new MetroFramework.Controls.MetroCheckBox();
             this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
@@ -48,13 +50,16 @@ namespace CATSBot
             this.btnStart = new MetroFramework.Controls.MetroTile();
             this.lblStats = new MetroFramework.Controls.MetroLabel();
             this.metroStyle = new MetroFramework.Components.MetroStyleManager(this.components);
-            this.btnResetStats = new MetroFramework.Controls.MetroTile();
+            this.metroTabPage1 = new MetroFramework.Controls.MetroTabPage();
+            this.picDebug = new System.Windows.Forms.PictureBox();
             this.tabMain.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudReconnectTime)).BeginInit();
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.metroStyle)).BeginInit();
+            this.metroTabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picDebug)).BeginInit();
             this.SuspendLayout();
             // 
             // tabMain
@@ -65,9 +70,10 @@ namespace CATSBot
             this.tabMain.Controls.Add(this.tabPage1);
             this.tabMain.Controls.Add(this.tabPage2);
             this.tabMain.Controls.Add(this.tabPage3);
+            this.tabMain.Controls.Add(this.metroTabPage1);
             this.tabMain.Location = new System.Drawing.Point(8, 53);
             this.tabMain.Name = "tabMain";
-            this.tabMain.SelectedIndex = 1;
+            this.tabMain.SelectedIndex = 3;
             this.tabMain.Size = new System.Drawing.Size(274, 459);
             this.tabMain.TabIndex = 0;
             this.tabMain.UseSelectable = true;
@@ -98,6 +104,7 @@ namespace CATSBot
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.White;
+            this.tabPage2.Controls.Add(this.btnHideMemu);
             this.tabPage2.Controls.Add(this.btnResetStats);
             this.tabPage2.Controls.Add(this.nudReconnectTime);
             this.tabPage2.Controls.Add(this.chkAutoReconnect);
@@ -109,6 +116,28 @@ namespace CATSBot
             this.tabPage2.Size = new System.Drawing.Size(266, 417);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Settings";
+            // 
+            // btnHideMemu
+            // 
+            this.btnHideMemu.ActiveControl = null;
+            this.btnHideMemu.Location = new System.Drawing.Point(11, 326);
+            this.btnHideMemu.Name = "btnHideMemu";
+            this.btnHideMemu.Size = new System.Drawing.Size(243, 38);
+            this.btnHideMemu.TabIndex = 6;
+            this.btnHideMemu.Text = "Hide MEmu Window";
+            this.btnHideMemu.UseSelectable = true;
+            this.btnHideMemu.Click += new System.EventHandler(this.btnHideMemu_Click);
+            // 
+            // btnResetStats
+            // 
+            this.btnResetStats.ActiveControl = null;
+            this.btnResetStats.Location = new System.Drawing.Point(11, 370);
+            this.btnResetStats.Name = "btnResetStats";
+            this.btnResetStats.Size = new System.Drawing.Size(243, 40);
+            this.btnResetStats.TabIndex = 5;
+            this.btnResetStats.Text = "Reset Stats";
+            this.btnResetStats.UseSelectable = true;
+            this.btnResetStats.Click += new System.EventHandler(this.btnResetStats_Click);
             // 
             // nudReconnectTime
             // 
@@ -296,16 +325,31 @@ namespace CATSBot
             // 
             this.metroStyle.Owner = this;
             // 
-            // btnResetStats
+            // metroTabPage1
             // 
-            this.btnResetStats.ActiveControl = null;
-            this.btnResetStats.Location = new System.Drawing.Point(11, 370);
-            this.btnResetStats.Name = "btnResetStats";
-            this.btnResetStats.Size = new System.Drawing.Size(243, 40);
-            this.btnResetStats.TabIndex = 5;
-            this.btnResetStats.Text = "Reset Stats";
-            this.btnResetStats.UseSelectable = true;
-            this.btnResetStats.Click += new System.EventHandler(this.btnResetStats_Click);
+            this.metroTabPage1.Controls.Add(this.picDebug);
+            this.metroTabPage1.HorizontalScrollbarBarColor = true;
+            this.metroTabPage1.HorizontalScrollbarHighlightOnWheel = false;
+            this.metroTabPage1.HorizontalScrollbarSize = 10;
+            this.metroTabPage1.Location = new System.Drawing.Point(4, 38);
+            this.metroTabPage1.Name = "metroTabPage1";
+            this.metroTabPage1.Size = new System.Drawing.Size(266, 417);
+            this.metroTabPage1.TabIndex = 3;
+            this.metroTabPage1.Text = "metroTabPage1";
+            this.metroTabPage1.VerticalScrollbarBarColor = true;
+            this.metroTabPage1.VerticalScrollbarHighlightOnWheel = false;
+            this.metroTabPage1.VerticalScrollbarSize = 10;
+            // 
+            // picDebug
+            // 
+            this.picDebug.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.picDebug.Location = new System.Drawing.Point(0, 14);
+            this.picDebug.Name = "picDebug";
+            this.picDebug.Size = new System.Drawing.Size(266, 400);
+            this.picDebug.TabIndex = 2;
+            this.picDebug.TabStop = false;
             // 
             // frmMain
             // 
@@ -328,6 +372,8 @@ namespace CATSBot
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.metroStyle)).EndInit();
+            this.metroTabPage1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.picDebug)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -355,5 +401,8 @@ namespace CATSBot
         public MetroFramework.Controls.MetroCheckBox chkAutoReconnect;
         public System.Windows.Forms.NumericUpDown nudReconnectTime;
         private MetroFramework.Controls.MetroTile btnResetStats;
+        private MetroFramework.Controls.MetroTile btnHideMemu;
+        private MetroFramework.Controls.MetroTabPage metroTabPage1;
+        public System.Windows.Forms.PictureBox picDebug;
     }
 }

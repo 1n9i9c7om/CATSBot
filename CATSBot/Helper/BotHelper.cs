@@ -16,7 +16,7 @@ namespace CATSBot.Helper
     public static class BotHelper
     {
         static Random rnd = new Random();
-        public static IntPtr memu;
+        public static IntPtr memu = IntPtr.Zero;
         public static frmMain main;
 
         // Randomize the delay for more security
@@ -35,7 +35,7 @@ namespace CATSBot.Helper
             {
                 return false;
             }
-
+            //MessageBox.Show(Process.GetProcessesByName("MEmu").First().HandleCount.ToString());
             memu = Process.GetProcessesByName("MEmu").First().MainWindowHandle;
             return true;
         }
@@ -67,6 +67,15 @@ namespace CATSBot.Helper
                 main.lblStats.Text = "Wins: " + wins + " (" + crowns + " Crowns) | Losses: " + losses;
             });
         }
+
+        public static void setDebugPic(Bitmap pic)
+        {
+            main.picDebug.Invoke((MethodInvoker)delegate
+            {
+                main.picDebug.Image = pic;
+            });
+        }
+
         #region Debug Information Gathering
         [DllImport("user32.dll", SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]

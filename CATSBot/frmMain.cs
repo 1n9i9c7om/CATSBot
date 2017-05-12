@@ -7,6 +7,7 @@ using System.Threading;
 using System.Windows.Forms;
 
 using CATSBot.Helper;
+using System.Drawing;
 
 namespace CATSBot
 {
@@ -14,6 +15,7 @@ namespace CATSBot
     {
         Thread thread;
         bool isRunning = false;
+        Point? memuLocation = null;
 
         public frmMain()
         {
@@ -165,6 +167,36 @@ namespace CATSBot
         private void btnResetStats_Click(object sender, EventArgs e)
         {
             BotLogics.AttackLogic.resetStats();
+        }
+
+        private void btnHideMemu_Click(object sender, EventArgs e)
+        {
+            if(BotHelper.memu != IntPtr.Zero)
+            {
+                Point memuSize = new Point(1328, 758);
+                if (!chkUseSidebar.Checked)
+                    memuSize = new Point(1288, 758);
+
+                if (memuLocation == null)
+                {
+
+                    Point tmpMemu = new Point();
+                    ClickOnPointTool.ClientToScreen(BotHelper.memu, ref tmpMemu);
+
+                    memuLocation = tmpMemu;
+                    ClickOnPointTool.MoveWindow(BotHelper.memu, -10000, memuLocation.Value.Y, memuSize.X, memuSize.Y, true);
+
+                    btnHideMemu.Text = "Show MEmu Window";
+                }
+                else
+                {
+                    ClickOnPointTool.MoveWindow(BotHelper.memu, memuLocation.Value.X, memuLocation.Value.Y, memuSize.X, memuSize.Y, true);
+                    memuLocation = null;
+                    btnHideMemu.Text = "Hide MEmu Window";
+                }
+                
+
+            }
         }
     }
 }
