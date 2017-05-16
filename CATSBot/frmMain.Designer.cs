@@ -67,7 +67,7 @@ namespace CATSBot
             this.tabMain.Controls.Add(this.tabPage3);
             this.tabMain.Location = new System.Drawing.Point(8, 53);
             this.tabMain.Name = "tabMain";
-            this.tabMain.SelectedIndex = 1;
+            this.tabMain.SelectedIndex = 0;
             this.tabMain.Size = new System.Drawing.Size(274, 459);
             this.tabMain.TabIndex = 0;
             this.tabMain.UseSelectable = true;
