@@ -98,7 +98,7 @@ namespace CATSBot.Helper
             // create template matching algorithm's instance
             // (set similarity threshold to 92.1%)
 
-            ExhaustiveTemplateMatching tm = new ExhaustiveTemplateMatching(0.941f);
+            ExhaustiveTemplateMatching tm = new ExhaustiveTemplateMatching(similarityThreshold);
             // find all matchings with specified above similarity
 
             TemplateMatch[] matchings = tm.ProcessImage(sourceImage, template);

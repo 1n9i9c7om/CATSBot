@@ -102,7 +102,7 @@ namespace CATSBot.BotLogics
                 // We have to check multiple images because of this, but we got an easy detection whether 
                 // we won or not. :) 
 
-                locOK = ImageRecognition.getPictureLocation(Properties.Resources.button_ok, BotHelper.memu);
+                locOK = ImageRecognition.getPictureLocation(Properties.Resources.button_ok, BotHelper.memu, 0.911f);
                 //locOKDefeat = ImageRecognition.getPictureLocation(Properties.Resources.button_ok_defeat, BotHelper.memu);
             } while ((locOK == pNull /* && locOKDefeat == pNull */) && checks <= 55);
 
@@ -142,6 +142,8 @@ namespace CATSBot.BotLogics
                 {
                     BotHelper.Log("Error checking win/loss, not counting stats");
                 }
+
+                BotHelper.randomDelay(500, 50); //fix bot sometimes being stuck in battle end screen
 
                 BotHelper.updateStats(wins, losses, crowns);
 
