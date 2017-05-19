@@ -17,6 +17,8 @@ namespace CATSBot.BotLogics
         static int winsInARow = 0;
         static int crowns = 0;
 
+        private static int logicErrors = 0;
+
         public static void resetStats()
         {
             wins = 0;
@@ -172,6 +174,16 @@ namespace CATSBot.BotLogics
         //Attack Logic
         public static void doLogic()
         {
+            if(logicErrors >= 5)
+            {
+                BotHelper.Log("Too many errors. Restarting CATS.");
+                ADBHelper.stopCATS();
+                BotHelper.randomDelay(1000, 5);
+                ADBHelper.startCATS();
+                BotHelper.Log("Waiting for CATS to restart. Waiting 30s.");
+                BotHelper.randomDelay(30000, 5);
+            }
+
             BotHelper.randomDelay(4000, 1000);
             checkDefense();
             if (searchDuell())
@@ -181,21 +193,25 @@ namespace CATSBot.BotLogics
                     if (startDuell())
                     {
                         BotHelper.Log("AttackLogic successfully completed.");
+                        logicErrors = 0;
                     }
                     else
                     {
                         BotHelper.Log("AttackLogic failed during startDuell");
+                        logicErrors++;
                     }
                 }
                 else
                 {
                     BotHelper.Log("AttackLogic failed during waitDUell");
+                    logicErrors++;
                 }
             }           
             else
             {
                 BotHelper.Log("AttackLogic failed during searchDuell");
                 BotHelper.Log("Please make sure that your games language is set to English and that MEmu is set to 1280x720 in windowed mode.");
+                logicErrors++;
                 Thread.Sleep(5000); //give the user time to see this message :P
             }
         }
