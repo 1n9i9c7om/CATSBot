@@ -22,7 +22,10 @@ namespace CATSBot.Helper
         // Randomize the delay for more security
         public static void randomDelay(int delay, int maxDiff)
         {
-            int actualDelay = rnd.Next(delay - maxDiff, delay + maxDiff);
+            int multipliedDelay = Convert.ToInt32(delay * Settings.getInstance().sleepMultiplier);
+            int multipliedMaxDiff = Convert.ToInt32(maxDiff * Settings.getInstance().sleepMultiplier);
+            int actualDelay = rnd.Next(multipliedDelay - multipliedMaxDiff, multipliedDelay + multipliedMaxDiff);
+
             Log("Using delay: " + actualDelay);
             Thread.Sleep(actualDelay);
         }

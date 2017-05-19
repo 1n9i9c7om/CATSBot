@@ -39,6 +39,8 @@ namespace CATSBot
         public bool memuSidebarEnabled = true;
         public bool automaticReconnectEnabled = true;
         public int reconnectTime = 5;
+        public decimal sleepMultiplier = 1.0m; //m is the suffix for decimal
+
 
         public bool saveSettings()
         {
@@ -53,6 +55,7 @@ namespace CATSBot
             main.chkUseSidebar.Checked = memuSidebarEnabled;
             main.chkAutoReconnect.Checked = automaticReconnectEnabled;
             main.nudReconnectTime.Value = Convert.ToDecimal(reconnectTime);
+            main.nudSleepMultiplier.Value = sleepMultiplier;
         }
     }
 }

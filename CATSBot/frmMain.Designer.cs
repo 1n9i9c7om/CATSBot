@@ -33,6 +33,7 @@ namespace CATSBot
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.txtLog = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.btnResetStats = new MetroFramework.Controls.MetroTile();
             this.nudReconnectTime = new System.Windows.Forms.NumericUpDown();
             this.chkAutoReconnect = new MetroFramework.Controls.MetroCheckBox();
             this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
@@ -48,13 +49,15 @@ namespace CATSBot
             this.btnStart = new MetroFramework.Controls.MetroTile();
             this.lblStats = new MetroFramework.Controls.MetroLabel();
             this.metroStyle = new MetroFramework.Components.MetroStyleManager(this.components);
-            this.btnResetStats = new MetroFramework.Controls.MetroTile();
+            this.metroLabel4 = new MetroFramework.Controls.MetroLabel();
+            this.nudSleepMultiplier = new System.Windows.Forms.NumericUpDown();
             this.tabMain.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudReconnectTime)).BeginInit();
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.metroStyle)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudSleepMultiplier)).BeginInit();
             this.SuspendLayout();
             // 
             // tabMain
@@ -67,7 +70,7 @@ namespace CATSBot
             this.tabMain.Controls.Add(this.tabPage3);
             this.tabMain.Location = new System.Drawing.Point(8, 53);
             this.tabMain.Name = "tabMain";
-            this.tabMain.SelectedIndex = 0;
+            this.tabMain.SelectedIndex = 1;
             this.tabMain.Size = new System.Drawing.Size(274, 459);
             this.tabMain.TabIndex = 0;
             this.tabMain.UseSelectable = true;
@@ -98,6 +101,8 @@ namespace CATSBot
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.White;
+            this.tabPage2.Controls.Add(this.nudSleepMultiplier);
+            this.tabPage2.Controls.Add(this.metroLabel4);
             this.tabPage2.Controls.Add(this.btnResetStats);
             this.tabPage2.Controls.Add(this.nudReconnectTime);
             this.tabPage2.Controls.Add(this.chkAutoReconnect);
@@ -109,6 +114,17 @@ namespace CATSBot
             this.tabPage2.Size = new System.Drawing.Size(266, 417);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Settings";
+            // 
+            // btnResetStats
+            // 
+            this.btnResetStats.ActiveControl = null;
+            this.btnResetStats.Location = new System.Drawing.Point(11, 370);
+            this.btnResetStats.Name = "btnResetStats";
+            this.btnResetStats.Size = new System.Drawing.Size(243, 40);
+            this.btnResetStats.TabIndex = 5;
+            this.btnResetStats.Text = "Reset Stats";
+            this.btnResetStats.UseSelectable = true;
+            this.btnResetStats.Click += new System.EventHandler(this.btnResetStats_Click);
             // 
             // nudReconnectTime
             // 
@@ -296,16 +312,43 @@ namespace CATSBot
             // 
             this.metroStyle.Owner = this;
             // 
-            // btnResetStats
+            // metroLabel4
             // 
-            this.btnResetStats.ActiveControl = null;
-            this.btnResetStats.Location = new System.Drawing.Point(11, 370);
-            this.btnResetStats.Name = "btnResetStats";
-            this.btnResetStats.Size = new System.Drawing.Size(243, 40);
-            this.btnResetStats.TabIndex = 5;
-            this.btnResetStats.Text = "Reset Stats";
-            this.btnResetStats.UseSelectable = true;
-            this.btnResetStats.Click += new System.EventHandler(this.btnResetStats_Click);
+            this.metroLabel4.AutoSize = true;
+            this.metroLabel4.Location = new System.Drawing.Point(1, 153);
+            this.metroLabel4.Name = "metroLabel4";
+            this.metroLabel4.Size = new System.Drawing.Size(233, 19);
+            this.metroLabel4.TabIndex = 6;
+            this.metroLabel4.Text = "Delay Multiplier (increase on slow PCs)";
+            // 
+            // nudSleepMultiplier
+            // 
+            this.nudSleepMultiplier.DecimalPlaces = 1;
+            this.nudSleepMultiplier.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.nudSleepMultiplier.Location = new System.Drawing.Point(25, 177);
+            this.nudSleepMultiplier.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.nudSleepMultiplier.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nudSleepMultiplier.Name = "nudSleepMultiplier";
+            this.nudSleepMultiplier.Size = new System.Drawing.Size(43, 20);
+            this.nudSleepMultiplier.TabIndex = 7;
+            this.nudSleepMultiplier.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nudSleepMultiplier.ValueChanged += new System.EventHandler(this.nudSleepMultiplier_ValueChanged);
             // 
             // frmMain
             // 
@@ -328,6 +371,7 @@ namespace CATSBot
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.metroStyle)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudSleepMultiplier)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -355,5 +399,7 @@ namespace CATSBot
         public MetroFramework.Controls.MetroCheckBox chkAutoReconnect;
         public System.Windows.Forms.NumericUpDown nudReconnectTime;
         private MetroFramework.Controls.MetroTile btnResetStats;
+        public System.Windows.Forms.NumericUpDown nudSleepMultiplier;
+        private MetroFramework.Controls.MetroLabel metroLabel4;
     }
 }
