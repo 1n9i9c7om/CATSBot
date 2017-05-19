@@ -31,11 +31,10 @@ namespace CATSBot.BotLogics
         public static void checkDefense()
         {
             Helper.BotHelper.Log("Successful defense check");
-
-            //if (ImageRecognition.getPictureLocation(Properties.Resources.button_defend, BotHelper.memu) != pNull)
-            if(false)
+            Point claimPoint = ImageRecognition.getPictureLocation(Properties.Resources.button_claim, BotHelper.memu);
+            if (claimPoint != pNull)
             {
-                ClickOnPointTool.ClickOnPoint(BotHelper.memu, ImageRecognition.getRandomLoc(Properties.Resources.button_claim, BotHelper.memu));
+                ClickOnPointTool.ClickOnPoint(BotHelper.memu, ImageRecognition.getRandomLoc(claimPoint, Properties.Resources.button_claim));
                 BotHelper.Log("Yup, we defended");
                 BotHelper.randomDelay(1000, 100);
             }
@@ -48,12 +47,11 @@ namespace CATSBot.BotLogics
             //BotHelper.setDebugPic(ImageRecognition.CaptureApplication(BotHelper.memu));
             //BotHelper.setDebugPic2(ImageRecognition.ConvertToFormat(Properties.Resources.button_fight, System.Drawing.Imaging.PixelFormat.Format24bppRgb, true));
             //return false;
-            if (ImageRecognition.getPictureLocation(Properties.Resources.button_fight, BotHelper.memu) != pNull)
+            Point fightPoint = ImageRecognition.getPictureLocation(Properties.Resources.button_fight, BotHelper.memu);
+            if (fightPoint != pNull)
             {
-                Point dbgPoint = ImageRecognition.getPictureLocation(Properties.Resources.button_fight, BotHelper.memu);
-                BotHelper.Log("Button found! FeelsGoodMan.");
-                BotHelper.Log("Button found at: X = " + dbgPoint.X + "; Y = " + dbgPoint.Y, true, true);
-                ClickOnPointTool.ClickOnPoint(BotHelper.memu, ImageRecognition.getRandomLoc(Properties.Resources.button_fight, BotHelper.memu));
+                BotHelper.Log("Button found at: X = " + fightPoint.X + "; Y = " + fightPoint.Y, true, true);
+                ClickOnPointTool.ClickOnPoint(BotHelper.memu, ImageRecognition.getRandomLoc(fightPoint, Properties.Resources.button_fight));
                 return true;
             }
             else
@@ -71,7 +69,6 @@ namespace CATSBot.BotLogics
             do
             {
                 BotHelper.Log(" " + checks, false);
-                Thread.Sleep(100);
                 checks++;
             } while (ImageRecognition.getPictureLocation(Properties.Resources.button_skip, BotHelper.memu) == pNull && checks <= 55);
 
@@ -102,8 +99,7 @@ namespace CATSBot.BotLogics
                 checks++;
 
                 locOK = ImageRecognition.getPictureLocation(Properties.Resources.button_ok, BotHelper.memu);
-                //locOKDefeat = ImageRecognition.getPictureLocation(Properties.Resources.button_ok_defeat, BotHelper.memu);
-            } while ((locOK == pNull /* && locOKDefeat == pNull */) && checks <= 55);
+            } while ((locOK == pNull) && checks <= 55);
 
             if (checks >= 55)
             {

@@ -254,10 +254,10 @@ namespace CATSBot.Helper
             return rndPoint;
         }
 
-        public static Point getRandomLoc(Bitmap sub, IntPtr windowHandle)
+        /* public static Point getRandomLoc(Bitmap sub, IntPtr windowHandle)
         {
             return getRandomLoc(getPictureLocation(sub, windowHandle), sub);
-        }
+        } */
 
         public static Bitmap CaptureApplication(IntPtr windowHandle)
         {
