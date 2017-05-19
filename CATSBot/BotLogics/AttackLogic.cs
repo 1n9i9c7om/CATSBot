@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Threading;
 
 using CATSBot.Helper;
+using System.Linq;
 
 namespace CATSBot.BotLogics
 {
@@ -88,7 +89,6 @@ namespace CATSBot.BotLogics
         public static bool startDuell(int attempt = 1)
         {
             ClickOnPointTool.ClickOnPoint(BotHelper.memu, new Point(rnd.Next(670 - 100, 670 + 100), rnd.Next(400 - 100, 400 + 100))); //Click anywhere to start the battle
-            BotHelper.randomDelay(500, 50);
 
             // wait for the duell to end and click on ok
             BotHelper.Log("Waiting for the duell to end.");
@@ -97,7 +97,6 @@ namespace CATSBot.BotLogics
             do
             {
                 BotHelper.Log(" " + checks, false);
-                Thread.Sleep(500);
                 checks++;
 
                 locOK = ImageRecognition.getPictureLocation(Properties.Resources.button_ok, BotHelper.memu);
@@ -156,10 +155,12 @@ namespace CATSBot.BotLogics
         //returns 1 for win, 2 for loss and 0 for error
         private static int checkWin()
         {
-            Point win = ImageRecognition.getPictureLocation(Properties.Resources.label_victory, BotHelper.memu);
-            Point defeat = ImageRecognition.getPictureLocation(Properties.Resources.label_defeat, BotHelper.memu);
+            Bitmap img = ImageRecognition.CaptureApplication(IntPtr.Zero);
 
-            if(win.X != 0 && win.Y != 0)
+            Point win = ImageRecognition.GetSubPositions(img, Properties.Resources.label_victory).FirstOrDefault();
+            Point defeat = ImageRecognition.GetSubPositions(img, Properties.Resources.label_defeat).FirstOrDefault();
+
+            if (win.X != 0 && win.Y != 0)
             {
                 return 1;
             }
@@ -184,7 +185,7 @@ namespace CATSBot.BotLogics
                 BotHelper.randomDelay(30000, 5);
             }
 
-            BotHelper.randomDelay(4000, 1000);
+            BotHelper.randomDelay(3000, 1000);
             checkDefense();
             if (searchDuell())
             {

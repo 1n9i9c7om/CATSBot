@@ -147,15 +147,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="cats.ico" />
-    <None Include="Resources\button_ok1.png" />
-    <None Include="Resources\label_victory1.png" />
-    <None Include="Resources\label_defeat1.png" />
-    <None Include="Resources\button_skip1.png" />
-    <None Include="Resources\button_reconnect1.png" />
-    <None Include="Resources\button_defend.png" />
-    <None Include="Resources\button_ok.png" />
-    <None Include="Resources\backup\button_ok.png" />
-    <None Include="Resources\button_claim.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
