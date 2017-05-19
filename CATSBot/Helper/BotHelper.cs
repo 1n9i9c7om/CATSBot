@@ -20,10 +20,10 @@ namespace CATSBot.Helper
         public static frmMain main;
 
         // Randomize the delay for more security
-        public static void randomDelay(int delay, int maxDiff)
+        public static void randomDelay(int delay, int maxDiff, bool log = false)
         {
             int actualDelay = rnd.Next(delay - maxDiff, delay + maxDiff);
-            Log("Using delay: " + actualDelay);
+            if(log) Log("Using delay: " + actualDelay);
             Thread.Sleep(actualDelay);
         }
 
@@ -73,6 +73,13 @@ namespace CATSBot.Helper
             main.picDebug.Invoke((MethodInvoker)delegate
             {
                 main.picDebug.Image = pic;
+            });
+        }
+        public static void setDebugPic2(Bitmap pic)
+        {
+            main.picDebug2.Invoke((MethodInvoker)delegate
+            {
+                main.picDebug2.Image = pic;
             });
         }
 

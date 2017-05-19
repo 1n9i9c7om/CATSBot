@@ -92,6 +92,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helper\ADBHelper.cs" />
     <Compile Include="Helper\BotHelper.cs" />
     <Compile Include="BotLogics\AttackLogic.cs" />
     <Compile Include="BotLogics\ReconnectLogic.cs" />
@@ -106,6 +107,11 @@
     <Compile Include="Helper\ImageRecognitionHelper\RECT.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Settings.cs" />
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
@@ -121,11 +127,6 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -146,6 +147,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="cats.ico" />
+    <None Include="Resources\button_ok1.png" />
+    <None Include="Resources\label_victory1.png" />
+    <None Include="Resources\label_defeat1.png" />
+    <None Include="Resources\button_skip1.png" />
+    <None Include="Resources\button_reconnect1.png" />
+    <None Include="Resources\button_defend.png" />
+    <None Include="Resources\button_ok.png" />
+    <None Include="Resources\backup\button_ok.png" />
+    <None Include="Resources\button_claim.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

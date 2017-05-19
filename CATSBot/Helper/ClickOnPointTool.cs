@@ -68,7 +68,7 @@ namespace CATSBot.Helper
         }
         public static void ClickOnPoint(IntPtr wndHandle, Point clientPoint)
         {
-            Point oldPos = Cursor.Position;
+            /* Point oldPos = Cursor.Position;
 
             /// get screen coordinates
             ClientToScreen(wndHandle, ref clientPoint);
@@ -88,7 +88,9 @@ namespace CATSBot.Helper
             SendInput((uint)inputs.Length, inputs, Marshal.SizeOf(typeof(INPUT)));
 
             /// return mouse 
-            Cursor.Position = oldPos;
+            Cursor.Position = oldPos; */
+
+            ADBHelper.simulateClick(clientPoint.X, clientPoint.Y);
         }
 
         /* public static void ClickOnPoint(IntPtr wndHandle, Point clientPoint)

@@ -32,9 +32,10 @@ namespace CATSBot.BotLogics
         {
             Helper.BotHelper.Log("Successful defense check");
 
-            if (ImageRecognition.getPictureLocation(Properties.Resources.button_defend, BotHelper.memu) != pNull)
+            //if (ImageRecognition.getPictureLocation(Properties.Resources.button_defend, BotHelper.memu) != pNull)
+            if(false)
             {
-                ClickOnPointTool.ClickOnPoint(BotHelper.memu, ImageRecognition.getRandomLoc(Properties.Resources.button_defend, BotHelper.memu));
+                ClickOnPointTool.ClickOnPoint(BotHelper.memu, ImageRecognition.getRandomLoc(Properties.Resources.button_claim, BotHelper.memu));
                 BotHelper.Log("Yup, we defended");
                 BotHelper.randomDelay(1000, 100);
             }
@@ -44,8 +45,9 @@ namespace CATSBot.BotLogics
         public static bool searchDuell()
         {
             BotHelper.Log("Attempting to press the Duell button");
-            BotHelper.setDebugPic(ImageRecognition.CaptureApplication(BotHelper.memu));
-            return false;
+            //BotHelper.setDebugPic(ImageRecognition.CaptureApplication(BotHelper.memu));
+            //BotHelper.setDebugPic2(ImageRecognition.ConvertToFormat(Properties.Resources.button_fight, System.Drawing.Imaging.PixelFormat.Format24bppRgb, true));
+            //return false;
             if (ImageRecognition.getPictureLocation(Properties.Resources.button_fight, BotHelper.memu) != pNull)
             {
                 Point dbgPoint = ImageRecognition.getPictureLocation(Properties.Resources.button_fight, BotHelper.memu);

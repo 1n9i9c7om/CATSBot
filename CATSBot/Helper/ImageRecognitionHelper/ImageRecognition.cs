@@ -80,9 +80,18 @@ namespace CATSBot.Helper
             return possiblepos;
         }
 
-        public static Bitmap ConvertToFormat(this System.Drawing.Image image, PixelFormat format)
+        public static Bitmap ConvertToFormat(this System.Drawing.Image image, PixelFormat format, bool keepSize = false)
         {
-            Bitmap copy = new Bitmap(image.Width/4, image.Height/4, format);
+            Bitmap copy;
+            if(keepSize)
+            {
+                copy = new Bitmap(image.Width, image.Height, format);
+            }
+            else
+            {
+                copy = new Bitmap(image.Width / 4, image.Height / 4, format);
+            }
+
             using (Graphics gr = Graphics.FromImage(copy))
             {
                 gr.DrawImage(image, new Rectangle(0, 0, copy.Width, copy.Height));
@@ -94,12 +103,14 @@ namespace CATSBot.Helper
         public static List<Point> GetSubPositionsAForge(Bitmap main, Bitmap sub, float similarityThreshold)
         {
             List<Point> possiblepos = new List<Point>();
-            System.Drawing.Bitmap sourceImage = ConvertToFormat(main, PixelFormat.Format24bppRgb);
-            System.Drawing.Bitmap template = ConvertToFormat(sub, PixelFormat.Format24bppRgb);
-            // create template matching algorithm's instance
-            // (set similarity threshold to 92.1%)
+            System.Drawing.Bitmap sourceImage = main; // ConvertToFormat(main, PixelFormat.Format24bppRgb);
+            System.Drawing.Bitmap template = ConvertToFormat(sub, PixelFormat.Format24bppRgb, true);
 
-            ExhaustiveTemplateMatching tm = new ExhaustiveTemplateMatching(0.941f);
+            //BotHelper.setDebugPic(sourceImage);
+            //BotHelper.setDebugPic2(template);
+            // create template matching algorithm's instance
+
+            ExhaustiveTemplateMatching tm = new ExhaustiveTemplateMatching(similarityThreshold);
             // find all matchings with specified above similarity
 
             TemplateMatch[] matchings = tm.ProcessImage(sourceImage, template);
@@ -168,7 +179,7 @@ namespace CATSBot.Helper
 
         public static Bitmap CaptureApplication(IntPtr windowHandle, bool old)
         {
-            var rect = new User32.Rect();
+            /* var rect = new User32.Rect();
             User32.GetWindowRect(windowHandle, ref rect);
 
             int width = rect.right - rect.left;
@@ -178,7 +189,9 @@ namespace CATSBot.Helper
             Graphics graphics = Graphics.FromImage(bmp);
             graphics.CopyFromScreen(rect.left, rect.top, 0, 0, new Size(width, height), CopyPixelOperation.SourceCopy);
 
-            return bmp;
+            return bmp; */
+
+            return ADBHelper.getScreencap();
         }
 
         [DllImport("user32.dll")]
@@ -248,21 +261,7 @@ namespace CATSBot.Helper
 
         public static Bitmap CaptureApplication(IntPtr windowHandle)
         {
-            ImageRecognitionHelper.RECT wRect;
-            GetWindowRect(windowHandle, out wRect);
-            IntPtr hDesk = GetDesktopWindow();
-            IntPtr hSrce = GetWindowDC(hDesk);
-            IntPtr hDest = CreateCompatibleDC(hSrce);
-            IntPtr hBmp = CreateCompatibleBitmap(hSrce, wRect.Width, wRect.Height);
-            IntPtr hOldBmp = SelectObject(hDest, hBmp);
-            bool b = BitBlt(hDest, 0, 0, wRect.Width, wRect.Height, hSrce, wRect.X, wRect.Y, CopyPixelOperation.SourceCopy | CopyPixelOperation.CaptureBlt);
-            Bitmap bmp = Bitmap.FromHbitmap(hBmp);
-            SelectObject(hDest, hOldBmp);
-            DeleteObject(hBmp);
-            DeleteDC(hDest);
-            ReleaseDC(hDesk, hSrce);
-
-            return bmp;
+            return ADBHelper.getScreencap();
         }
 
         // P/Invoke declarations

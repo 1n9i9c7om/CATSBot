@@ -198,5 +198,22 @@ namespace CATSBot
 
             }
         }
+
+        //DEBUG
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            ADBHelper.startCATS();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            ADBHelper.stopCATS();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            picDebug.Image = ADBHelper.getScreencap();
+        }
     }
 }

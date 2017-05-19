@@ -30,6 +30,9 @@ namespace CATSBot
         {
             this.components = new System.ComponentModel.Container();
             this.tabMain = new MetroFramework.Controls.MetroTabControl();
+            this.metroTabPage1 = new MetroFramework.Controls.MetroTabPage();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.txtLog = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -50,15 +53,17 @@ namespace CATSBot
             this.btnStart = new MetroFramework.Controls.MetroTile();
             this.lblStats = new MetroFramework.Controls.MetroLabel();
             this.metroStyle = new MetroFramework.Components.MetroStyleManager(this.components);
-            this.metroTabPage1 = new MetroFramework.Controls.MetroTabPage();
+            this.button3 = new System.Windows.Forms.Button();
+            this.picDebug2 = new System.Windows.Forms.PictureBox();
             this.picDebug = new System.Windows.Forms.PictureBox();
             this.tabMain.SuspendLayout();
+            this.metroTabPage1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudReconnectTime)).BeginInit();
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.metroStyle)).BeginInit();
-            this.metroTabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picDebug2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picDebug)).BeginInit();
             this.SuspendLayout();
             // 
@@ -67,16 +72,57 @@ namespace CATSBot
             this.tabMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tabMain.Controls.Add(this.tabPage1);
-            this.tabMain.Controls.Add(this.tabPage2);
             this.tabMain.Controls.Add(this.tabPage3);
             this.tabMain.Controls.Add(this.metroTabPage1);
+            this.tabMain.Controls.Add(this.tabPage1);
+            this.tabMain.Controls.Add(this.tabPage2);
             this.tabMain.Location = new System.Drawing.Point(8, 53);
             this.tabMain.Name = "tabMain";
-            this.tabMain.SelectedIndex = 3;
+            this.tabMain.SelectedIndex = 1;
             this.tabMain.Size = new System.Drawing.Size(274, 459);
             this.tabMain.TabIndex = 0;
             this.tabMain.UseSelectable = true;
+            // 
+            // metroTabPage1
+            // 
+            this.metroTabPage1.Controls.Add(this.picDebug2);
+            this.metroTabPage1.Controls.Add(this.button3);
+            this.metroTabPage1.Controls.Add(this.button2);
+            this.metroTabPage1.Controls.Add(this.button1);
+            this.metroTabPage1.Controls.Add(this.picDebug);
+            this.metroTabPage1.HorizontalScrollbarBarColor = true;
+            this.metroTabPage1.HorizontalScrollbarHighlightOnWheel = false;
+            this.metroTabPage1.HorizontalScrollbarSize = 10;
+            this.metroTabPage1.Location = new System.Drawing.Point(4, 38);
+            this.metroTabPage1.Name = "metroTabPage1";
+            this.metroTabPage1.Size = new System.Drawing.Size(266, 417);
+            this.metroTabPage1.TabIndex = 3;
+            this.metroTabPage1.Text = "metroTabPage1";
+            this.metroTabPage1.VerticalScrollbarBarColor = true;
+            this.metroTabPage1.VerticalScrollbarHighlightOnWheel = false;
+            this.metroTabPage1.VerticalScrollbarSize = 10;
+            // 
+            // button2
+            // 
+            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button2.Location = new System.Drawing.Point(179, 382);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 4;
+            this.button2.Text = "Stop CATS";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button1.Location = new System.Drawing.Point(3, 382);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "Start CATS";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // tabPage1
             // 
@@ -325,20 +371,26 @@ namespace CATSBot
             // 
             this.metroStyle.Owner = this;
             // 
-            // metroTabPage1
+            // button3
             // 
-            this.metroTabPage1.Controls.Add(this.picDebug);
-            this.metroTabPage1.HorizontalScrollbarBarColor = true;
-            this.metroTabPage1.HorizontalScrollbarHighlightOnWheel = false;
-            this.metroTabPage1.HorizontalScrollbarSize = 10;
-            this.metroTabPage1.Location = new System.Drawing.Point(4, 38);
-            this.metroTabPage1.Name = "metroTabPage1";
-            this.metroTabPage1.Size = new System.Drawing.Size(266, 417);
-            this.metroTabPage1.TabIndex = 3;
-            this.metroTabPage1.Text = "metroTabPage1";
-            this.metroTabPage1.VerticalScrollbarBarColor = true;
-            this.metroTabPage1.VerticalScrollbarHighlightOnWheel = false;
-            this.metroTabPage1.VerticalScrollbarSize = 10;
+            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button3.Location = new System.Drawing.Point(92, 382);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 5;
+            this.button3.Text = "Capture Cats";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // picDebug2
+            // 
+            this.picDebug2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.picDebug2.Location = new System.Drawing.Point(3, 338);
+            this.picDebug2.Name = "picDebug2";
+            this.picDebug2.Size = new System.Drawing.Size(260, 38);
+            this.picDebug2.TabIndex = 6;
+            this.picDebug2.TabStop = false;
             // 
             // picDebug
             // 
@@ -347,7 +399,7 @@ namespace CATSBot
             | System.Windows.Forms.AnchorStyles.Right)));
             this.picDebug.Location = new System.Drawing.Point(0, 14);
             this.picDebug.Name = "picDebug";
-            this.picDebug.Size = new System.Drawing.Size(266, 400);
+            this.picDebug.Size = new System.Drawing.Size(266, 318);
             this.picDebug.TabIndex = 2;
             this.picDebug.TabStop = false;
             // 
@@ -364,6 +416,7 @@ namespace CATSBot
             this.Text = "CATSBot | catsbot.net";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.tabMain.ResumeLayout(false);
+            this.metroTabPage1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
@@ -372,7 +425,7 @@ namespace CATSBot
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.metroStyle)).EndInit();
-            this.metroTabPage1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.picDebug2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picDebug)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -404,5 +457,9 @@ namespace CATSBot
         private MetroFramework.Controls.MetroTile btnHideMemu;
         private MetroFramework.Controls.MetroTabPage metroTabPage1;
         public System.Windows.Forms.PictureBox picDebug;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button3;
+        public System.Windows.Forms.PictureBox picDebug2;
     }
 }
