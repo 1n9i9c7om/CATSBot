@@ -48,7 +48,7 @@ namespace CATSBot.BotLogics
         public static void checkInstantPromo()
         {
             Helper.BotHelper.Log("Instant Promo Check", true, true);
-            Point claimPoint = ImageRecognition.getPictureLocation(Properties.Resources.button_ok));
+            Point claimPoint = ImageRecognition.getPictureLocation(Properties.Resources.button_ok);
             if (claimPoint != pNull)
             {
                 ADBHelper.simulateClick(ImageRecognition.getRandomLoc(claimPoint, Properties.Resources.button_ok));

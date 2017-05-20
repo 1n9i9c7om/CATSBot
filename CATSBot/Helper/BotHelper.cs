@@ -41,6 +41,8 @@ namespace CATSBot.Helper
         // Logger
         public static void Log(string text, bool newLine = true, bool isDebug = false)
         {
+            Directory.CreateDirectory("logs"); //create logs directory if it doesn't exit.
+
             string formattedText = (newLine ? Environment.NewLine + "[" + DateTime.Now.ToString("dd.MM.yy H:mm:ss") + "] " : "") + text;
 
             if (!isDebug)
@@ -56,9 +58,9 @@ namespace CATSBot.Helper
             string dateTimeString = DateTime.Now.ToString("yyyy_MM_dd", CultureInfo.InvariantCulture);
 
             if (!isDebug)
-                System.IO.File.AppendAllText("CatsBot_" + dateTimeString + ".log", formattedText);
+                System.IO.File.AppendAllText(@"logs\CatsBot_" + dateTimeString + ".log", formattedText);
             else
-                System.IO.File.AppendAllText("CatsBot_debug_" + dateTimeString + ".log", formattedText);
+                System.IO.File.AppendAllText(@"logs\CatsBot_debug_" + dateTimeString + ".log", formattedText);
         }
 
         // Update the stats label. To be improved in future releases
