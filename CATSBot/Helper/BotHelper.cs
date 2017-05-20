@@ -16,18 +16,17 @@ namespace CATSBot.Helper
     public static class BotHelper
     {
         static Random rnd = new Random();
-        public static IntPtr memu;
         public static frmMain main;
 
         // Randomize the delay for more security
-        public static void randomDelay(int delay, int maxDiff)
+        public static void randomDelay(int delay, int maxDiff, bool log = false)
         {
             int actualDelay = rnd.Next(delay - maxDiff, delay + maxDiff);
-            Log("Using delay: " + actualDelay);
+            if(log) Log("Using delay: " + actualDelay);
             Thread.Sleep(actualDelay);
         }
 
-        public static bool setMemuIntPtr()
+        public static bool isMemuRunning()
         {
             // Check if the MEmu process is running
             Process[] pname = Process.GetProcessesByName("MEmu");
@@ -36,27 +35,32 @@ namespace CATSBot.Helper
                 return false;
             }
 
-            memu = Process.GetProcessesByName("MEmu").First().MainWindowHandle;
             return true;
         }
 
         // Logger
         public static void Log(string text, bool newLine = true, bool isDebug = false)
         {
+            Directory.CreateDirectory("logs"); //create logs directory if it doesn't exit.
+
             string formattedText = (newLine ? Environment.NewLine + "[" + DateTime.Now.ToString("dd.MM.yy H:mm:ss") + "] " : "") + text;
-            main.txtLog.Invoke((MethodInvoker)delegate {
-                main.txtLog.Text += (newLine ? Environment.NewLine + "[" + DateTime.Now.ToString("dd.MM.yy H:mm:ss") + "] " : "") + text;
-                main.txtLog.Text = main.txtLog.Text.Trim();
-                main.txtLog.SelectionStart = main.txtLog.Text.Length;
-                main.txtLog.ScrollToCaret();
-            });
+
+            if (!isDebug)
+            {
+                main.txtLog.Invoke((MethodInvoker)delegate {
+                    main.txtLog.Text += (newLine ? Environment.NewLine + "[" + DateTime.Now.ToString("dd.MM.yy H:mm:ss") + "] " : "") + text;
+                    main.txtLog.Text = main.txtLog.Text.Trim();
+                    main.txtLog.SelectionStart = main.txtLog.Text.Length;
+                    main.txtLog.ScrollToCaret();
+                });
+            }
 
             string dateTimeString = DateTime.Now.ToString("yyyy_MM_dd", CultureInfo.InvariantCulture);
 
             if (!isDebug)
-                System.IO.File.AppendAllText("CatsBot_" + dateTimeString + ".log", formattedText);
+                System.IO.File.AppendAllText(@"logs\CatsBot_" + dateTimeString + ".log", formattedText);
             else
-                System.IO.File.AppendAllText("CatsBot_debug_" + dateTimeString + ".log", formattedText);
+                System.IO.File.AppendAllText(@"logs\CatsBot_debug_" + dateTimeString + ".log", formattedText);
         }
 
         // Update the stats label. To be improved in future releases
@@ -67,19 +71,37 @@ namespace CATSBot.Helper
                 main.lblStats.Text = "Wins: " + wins + " (" + crowns + " Crowns) | Losses: " + losses;
             });
         }
-        #region Debug Information Gathering
-        [DllImport("user32.dll", SetLastError = true)]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool GetWindowRect(IntPtr hWnd, ref RECT lpRect);
-        [StructLayout(LayoutKind.Sequential)]
-        public struct RECT
+
+        public static void pickMemuDir()
         {
-            public int Left;        // x position of upper-left corner
-            public int Top;         // y position of upper-left corner
-            public int Right;       // x position of lower-right corner
-            public int Bottom;      // y position of lower-right corner
+            FolderBrowserDialog fbd = new FolderBrowserDialog();
+            fbd.Description = "Please your MEmu installation folder.";
+
+            if (fbd.ShowDialog() == DialogResult.OK)
+            {
+                // Allow both, the Microvirt folder or the MEmu folder inside
+                if (File.Exists(Path.Combine(fbd.SelectedPath, "adb.exe")))
+                {
+                    Settings.getInstance().adbPath = Path.Combine(fbd.SelectedPath, "adb.exe");
+                    main.txtCurrentMemuPath.Text = fbd.SelectedPath;
+                }
+                else if (File.Exists(Path.Combine(fbd.SelectedPath, @"MEmu\adb.exe")))
+                {
+                    Settings.getInstance().adbPath = Path.Combine(fbd.SelectedPath, @"MEmu\adb.exe");
+                    main.txtCurrentMemuPath.Text = Path.Combine(fbd.SelectedPath, @"MEmu");
+                }
+                else
+                {
+                    MetroFramework.MetroMessageBox.Show(main, "Invalid folder selected. Please go into settings and try again.");
+                }
+            }
+            else
+            {
+                MetroFramework.MetroMessageBox.Show(main, "Invalid folder selected. Please go into settings and try again.");
+            }
         }
 
+        #region Debug related stuff
         public static void saveDebugInformation()
         {
             string debugInformation = "";
@@ -99,21 +121,9 @@ namespace CATSBot.Helper
 
             debugInformation += Environment.NewLine;
 
-            if (setMemuIntPtr())
+            if (isMemuRunning())
             {
-                RECT rct = new RECT();
-                GetWindowRect(memu, ref rct);
-
-                Rectangle memuSize = new Rectangle();
-
-                memuSize.X = rct.Left;
-                memuSize.Y = rct.Top;
-                memuSize.Width = rct.Right - rct.Left + 1;
-                memuSize.Height = rct.Bottom - rct.Top + 1;
-
                 debugInformation += "MEmu is running." + Environment.NewLine;
-                debugInformation += "Window Size: " + memuSize.Width + "x" + memuSize.Height + Environment.NewLine;
-                debugInformation += "Window Location: " + memuSize.Location.X + "x" + memuSize.Location.Y + Environment.NewLine;
             }
             else
             {
@@ -122,6 +132,21 @@ namespace CATSBot.Helper
 
             System.IO.File.WriteAllText("CATSBot_Debuginformation.txt", debugInformation);
             Process.Start("CATSBot_Debuginformation.txt");
+        }
+
+        public static void setDebugPic(Bitmap pic)
+        {
+            main.picDebug.Invoke((MethodInvoker)delegate
+            {
+                main.picDebug.Image = pic;
+            });
+        }
+        public static void setDebugPic2(Bitmap pic)
+        {
+            main.picDebug2.Invoke((MethodInvoker)delegate
+            {
+                main.picDebug2.Image = pic;
+            });
         }
         #endregion
 

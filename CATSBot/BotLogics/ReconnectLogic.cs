@@ -26,8 +26,8 @@ namespace CATSBot.BotLogics
 
                 System.Threading.Thread.Sleep(sleepTime);
 
-                Point reconnectButton = ImageRecognition.getPictureLocation(Properties.Resources.button_reconnect, BotHelper.memu, 0.90f);
-                ClickOnPointTool.ClickOnPoint(BotHelper.memu, ImageRecognition.getRandomLoc(reconnectButton, Properties.Resources.button_reconnect));
+                Point reconnectButton = ImageRecognition.getPictureLocation(Properties.Resources.button_reconnect, 0.90f);
+                ADBHelper.simulateClick(ImageRecognition.getRandomLoc(reconnectButton, Properties.Resources.button_reconnect));
 
                 BotHelper.Log("Reconnect Button pressed.");
             }
@@ -39,7 +39,7 @@ namespace CATSBot.BotLogics
 
         private static bool checkReconnect()
         {
-            Point reconnectButton = ImageRecognition.getPictureLocation(Properties.Resources.button_reconnect, BotHelper.memu, 0.90f);
+            Point reconnectButton = ImageRecognition.getPictureLocation(Properties.Resources.button_reconnect, 0.90f);
 
             if (reconnectButton.X == 0 && reconnectButton.Y == 0)
                 return false;

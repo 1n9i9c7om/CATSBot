@@ -1,10 +1,8 @@
 ﻿using MetroFramework;
 using System;
-using System.Diagnostics;
-using System.Linq;
-using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
+using System.IO;
 
 using CATSBot.Helper;
 
@@ -24,18 +22,19 @@ namespace CATSBot
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            if (!BotHelper.setMemuIntPtr())
+            if(Settings.getInstance().adbPath == "")
             {
-                MetroFramework.MetroMessageBox.Show(this, "MEmu is not running!");
+                MetroFramework.MetroMessageBox.Show(this, "Please set your MEmu installation directory before starting the bot.");
                 return;
             }
 
             if (!isRunning)
             {
-                if (chkUseSidebar.Checked)
-                    ClickOnPointTool.ResizeWindow(BotHelper.memu, 1328, 758);
-                else
-                    ClickOnPointTool.ResizeWindow(BotHelper.memu, 1288, 758);
+                if (!BotHelper.isMemuRunning())
+                {
+                    MetroFramework.MetroMessageBox.Show(this, "MEmu is not running!");
+                    return;
+                }
 
                 btnStart.Text = "Stop";
                 isRunning = true;
@@ -146,11 +145,6 @@ namespace CATSBot
 
         #region Setting-saving "dummys"
         //These are just for setting-saving purposes
-        private void chkUseSidebar_CheckedChanged(object sender, EventArgs e)
-        {
-            Settings.getInstance().memuSidebarEnabled = chkUseSidebar.Checked;
-        }
-
         private void chkAutoReconnect_CheckedChanged(object sender, EventArgs e)
         {
             Settings.getInstance().automaticReconnectEnabled = chkAutoReconnect.Checked;
@@ -161,5 +155,52 @@ namespace CATSBot
             Settings.getInstance().reconnectTime = Convert.ToInt32(nudReconnectTime.Value);
         }
         #endregion
+
+        private void btnResetStats_Click(object sender, EventArgs e)
+        {
+            BotLogics.AttackLogic.resetStats();
+        }
+
+        //DEBUG
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            ADBHelper.startCATS();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            ADBHelper.stopCATS();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            picDebug.Image = ADBHelper.getScreencap();
+        }
+
+        private void btnChangeMemuPath_Click(object sender, EventArgs e)
+        {
+            BotHelper.pickMemuDir();
+        }
+
+        private void frmMain_Shown(object sender, EventArgs e)
+        {
+            if (Settings.getInstance().adbPath == "")
+            {
+                // Check default installation path
+                if (File.Exists(@"C:\Program Files\Microvirt\MEmu\adb.exe"))
+                {
+                    Settings.getInstance().adbPath = @"C:\Program Files\Microvirt\MEmu\adb.exe";
+                }
+                else if (File.Exists(@"D:\Program Files\Microvirt\MEmu\adb.exe"))
+                {
+                    Settings.getInstance().adbPath = @"D:\Program Files\Microvirt\MEmu\adb.exe";
+                }
+                else
+                {
+                    BotHelper.pickMemuDir();
+                }
+            }
+        }
     }
 }

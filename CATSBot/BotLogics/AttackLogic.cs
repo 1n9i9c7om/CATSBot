@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Threading;
 
 using CATSBot.Helper;
+using System.Linq;
 
 namespace CATSBot.BotLogics
 {
@@ -17,15 +18,41 @@ namespace CATSBot.BotLogics
         static int winsInARow = 0;
         static int crowns = 0;
 
-        //Check if we defended, if yes, click that filthy "Claim" button that's prevent us from clicking "QUICK FIGHT" ;)
+        private static int logicErrors = 0;
+
+        public static void resetStats()
+        {
+            wins = 0;
+            losses = 0;
+            winsInARow = 0;
+            crowns = 0;
+
+            BotHelper.updateStats(0, 0, 0);
+        }
+
+        // Note: checkDefense and checkInstantPromo will be removed from AttackLogic and placed into a "ClearScreenLogic" later.
+        // Check if we defended, if yes, click that filthy "Claim" button that's prevent us from clicking "QUICK FIGHT" ;)
         public static void checkDefense()
         {
-            Helper.BotHelper.Log("Successful defense check");
-
-            if (ImageRecognition.getPictureLocation(Properties.Resources.button_defend, BotHelper.memu) != pNull)
+            Helper.BotHelper.Log("Successful defense check", true, true);
+            Point claimPoint = ImageRecognition.getPictureLocation(Properties.Resources.button_claim);
+            if (claimPoint != pNull)
             {
-                ClickOnPointTool.ClickOnPoint(BotHelper.memu, ImageRecognition.getRandomLoc(Properties.Resources.button_defend, BotHelper.memu));
-                BotHelper.Log("Yup, we defended");
+                ADBHelper.simulateClick(ImageRecognition.getRandomLoc(claimPoint, Properties.Resources.button_claim));
+                BotHelper.Log("We defended. Free coins! :)");
+                BotHelper.randomDelay(1000, 100);
+            }
+        }
+
+        // Check if somebody got an instant promotion, because that window will be blocking the bot even after a restart
+        public static void checkInstantPromo()
+        {
+            Helper.BotHelper.Log("Instant Promo Check", true, true);
+            Point claimPoint = ImageRecognition.getPictureLocation(Properties.Resources.button_ok);
+            if (claimPoint != pNull)
+            {
+                ADBHelper.simulateClick(ImageRecognition.getRandomLoc(claimPoint, Properties.Resources.button_ok));
+                BotHelper.Log("Someone got instant promoted.");
                 BotHelper.randomDelay(1000, 100);
             }
         }
@@ -33,18 +60,20 @@ namespace CATSBot.BotLogics
         // Try to find the "Quick Fight" button and click on it.
         public static bool searchDuell()
         {
-            BotHelper.Log("Attempting to press the Duell button");
-            if (ImageRecognition.getPictureLocation(Properties.Resources.button_fight, BotHelper.memu) != pNull)
+            BotHelper.Log("Attempting to press the Duell button", true, true);
+            //BotHelper.setDebugPic(ImageRecognition.CaptureApplication(BotHelper.memu));
+            //BotHelper.setDebugPic2(ImageRecognition.ConvertToFormat(Properties.Resources.button_fight, System.Drawing.Imaging.PixelFormat.Format24bppRgb, true));
+            //return false;
+            Point fightPoint = ImageRecognition.getPictureLocation(Properties.Resources.button_fight);
+            if (fightPoint != pNull)
             {
-                Point dbgPoint = ImageRecognition.getPictureLocation(Properties.Resources.button_fight, BotHelper.memu);
-                BotHelper.Log("Button found! FeelsGoodMan.");
-                BotHelper.Log("Button found at: X = " + dbgPoint.X + "; Y = " + dbgPoint.Y, true, true);
-                ClickOnPointTool.ClickOnPoint(BotHelper.memu, ImageRecognition.getRandomLoc(Properties.Resources.button_fight, BotHelper.memu));
+                BotHelper.Log("Button found at: X = " + fightPoint.X + "; Y = " + fightPoint.Y, true, true);
+                ADBHelper.simulateClick(ImageRecognition.getRandomLoc(fightPoint, Properties.Resources.button_fight));
                 return true;
             }
             else
             {
-                BotHelper.Log("Button not found! FeelsBadMan.");
+                BotHelper.Log("Could not find the quick fight button. :/", true, false);
                 return false;
             }
         }
@@ -57,9 +86,8 @@ namespace CATSBot.BotLogics
             do
             {
                 BotHelper.Log(" " + checks, false);
-                Thread.Sleep(100);
                 checks++;
-            } while (ImageRecognition.getPictureLocation(Properties.Resources.button_skip, BotHelper.memu) == pNull && checks <= 55);
+            } while (ImageRecognition.getPictureLocation(Properties.Resources.button_skip) == pNull && checks <= 55);
 
             if (checks >= 55)
             {
@@ -74,8 +102,7 @@ namespace CATSBot.BotLogics
         // Start the fight by clicking anywhere and wait for it to end (by searching for the "OK" button)
         public static bool startDuell(int attempt = 1)
         {
-            ClickOnPointTool.ClickOnPoint(BotHelper.memu, new Point(rnd.Next(670 - 100, 670 + 100), rnd.Next(400 - 100, 400 + 100))); //Click anywhere to start the battle
-            BotHelper.randomDelay(500, 50);
+            ADBHelper.simulateClick(new Point(rnd.Next(670 - 100, 670 + 100), rnd.Next(400 - 100, 400 + 100))); //Click anywhere to start the battle
 
             // wait for the duell to end and click on ok
             BotHelper.Log("Waiting for the duell to end.");
@@ -84,17 +111,10 @@ namespace CATSBot.BotLogics
             do
             {
                 BotHelper.Log(" " + checks, false);
-                Thread.Sleep(500);
                 checks++;
 
-                // Apparently, there are multiple "OK"-Buttons that all look the same at a first glance,
-                // but there's a difference in them that the tool is able to detect. 
-                // We have to check multiple images because of this, but we got an easy detection whether 
-                // we won or not. :) 
-
-                locOK = ImageRecognition.getPictureLocation(Properties.Resources.button_ok, BotHelper.memu);
-                //locOKDefeat = ImageRecognition.getPictureLocation(Properties.Resources.button_ok_defeat, BotHelper.memu);
-            } while ((locOK == pNull /* && locOKDefeat == pNull */) && checks <= 55);
+                locOK = ImageRecognition.getPictureLocation(Properties.Resources.button_ok);
+            } while ((locOK == pNull) && checks <= 55);
 
             if (checks >= 55)
             {
@@ -112,11 +132,32 @@ namespace CATSBot.BotLogics
             }
             else //we won!
             {
-                BotHelper.Log("Battle finished.");
+                BotHelper.Log("Battle finished.", true, false);
+
+                int winloss = checkWin();
+                if(winloss == 1)
+                {
+                    BotHelper.Log(" We won!", false, false);
+                    wins++;
+                    winsInARow++;
+                    if ((winsInARow % 5) == 0) crowns++;
+                }
+                else if(winloss == 2)
+                {
+                    BotHelper.Log(" We lost. :(", false, false);
+                    losses++;
+                    winsInARow = 0;
+                }
+                else
+                {
+                    BotHelper.Log("Error checking win/loss, not counting stats", true, false);
+                }
+
+                BotHelper.updateStats(wins, losses, crowns);
 
                 Point rndP = ImageRecognition.getRandomLoc(locOK, Properties.Resources.button_ok);
                 BotHelper.Log("Clicked on: X = " + rndP.X + "; Y = " + rndP.Y, true, true);
-                ClickOnPointTool.ClickOnPoint(BotHelper.memu, rndP);
+                ADBHelper.simulateClick(rndP);
             }
 
             //BotHelper.UpdateStats(wins, losses, crowns);
@@ -125,11 +166,42 @@ namespace CATSBot.BotLogics
             return true;
         }
 
+        //returns 1 for win, 2 for loss and 0 for error
+        private static int checkWin()
+        {
+            Bitmap img = ImageRecognition.CaptureApplication();
+
+            Point win = ImageRecognition.GetSubPositions(img, Properties.Resources.label_victory).FirstOrDefault();
+            Point defeat = ImageRecognition.GetSubPositions(img, Properties.Resources.label_defeat).FirstOrDefault();
+
+            if (win.X != 0 && win.Y != 0)
+            {
+                return 1;
+            }
+            else if(defeat.X != 0 && defeat.Y != 0)
+            {
+                return 2;
+            }
+
+            return 0;
+        }
+
         //Attack Logic
         public static void doLogic()
         {
-            BotHelper.randomDelay(4000, 1000);
+            if(logicErrors >= 5)
+            {
+                BotHelper.Log("Too many errors. Restarting CATS.");
+                ADBHelper.stopCATS();
+                BotHelper.randomDelay(1000, 5);
+                ADBHelper.startCATS();
+                BotHelper.Log("Waiting for CATS to restart. Waiting 30s.");
+                BotHelper.randomDelay(30000, 5);
+            }
+
+            BotHelper.randomDelay(3000, 1000);
             checkDefense();
+            checkInstantPromo();
             if (searchDuell())
             {
                 if (waitDuell())
@@ -137,20 +209,31 @@ namespace CATSBot.BotLogics
                     if (startDuell())
                     {
                         BotHelper.Log("AttackLogic successfully completed.");
+                        logicErrors = 0;
                     }
                     else
                     {
                         BotHelper.Log("AttackLogic failed during startDuell");
+                        logicErrors++;
                     }
                 }
                 else
                 {
                     BotHelper.Log("AttackLogic failed during waitDUell");
+                    logicErrors++;
                 }
             }           
             else
             {
                 BotHelper.Log("AttackLogic failed during searchDuell");
+                BotHelper.Log("Please make sure that your games language is set to English and that MEmu is set to 1280x720 in windowed mode.");
+                logicErrors++;
+                Thread.Sleep(5000); //give the user time to see this message :P
+            }
+
+            if(logicErrors > 0)
+            {
+                BotHelper.Log("We had " + logicErrors + " errors in a row during AttackLogic, restarting at 5 errors");
             }
         }
     }
