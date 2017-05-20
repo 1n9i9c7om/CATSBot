@@ -35,10 +35,11 @@ namespace CATSBot.BotLogics
         public static void checkDefense()
         {
             Helper.BotHelper.Log("Successful defense check", true, true);
-            Point claimPoint = ImageRecognition.getPictureLocation(Properties.Resources.button_claim);
+            Bitmap button_claim = BotHelper.getResourceByName("button_claim");
+            Point claimPoint = ImageRecognition.getPictureLocation(button_claim);
             if (claimPoint != pNull)
             {
-                ADBHelper.simulateClick(ImageRecognition.getRandomLoc(claimPoint, Properties.Resources.button_claim));
+                ADBHelper.simulateClick(ImageRecognition.getRandomLoc(claimPoint, button_claim));
                 BotHelper.Log("We defended. Free coins! :)");
                 BotHelper.randomDelay(1000, 100);
             }
@@ -47,11 +48,13 @@ namespace CATSBot.BotLogics
         // Check if somebody got an instant promotion, because that window will be blocking the bot even after a restart
         public static void checkInstantPromo()
         {
+            Bitmap button_ok = BotHelper.getResourceByName("button_ok");
+
             Helper.BotHelper.Log("Instant Promo Check", true, true);
-            Point claimPoint = ImageRecognition.getPictureLocation(Properties.Resources.button_ok);
+            Point claimPoint = ImageRecognition.getPictureLocation(button_ok);
             if (claimPoint != pNull)
             {
-                ADBHelper.simulateClick(ImageRecognition.getRandomLoc(claimPoint, Properties.Resources.button_ok));
+                ADBHelper.simulateClick(ImageRecognition.getRandomLoc(claimPoint, button_ok));
                 BotHelper.Log("Someone got instant promoted.");
                 BotHelper.randomDelay(1000, 100);
             }
@@ -60,15 +63,17 @@ namespace CATSBot.BotLogics
         // Try to find the "Quick Fight" button and click on it.
         public static bool searchDuell()
         {
+            Bitmap button_fight = BotHelper.getResourceByName("button_fight");
+
             BotHelper.Log("Attempting to press the Duell button", true, true);
             //BotHelper.setDebugPic(ImageRecognition.CaptureApplication(BotHelper.memu));
             //BotHelper.setDebugPic2(ImageRecognition.ConvertToFormat(Properties.Resources.button_fight, System.Drawing.Imaging.PixelFormat.Format24bppRgb, true));
             //return false;
-            Point fightPoint = ImageRecognition.getPictureLocation(Properties.Resources.button_fight);
+            Point fightPoint = ImageRecognition.getPictureLocation(button_fight);
             if (fightPoint != pNull)
             {
                 BotHelper.Log("Button found at: X = " + fightPoint.X + "; Y = " + fightPoint.Y, true, true);
-                ADBHelper.simulateClick(ImageRecognition.getRandomLoc(fightPoint, Properties.Resources.button_fight));
+                ADBHelper.simulateClick(ImageRecognition.getRandomLoc(fightPoint, button_fight));
                 return true;
             }
             else
@@ -81,13 +86,15 @@ namespace CATSBot.BotLogics
         //Check for the skip button. If it's there, an opponent has been found.
         public static bool waitDuell()
         {
+            Bitmap button_skip = BotHelper.getResourceByName("button_skip");
+
             BotHelper.Log("Waiting for the duell to start....");
             int checks = 0;
             do
             {
                 BotHelper.Log(" " + checks, false);
                 checks++;
-            } while (ImageRecognition.getPictureLocation(Properties.Resources.button_skip) == pNull && checks <= 55);
+            } while (ImageRecognition.getPictureLocation(button_skip) == pNull && checks <= 55);
 
             if (checks >= 55)
             {
@@ -102,6 +109,8 @@ namespace CATSBot.BotLogics
         // Start the fight by clicking anywhere and wait for it to end (by searching for the "OK" button)
         public static bool startDuell(int attempt = 1)
         {
+            Bitmap button_ok = BotHelper.getResourceByName("button_ok");
+
             ADBHelper.simulateClick(new Point(rnd.Next(670 - 100, 670 + 100), rnd.Next(400 - 100, 400 + 100))); //Click anywhere to start the battle
 
             // wait for the duell to end and click on ok
@@ -113,7 +122,7 @@ namespace CATSBot.BotLogics
                 BotHelper.Log(" " + checks, false);
                 checks++;
 
-                locOK = ImageRecognition.getPictureLocation(Properties.Resources.button_ok);
+                locOK = ImageRecognition.getPictureLocation(button_ok);
             } while ((locOK == pNull) && checks <= 55);
 
             if (checks >= 55)
@@ -155,7 +164,7 @@ namespace CATSBot.BotLogics
 
                 BotHelper.updateStats(wins, losses, crowns);
 
-                Point rndP = ImageRecognition.getRandomLoc(locOK, Properties.Resources.button_ok);
+                Point rndP = ImageRecognition.getRandomLoc(locOK, button_ok);
                 BotHelper.Log("Clicked on: X = " + rndP.X + "; Y = " + rndP.Y, true, true);
                 ADBHelper.simulateClick(rndP);
             }
@@ -170,9 +179,11 @@ namespace CATSBot.BotLogics
         private static int checkWin()
         {
             Bitmap img = ImageRecognition.CaptureApplication();
+            Bitmap label_victory = BotHelper.getResourceByName("label_victory");
+            Bitmap label_defeat = BotHelper.getResourceByName("label_defeat");
 
-            Point win = ImageRecognition.GetSubPositions(img, Properties.Resources.label_victory).FirstOrDefault();
-            Point defeat = ImageRecognition.GetSubPositions(img, Properties.Resources.label_defeat).FirstOrDefault();
+            Point win = ImageRecognition.GetSubPositions(img, label_victory).FirstOrDefault();
+            Point defeat = ImageRecognition.GetSubPositions(img, label_defeat).FirstOrDefault();
 
             if (win.X != 0 && win.Y != 0)
             {

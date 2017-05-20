@@ -200,6 +200,8 @@ namespace CATSBot
                 {
                     BotHelper.pickMemuDir();
                 }
+
+                txtCurrentMemuPath.Text = Settings.getInstance().adbPath;
             }
         }
     }
