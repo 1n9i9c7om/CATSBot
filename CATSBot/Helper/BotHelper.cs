@@ -110,7 +110,7 @@ namespace CATSBot.Helper
             debugInformation += "Operating System: " + Environment.OSVersion.VersionString + Environment.NewLine + Environment.NewLine;
 
             int screenCounter = 1;
-            foreach(Screen screen in Screen.AllScreens)
+            foreach (Screen screen in Screen.AllScreens)
             {
                 debugInformation += "Screen " + screenCounter + ": " + Environment.NewLine;
                 debugInformation += "Name: " + screen.DeviceName + Environment.NewLine;
@@ -132,21 +132,6 @@ namespace CATSBot.Helper
 
             System.IO.File.WriteAllText("CATSBot_Debuginformation.txt", debugInformation);
             Process.Start("CATSBot_Debuginformation.txt");
-        }
-
-        public static void setDebugPic(Bitmap pic)
-        {
-            main.picDebug.Invoke((MethodInvoker)delegate
-            {
-                main.picDebug.Image = pic;
-            });
-        }
-        public static void setDebugPic2(Bitmap pic)
-        {
-            main.picDebug2.Invoke((MethodInvoker)delegate
-            {
-                main.picDebug2.Image = pic;
-            });
         }
         #endregion
 

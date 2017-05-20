@@ -34,6 +34,7 @@ namespace CATSBot
         //Style related settings
         public int metroStyle = 4;
         public int metroTheme = 1;
+        public bool topmost = false;
 
         //Settings found in the "Settings" tab
         public bool automaticReconnectEnabled = true;
@@ -54,6 +55,7 @@ namespace CATSBot
             main.chkAutoReconnect.Checked = automaticReconnectEnabled;
             main.nudReconnectTime.Value = Convert.ToDecimal(reconnectTime);
             main.txtCurrentMemuPath.Text = (adbPath == "" ? "Not set!" : adbPath.Replace("adb.exe", ""));
+            main.chkAlwaysTop.Checked = topmost;
         }
     }
 }

@@ -72,9 +72,16 @@ namespace CATSBot
             if(thread != null && thread.IsAlive)
                 thread.Suspend(); // TODO: Proper Multithreading
 
-            Settings.getInstance().saveSettings();
-
-            Application.Exit();
+            //This is implemented in hindsight as it will propbably make proplem with multithreading later if not done correctly
+            if (isRunning == true)
+            {
+                MetroMessageBox.Show(this, "The Bot is still running. Please stop it first!");
+            }
+            else
+            {
+                Settings.getInstance().saveSettings();
+                Application.Exit();
+            }
         }
 
         private void btnSaveDebug_Click(object sender, EventArgs e)
@@ -107,7 +114,10 @@ namespace CATSBot
                 }
 
                 nudReconnectTime.BackColor = System.Drawing.Color.White;
+                nudDelayMultiplier.BackColor = System.Drawing.Color.White;
+
                 nudReconnectTime.ForeColor = System.Drawing.Color.Black;
+                nudDelayMultiplier.ForeColor = System.Drawing.Color.Black;
             }
             else if (theme == MetroThemeStyle.Dark)
             {
@@ -123,7 +133,10 @@ namespace CATSBot
                 }
 
                 nudReconnectTime.BackColor = System.Drawing.ColorTranslator.FromHtml("#111111");
+                nudDelayMultiplier.BackColor = System.Drawing.ColorTranslator.FromHtml("#111111");
+
                 nudReconnectTime.ForeColor = System.Drawing.Color.White;
+                nudDelayMultiplier.ForeColor = System.Drawing.Color.White;
             }
         }
 
@@ -161,23 +174,6 @@ namespace CATSBot
             BotLogics.AttackLogic.resetStats();
         }
 
-        //DEBUG
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            ADBHelper.startCATS();
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            ADBHelper.stopCATS();
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            picDebug.Image = ADBHelper.getScreencap();
-        }
-
         private void btnChangeMemuPath_Click(object sender, EventArgs e)
         {
             BotHelper.pickMemuDir();
@@ -202,5 +198,13 @@ namespace CATSBot
                 }
             }
         }
+
+        private void chkAlwaysTop_CheckedChanged(object sender, EventArgs e)
+        {
+            Settings.getInstance().topmost = chkAlwaysTop.Checked;
+            this.TopMost = Settings.getInstance().topmost;
+        }
+
+        //checks checkbox if saved like this and vice versa
     }
 }
