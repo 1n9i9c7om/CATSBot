@@ -30,7 +30,8 @@ namespace CATSBot.BotLogics
             BotHelper.updateStats(0, 0, 0);
         }
 
-        //Check if we defended, if yes, click that filthy "Claim" button that's prevent us from clicking "QUICK FIGHT" ;)
+        // Note: checkDefense and checkInstantPromo will be removed from AttackLogic and placed into a "ClearScreenLogic" later.
+        // Check if we defended, if yes, click that filthy "Claim" button that's prevent us from clicking "QUICK FIGHT" ;)
         public static void checkDefense()
         {
             Helper.BotHelper.Log("Successful defense check", true, true);
@@ -39,6 +40,19 @@ namespace CATSBot.BotLogics
             {
                 ADBHelper.simulateClick(ImageRecognition.getRandomLoc(claimPoint, Properties.Resources.button_claim));
                 BotHelper.Log("We defended. Free coins! :)");
+                BotHelper.randomDelay(1000, 100);
+            }
+        }
+
+        // Check if somebody got an instant promotion, because that window will be blocking the bot even after a restart
+        public static void checkInstantPromo()
+        {
+            Helper.BotHelper.Log("Instant Promo Check", true, true);
+            Point claimPoint = ImageRecognition.getPictureLocation(Properties.Resources.button_ok));
+            if (claimPoint != pNull)
+            {
+                ADBHelper.simulateClick(ImageRecognition.getRandomLoc(claimPoint, Properties.Resources.button_ok));
+                BotHelper.Log("Someone got instant promoted.");
                 BotHelper.randomDelay(1000, 100);
             }
         }
@@ -187,6 +201,7 @@ namespace CATSBot.BotLogics
 
             BotHelper.randomDelay(3000, 1000);
             checkDefense();
+            checkInstantPromo();
             if (searchDuell())
             {
                 if (waitDuell())
