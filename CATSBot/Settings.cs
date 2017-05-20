@@ -36,7 +36,6 @@ namespace CATSBot
         public int metroTheme = 1;
 
         //Settings found in the "Settings" tab
-        public bool memuSidebarEnabled = true;
         public bool automaticReconnectEnabled = true;
         public int reconnectTime = 5;
 
@@ -52,7 +51,6 @@ namespace CATSBot
             main.changeStyle((MetroFramework.MetroColorStyle)metroStyle);
             main.changeTheme((MetroFramework.MetroThemeStyle)metroTheme);
 
-            main.chkUseSidebar.Checked = memuSidebarEnabled;
             main.chkAutoReconnect.Checked = automaticReconnectEnabled;
             main.nudReconnectTime.Value = Convert.ToDecimal(reconnectTime);
             main.txtCurrentMemuPath.Text = (adbPath == "" ? "Not set!" : adbPath.Replace("adb.exe", ""));

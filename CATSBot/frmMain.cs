@@ -1,14 +1,10 @@
 ﻿using MetroFramework;
 using System;
-using System.Diagnostics;
-using System.Linq;
-using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
+using System.IO;
 
 using CATSBot.Helper;
-using System.Drawing;
-using System.IO;
 
 namespace CATSBot
 {
@@ -149,11 +145,6 @@ namespace CATSBot
 
         #region Setting-saving "dummys"
         //These are just for setting-saving purposes
-        private void chkUseSidebar_CheckedChanged(object sender, EventArgs e)
-        {
-            Settings.getInstance().memuSidebarEnabled = chkUseSidebar.Checked;
-        }
-
         private void chkAutoReconnect_CheckedChanged(object sender, EventArgs e)
         {
             Settings.getInstance().automaticReconnectEnabled = chkAutoReconnect.Checked;
