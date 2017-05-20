@@ -8,6 +8,7 @@ using System.Windows.Forms;
 
 using CATSBot.Helper;
 using System.Drawing;
+using System.IO;
 
 namespace CATSBot
 {
@@ -15,7 +16,6 @@ namespace CATSBot
     {
         Thread thread;
         bool isRunning = false;
-        Point? memuLocation = null;
 
         public frmMain()
         {
@@ -26,9 +26,15 @@ namespace CATSBot
 
         private void btnStart_Click(object sender, EventArgs e)
         {
+            if(Settings.getInstance().adbPath == "")
+            {
+                MetroFramework.MetroMessageBox.Show(this, "Please set your MEmu installation directory before starting the bot.");
+                return;
+            }
+
             if (!isRunning)
             {
-                if (!BotHelper.setMemuIntPtr())
+                if (!BotHelper.isMemuRunning())
                 {
                     MetroFramework.MetroMessageBox.Show(this, "MEmu is not running!");
                     return;
@@ -179,6 +185,31 @@ namespace CATSBot
         private void button3_Click(object sender, EventArgs e)
         {
             picDebug.Image = ADBHelper.getScreencap();
+        }
+
+        private void btnChangeMemuPath_Click(object sender, EventArgs e)
+        {
+            BotHelper.pickMemuDir();
+        }
+
+        private void frmMain_Shown(object sender, EventArgs e)
+        {
+            if (Settings.getInstance().adbPath == "")
+            {
+                // Check default installation path
+                if (File.Exists(@"C:\Program Files\Microvirt\MEmu\adb.exe"))
+                {
+                    Settings.getInstance().adbPath = @"C:\Program Files\Microvirt\MEmu\adb.exe";
+                }
+                else if (File.Exists(@"D:\Program Files\Microvirt\MEmu\adb.exe"))
+                {
+                    Settings.getInstance().adbPath = @"D:\Program Files\Microvirt\MEmu\adb.exe";
+                }
+                else
+                {
+                    BotHelper.pickMemuDir();
+                }
+            }
         }
     }
 }

@@ -33,12 +33,12 @@ namespace CATSBot.BotLogics
         //Check if we defended, if yes, click that filthy "Claim" button that's prevent us from clicking "QUICK FIGHT" ;)
         public static void checkDefense()
         {
-            Helper.BotHelper.Log("Successful defense check");
+            Helper.BotHelper.Log("Successful defense check", true, true);
             Point claimPoint = ImageRecognition.getPictureLocation(Properties.Resources.button_claim);
             if (claimPoint != pNull)
             {
                 ADBHelper.simulateClick(ImageRecognition.getRandomLoc(claimPoint, Properties.Resources.button_claim));
-                BotHelper.Log("Yup, we defended");
+                BotHelper.Log("We defended. Free coins! :)");
                 BotHelper.randomDelay(1000, 100);
             }
         }
@@ -46,7 +46,7 @@ namespace CATSBot.BotLogics
         // Try to find the "Quick Fight" button and click on it.
         public static bool searchDuell()
         {
-            BotHelper.Log("Attempting to press the Duell button");
+            BotHelper.Log("Attempting to press the Duell button", true, true);
             //BotHelper.setDebugPic(ImageRecognition.CaptureApplication(BotHelper.memu));
             //BotHelper.setDebugPic2(ImageRecognition.ConvertToFormat(Properties.Resources.button_fight, System.Drawing.Imaging.PixelFormat.Format24bppRgb, true));
             //return false;
@@ -59,7 +59,7 @@ namespace CATSBot.BotLogics
             }
             else
             {
-                BotHelper.Log("Button not found! FeelsBadMan.");
+                BotHelper.Log("Could not find the quick fight button. :/", true, false);
                 return false;
             }
         }
@@ -118,25 +118,25 @@ namespace CATSBot.BotLogics
             }
             else //we won!
             {
-                BotHelper.Log("Battle finished.");
+                BotHelper.Log("Battle finished.", true, false);
 
                 int winloss = checkWin();
                 if(winloss == 1)
                 {
-                    BotHelper.Log("We won!");
+                    BotHelper.Log(" We won!", false, false);
                     wins++;
                     winsInARow++;
                     if ((winsInARow % 5) == 0) crowns++;
                 }
                 else if(winloss == 2)
                 {
-                    BotHelper.Log("We lost. :(");
+                    BotHelper.Log(" We lost. :(", false, false);
                     losses++;
                     winsInARow = 0;
                 }
                 else
                 {
-                    BotHelper.Log("Error checking win/loss, not counting stats");
+                    BotHelper.Log("Error checking win/loss, not counting stats", true, false);
                 }
 
                 BotHelper.updateStats(wins, losses, crowns);
@@ -214,6 +214,11 @@ namespace CATSBot.BotLogics
                 BotHelper.Log("Please make sure that your games language is set to English and that MEmu is set to 1280x720 in windowed mode.");
                 logicErrors++;
                 Thread.Sleep(5000); //give the user time to see this message :P
+            }
+
+            if(logicErrors > 0)
+            {
+                BotHelper.Log("We had " + logicErrors + " errors in a row during AttackLogic, restarting at 5 errors");
             }
         }
     }

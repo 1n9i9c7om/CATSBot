@@ -40,7 +40,7 @@ namespace CATSBot
         public bool automaticReconnectEnabled = true;
         public int reconnectTime = 5;
 
-        public string adbPath = @"D:\Program Files\Memu\MEmu\adb.exe"; //TODO: Add a setting
+        public string adbPath = "";
 
         public bool saveSettings()
         {
@@ -55,6 +55,7 @@ namespace CATSBot
             main.chkUseSidebar.Checked = memuSidebarEnabled;
             main.chkAutoReconnect.Checked = automaticReconnectEnabled;
             main.nudReconnectTime.Value = Convert.ToDecimal(reconnectTime);
+            main.txtCurrentMemuPath.Text = (adbPath == "" ? "Not set!" : adbPath.Replace("adb.exe", ""));
         }
     }
 }
