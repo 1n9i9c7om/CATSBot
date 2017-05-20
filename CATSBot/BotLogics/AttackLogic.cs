@@ -34,10 +34,10 @@ namespace CATSBot.BotLogics
         public static void checkDefense()
         {
             Helper.BotHelper.Log("Successful defense check");
-            Point claimPoint = ImageRecognition.getPictureLocation(Properties.Resources.button_claim, BotHelper.memu);
+            Point claimPoint = ImageRecognition.getPictureLocation(Properties.Resources.button_claim);
             if (claimPoint != pNull)
             {
-                ClickOnPointTool.ClickOnPoint(BotHelper.memu, ImageRecognition.getRandomLoc(claimPoint, Properties.Resources.button_claim));
+                ADBHelper.simulateClick(ImageRecognition.getRandomLoc(claimPoint, Properties.Resources.button_claim));
                 BotHelper.Log("Yup, we defended");
                 BotHelper.randomDelay(1000, 100);
             }
@@ -50,11 +50,11 @@ namespace CATSBot.BotLogics
             //BotHelper.setDebugPic(ImageRecognition.CaptureApplication(BotHelper.memu));
             //BotHelper.setDebugPic2(ImageRecognition.ConvertToFormat(Properties.Resources.button_fight, System.Drawing.Imaging.PixelFormat.Format24bppRgb, true));
             //return false;
-            Point fightPoint = ImageRecognition.getPictureLocation(Properties.Resources.button_fight, BotHelper.memu);
+            Point fightPoint = ImageRecognition.getPictureLocation(Properties.Resources.button_fight);
             if (fightPoint != pNull)
             {
                 BotHelper.Log("Button found at: X = " + fightPoint.X + "; Y = " + fightPoint.Y, true, true);
-                ClickOnPointTool.ClickOnPoint(BotHelper.memu, ImageRecognition.getRandomLoc(fightPoint, Properties.Resources.button_fight));
+                ADBHelper.simulateClick(ImageRecognition.getRandomLoc(fightPoint, Properties.Resources.button_fight));
                 return true;
             }
             else
@@ -73,7 +73,7 @@ namespace CATSBot.BotLogics
             {
                 BotHelper.Log(" " + checks, false);
                 checks++;
-            } while (ImageRecognition.getPictureLocation(Properties.Resources.button_skip, BotHelper.memu) == pNull && checks <= 55);
+            } while (ImageRecognition.getPictureLocation(Properties.Resources.button_skip) == pNull && checks <= 55);
 
             if (checks >= 55)
             {
@@ -88,7 +88,7 @@ namespace CATSBot.BotLogics
         // Start the fight by clicking anywhere and wait for it to end (by searching for the "OK" button)
         public static bool startDuell(int attempt = 1)
         {
-            ClickOnPointTool.ClickOnPoint(BotHelper.memu, new Point(rnd.Next(670 - 100, 670 + 100), rnd.Next(400 - 100, 400 + 100))); //Click anywhere to start the battle
+            ADBHelper.simulateClick(new Point(rnd.Next(670 - 100, 670 + 100), rnd.Next(400 - 100, 400 + 100))); //Click anywhere to start the battle
 
             // wait for the duell to end and click on ok
             BotHelper.Log("Waiting for the duell to end.");
@@ -99,7 +99,7 @@ namespace CATSBot.BotLogics
                 BotHelper.Log(" " + checks, false);
                 checks++;
 
-                locOK = ImageRecognition.getPictureLocation(Properties.Resources.button_ok, BotHelper.memu);
+                locOK = ImageRecognition.getPictureLocation(Properties.Resources.button_ok);
             } while ((locOK == pNull) && checks <= 55);
 
             if (checks >= 55)
@@ -143,7 +143,7 @@ namespace CATSBot.BotLogics
 
                 Point rndP = ImageRecognition.getRandomLoc(locOK, Properties.Resources.button_ok);
                 BotHelper.Log("Clicked on: X = " + rndP.X + "; Y = " + rndP.Y, true, true);
-                ClickOnPointTool.ClickOnPoint(BotHelper.memu, rndP);
+                ADBHelper.simulateClick(rndP);
             }
 
             //BotHelper.UpdateStats(wins, losses, crowns);
@@ -155,7 +155,7 @@ namespace CATSBot.BotLogics
         //returns 1 for win, 2 for loss and 0 for error
         private static int checkWin()
         {
-            Bitmap img = ImageRecognition.CaptureApplication(IntPtr.Zero);
+            Bitmap img = ImageRecognition.CaptureApplication();
 
             Point win = ImageRecognition.GetSubPositions(img, Properties.Resources.label_victory).FirstOrDefault();
             Point defeat = ImageRecognition.GetSubPositions(img, Properties.Resources.label_defeat).FirstOrDefault();

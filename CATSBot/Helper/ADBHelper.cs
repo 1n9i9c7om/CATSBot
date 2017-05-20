@@ -11,7 +11,6 @@ namespace CATSBot.Helper
 {
     public static class ADBHelper
     {
-        static string adbPath = @"D:\Program Files\Memu\MEmu\adb.exe"; //TODO: Add a setting
         static bool firstExecution = true;
 
         //It's like Process.Start but automatically starts adb
@@ -26,7 +25,7 @@ namespace CATSBot.Helper
             }
 
             ProcessStartInfo psi = new ProcessStartInfo();
-            psi.FileName = @"D:\Program Files\Memu\MEmu\adb.exe";
+            psi.FileName = Settings.getInstance().adbPath;
             psi.RedirectStandardInput = false;
             psi.RedirectStandardOutput = true;
             psi.Arguments = args;
@@ -59,6 +58,11 @@ namespace CATSBot.Helper
         public static void simulateClick(int x, int y)
         {
             adbStart("shell input touchscreen tap " + x + " " + y);
+        }
+
+        public static void simulateClick(Point loc)
+        {
+            simulateClick(loc.X, loc.Y);
         }
 
         public static Bitmap getScreencap()

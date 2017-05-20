@@ -40,6 +40,8 @@ namespace CATSBot
         public bool automaticReconnectEnabled = true;
         public int reconnectTime = 5;
 
+        public string adbPath = @"D:\Program Files\Memu\MEmu\adb.exe"; //TODO: Add a setting
+
         public bool saveSettings()
         {
            return Helper.BotHelper.Serialize(this, "settings.xml");

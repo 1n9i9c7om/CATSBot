@@ -172,7 +172,6 @@ namespace CATSBot
             this.btnHideMemu.TabIndex = 6;
             this.btnHideMemu.Text = "Hide MEmu Window";
             this.btnHideMemu.UseSelectable = true;
-            this.btnHideMemu.Click += new System.EventHandler(this.btnHideMemu_Click);
             // 
             // btnResetStats
             // 
