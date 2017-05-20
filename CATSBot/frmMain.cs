@@ -76,6 +76,7 @@ namespace CATSBot
             if (isRunning == true)
             {
                 MetroMessageBox.Show(this, "The Bot is still running. Please stop it first!");
+                e.Cancel = true;
             }
             else
             {
