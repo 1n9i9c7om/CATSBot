@@ -21,7 +21,6 @@ namespace CATSBot.Helper
                 firstExecution = false;
                 adbStart("start-server");
                 BotHelper.Log("Starting ADB Server...");
-                BotHelper.randomDelay(1000, 100);
             }
 
             ProcessStartInfo psi = new ProcessStartInfo();
@@ -29,7 +28,7 @@ namespace CATSBot.Helper
             psi.RedirectStandardInput = false;
             psi.RedirectStandardOutput = true;
             psi.Arguments = args;
-            psi.Verb = "runas";
+            //psi.Verb = "runas";
             psi.UseShellExecute = false;
             psi.CreateNoWindow = true;
 

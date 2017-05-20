@@ -98,32 +98,36 @@ namespace CATSBot
                 this.Theme = MetroThemeStyle.Light;
                 metroStyle.Theme = MetroThemeStyle.Light;
 
-                txtLog.BackColor = System.Drawing.Color.White;
-                txtLog.ForeColor = System.Drawing.Color.Black;
-
                 foreach (TabPage tp in tabMain.Controls)
                 {
+                    foreach (Control ctrl in tp.Controls)
+                    {
+                        if (ctrl is NumericUpDown || ctrl is TextBox)
+                        {
+                            ctrl.BackColor = System.Drawing.Color.White;
+                            ctrl.ForeColor = System.Drawing.Color.Black;
+                        }
+                    }
                     tp.BackColor = System.Drawing.Color.White;
                 }
-
-                nudReconnectTime.BackColor = System.Drawing.Color.White;
-                nudReconnectTime.ForeColor = System.Drawing.Color.Black;
             }
             else if (theme == MetroThemeStyle.Dark)
             {
                 this.Theme = MetroThemeStyle.Dark;
                 metroStyle.Theme = MetroThemeStyle.Dark;
 
-                txtLog.BackColor = System.Drawing.ColorTranslator.FromHtml("#111111");
-                txtLog.ForeColor = System.Drawing.Color.White;
-
                 foreach (TabPage tp in tabMain.Controls)
                 {
+                    foreach(Control ctrl in tp.Controls)
+                    {
+                        if(ctrl is NumericUpDown || ctrl is TextBox)
+                        {
+                            ctrl.BackColor = System.Drawing.ColorTranslator.FromHtml("#111111");
+                            ctrl.ForeColor = System.Drawing.Color.White;
+                        }
+                    }
                     tp.BackColor = System.Drawing.ColorTranslator.FromHtml("#111111");
                 }
-
-                nudReconnectTime.BackColor = System.Drawing.ColorTranslator.FromHtml("#111111");
-                nudReconnectTime.ForeColor = System.Drawing.Color.White;
             }
         }
 
