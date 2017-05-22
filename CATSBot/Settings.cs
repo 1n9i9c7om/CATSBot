@@ -44,6 +44,8 @@ namespace CATSBot
         public bool automaticReconnectEnabled = true;
         public int reconnectTime = 5;
 
+        public bool useChestLogic = false;
+
         public string adbPath = "";
 
         public bool saveSettings()
@@ -59,6 +61,7 @@ namespace CATSBot
             main.chkAutoReconnect.Checked = automaticReconnectEnabled;
             main.nudReconnectTime.Value = Convert.ToDecimal(reconnectTime);
             main.txtCurrentMemuPath.Text = (adbPath == "" ? "Not set!" : adbPath.Replace("adb.exe", ""));
+            main.chkUseChestLogic.Checked = useChestLogic;
 
             main.chkAlwaysTop.Checked = topmost;
             main.Size = frmSize;

@@ -9,7 +9,7 @@ using CATSBot.Helper;
 
 namespace CATSBot
 {
-    public partial class frmMain : MetroFramework.Forms.MetroForm
+    public partial class frmMain : MetroFramework.Forms.MetroForm 
     {
         Thread thread;
         bool isRunning = false;
@@ -64,7 +64,7 @@ namespace CATSBot
             if (chkAutoReconnect.Checked)
                 BotLogics.ReconnectLogic.doLogic();
 
-            //if (chkUnlockBoxes.Checked)
+            if (chkUseChestLogic.Checked)
                 BotLogics.ChestLogic.doLogic(); // uncomment this line to test the chest opener. Please report any false-positives.
 
             BotLogics.AttackLogic.doLogic();
@@ -164,7 +164,7 @@ namespace CATSBot
             Settings.getInstance().reconnectTime = Convert.ToInt32(nudReconnectTime.Value);
         }
         
-                private void chkAlwaysTop_CheckedChanged(object sender, EventArgs e)
+        private void chkAlwaysTop_CheckedChanged(object sender, EventArgs e)
         {
             Settings.getInstance().topmost = chkAlwaysTop.Checked;
             this.TopMost = Settings.getInstance().topmost;
@@ -181,6 +181,10 @@ namespace CATSBot
             {
                 Settings.getInstance().frmLoc = this.Location;
             }
+        }
+        private void chkUseChestLogic_CheckedChanged(object sender, EventArgs e)
+        {
+            Settings.getInstance().useChestLogic = chkUseChestLogic.Checked;
         }
         #endregion
 
