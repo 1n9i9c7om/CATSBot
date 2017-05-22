@@ -57,10 +57,14 @@ namespace CATSBot
 
         public void doLoop()
         {
+            BotHelper.randomDelay(3000, 500);
             BotHelper.Log("(Re-)Starting main loop.");
 
             if (chkAutoReconnect.Checked)
                 BotLogics.ReconnectLogic.doLogic();
+
+            //if (chkUnlockBoxes.Checked)
+            //    BotLogics.ChestLogic.doLogic(); // uncomment this line to test the chest opener. Please report any false-positives.
 
             BotLogics.AttackLogic.doLogic();
 
@@ -71,6 +75,9 @@ namespace CATSBot
         {
             if(thread != null && thread.IsAlive)
                 thread.Suspend(); // TODO: Proper Multithreading
+
+            Settings.getInstance().frmLoc = this.Location;
+            Settings.getInstance().frmSize = this.Size;
 
             Settings.getInstance().saveSettings();
 

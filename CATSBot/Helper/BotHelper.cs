@@ -23,7 +23,14 @@ namespace CATSBot.Helper
         {
             if(resolution == 0 || update)
             {
-                resolution = ADBHelper.getScreencap(true).Height;
+                try
+                {
+                    resolution = ADBHelper.getScreencap(true).Height;
+                }
+                catch (Exception)
+                {
+                    resolution = 720; //720p
+                }
             }
 
             return resolution;
@@ -31,7 +38,16 @@ namespace CATSBot.Helper
 
         public static Bitmap getResourceByName(string name)
         {
-            return (Bitmap)Properties.Resources.ResourceManager.GetObject(name + "_" + getResolution());
+            object resourceToGet = Properties.Resources.ResourceManager.GetObject(name + "_" + getResolution());
+            if (resourceToGet != null)
+                return (Bitmap)resourceToGet;
+
+            resourceToGet = Properties.Resources.ResourceManager.GetObject(name + "_720");
+            if (resourceToGet != null)
+                return (Bitmap)resourceToGet;
+
+            return Properties.Resources.label_defeat_720;
+
         }
 
         // Randomize the delay for more security

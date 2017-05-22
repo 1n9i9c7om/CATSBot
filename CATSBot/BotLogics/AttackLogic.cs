@@ -210,7 +210,6 @@ namespace CATSBot.BotLogics
                 BotHelper.randomDelay(30000, 5);
             }
 
-            BotHelper.randomDelay(3000, 1000);
             checkDefense();
             checkInstantPromo();
             if (searchDuell())

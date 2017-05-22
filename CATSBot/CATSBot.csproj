@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>CATSBot</RootNamespace>
     <AssemblyName>CATSBot</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFrameworkProfile />
@@ -92,6 +92,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BotLogics\ChestLogic.cs" />
     <Compile Include="Helper\ADBHelper.cs" />
     <Compile Include="Helper\BotHelper.cs" />
     <Compile Include="BotLogics\AttackLogic.cs" />
@@ -145,6 +146,17 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="cats.ico" />
+    <None Include="Resources\720p\chest\butto_watch_720.png" />
+    <None Include="Resources\720p\chest\label_sponsor_720.png" />
+    <None Include="Resources\720p\chest\label_regularbox_720.png" />
+    <None Include="Resources\720p\chest\label_bonus_720.png" />
+    <None Include="Resources\720p\chest\chest_super_720.png" />
+    <None Include="Resources\720p\chest\chest_sponsor_720.png" />
+    <None Include="Resources\720p\chest\chest_regular_720.png" />
+    <None Include="Resources\720p\chest\button_collect_prizes_720.png" />
+    <None Include="Resources\720p\chest\button_cancel_720.png" />
+    <None Include="Resources\720p\chest\arrow_chest_720.png" />
+    <None Include="Resources\1080p\button_reconnect_1080.png" />
     <None Include="Resources\1080p\button_claim_1080.png" />
     <None Include="Resources\1080p\label_victory_1080.png" />
     <None Include="Resources\1080p\label_defeat_1080.png" />
