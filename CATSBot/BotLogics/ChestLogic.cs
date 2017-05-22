@@ -13,7 +13,7 @@ namespace CATSBot.BotLogics
         static Random rnd = new Random();
         private static bool chestsReady()
         {
-            Point chestArrow = ImageRecognition.GetSubPositions(comparePic, BotHelper.getResourceByName("arrow_chest"), 0.776f).FirstOrDefault();
+            Point chestArrow = ImageRecognition.GetSubPositions(comparePic, BotHelper.getResourceByName("arrow_chest"), 0.791f).FirstOrDefault();
             if (chestArrow.X != 0 && chestArrow.Y != 0)
                 return true;
 
@@ -22,7 +22,7 @@ namespace CATSBot.BotLogics
 
         private static Point getClosestChest()
         {
-            Point chestArrow = ImageRecognition.GetSubPositions(comparePic, BotHelper.getResourceByName("arrow_chest"), 0.771f).FirstOrDefault();
+            Point chestArrow = ImageRecognition.GetSubPositions(comparePic, BotHelper.getResourceByName("arrow_chest"), 0.791f).FirstOrDefault();
 
             List<Point> regularBoxes = ImageRecognition.GetSubPositions(comparePic, BotHelper.getResourceByName("chest_regular"));
             List<Point> superBoxes = ImageRecognition.GetSubPositions(comparePic, BotHelper.getResourceByName("chest_super"));
@@ -45,10 +45,10 @@ namespace CATSBot.BotLogics
             ADBHelper.simulateClick(ImageRecognition.getRandomLoc(closestChest, BotHelper.getResourceByName("chest_sponsor")));
             BotHelper.randomDelay(5000, 50); // it takes some time to open a chest sometimes
 
-            for (int i = 0; i < 12; i++)
+            for (int i = 0; i < 16; i++)
             {
                 // just to make sure it'll still be randomized...
-                ADBHelper.simulateClick(new Point(rnd.Next(670 - 50, 670 + 50), rnd.Next(300 - 50, 300 + 50))); //Click anywhere to unbox
+                ADBHelper.simulateClick(new Point(rnd.Next(270 - 50, 270 + 50), rnd.Next(200 - 50, 200 + 50))); //Click anywhere to unbox
                 BotHelper.randomDelay(200, 20);
             }
 
@@ -56,6 +56,7 @@ namespace CATSBot.BotLogics
 
             // Check for Bonus item
             BotHelper.randomDelay(4000, 100); // it might take a second or two for the bonus chest to appear, better be safe than sorry
+            comparePic = ADBHelper.getScreencap();
             Point bonusLabel = ImageRecognition.GetSubPositions(comparePic, BotHelper.getResourceByName("label_bonus")).FirstOrDefault();
             if(bonusLabel.X != 0 && bonusLabel.Y != 0)
             {
@@ -70,7 +71,7 @@ namespace CATSBot.BotLogics
                 else
                 {
 
-                    ADBHelper.simulateClick(new Point(rnd.Next(670 - 50, 670 + 50), rnd.Next(300 - 50, 300 + 50))); //Click anywhere to unbox
+                    ADBHelper.simulateClick(new Point(rnd.Next(270 - 50, 270 + 50), rnd.Next(200 - 50, 200 + 50))); //Click anywhere to unbox
                     BotHelper.randomDelay(300, 20);
                     ADBHelper.simulateClick(ImageRecognition.getRandomLoc(BotHelper.getResourceByName("button_collect_prizes"), 0.901f));
                 }

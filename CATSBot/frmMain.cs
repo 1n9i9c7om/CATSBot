@@ -65,7 +65,7 @@ namespace CATSBot
                 BotLogics.ReconnectLogic.doLogic();
 
             //if (chkUnlockBoxes.Checked)
-            //    BotLogics.ChestLogic.doLogic(); // uncomment this line to test the chest opener. Please report any false-positives.
+                BotLogics.ChestLogic.doLogic(); // uncomment this line to test the chest opener. Please report any false-positives.
 
             BotLogics.AttackLogic.doLogic();
 
