@@ -163,6 +163,25 @@ namespace CATSBot
         {
             Settings.getInstance().reconnectTime = Convert.ToInt32(nudReconnectTime.Value);
         }
+        
+                private void chkAlwaysTop_CheckedChanged(object sender, EventArgs e)
+        {
+            Settings.getInstance().topmost = chkAlwaysTop.Checked;
+            this.TopMost = Settings.getInstance().topmost;
+        }
+
+        private void frmMain_ResizeEnd(object sender, EventArgs e)
+        {
+            Settings.getInstance().frmSize = this.Size;
+        }
+
+        private void frmMain_LocationChanged(object sender, EventArgs e)
+        {
+            if (this.Location.Y > 0)
+            {
+                Settings.getInstance().frmLoc = this.Location;
+            }
+        }
         #endregion
 
         private void btnResetStats_Click(object sender, EventArgs e)
@@ -194,25 +213,6 @@ namespace CATSBot
                 }
 
                 txtCurrentMemuPath.Text = Settings.getInstance().adbPath;
-            }
-        }
-
-        private void chkAlwaysTop_CheckedChanged(object sender, EventArgs e)
-        {
-            Settings.getInstance().topmost = chkAlwaysTop.Checked;
-            this.TopMost = Settings.getInstance().topmost;
-        }
-
-        private void frmMain_ResizeEnd(object sender, EventArgs e)
-        {
-            Settings.getInstance().frmSize = this.Size;
-        }
-
-        private void frmMain_LocationChanged(object sender, EventArgs e)
-        {
-            if (this.Location.Y > 0)
-            {
-                Settings.getInstance().frmLoc = this.Location;
             }
         }
     }
