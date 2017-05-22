@@ -1,10 +1,9 @@
 ﻿using MetroFramework;
 using System;
-using System.Diagnostics;
-using System.Linq;
-using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
+using System.IO;
+using System.Drawing;
 
 using CATSBot.Helper;
 
@@ -24,18 +23,19 @@ namespace CATSBot
 
         private void btnStart_Click(object sender, EventArgs e)
         {
+            if(Settings.getInstance().adbPath == "")
+            {
+                MetroFramework.MetroMessageBox.Show(this, "Please set your MEmu installation directory before starting the bot.");
+                return;
+            }
+
             if (!isRunning)
             {
-                if (!BotHelper.setMemuIntPtr())
+                if (!BotHelper.isMemuRunning())
                 {
                     MetroFramework.MetroMessageBox.Show(this, "MEmu is not running!");
                     return;
                 }
-                
-                if (chkUseSidebar.Checked)
-                    ClickOnPointTool.ResizeWindow(BotHelper.memu, 1328, 758);
-                else
-                    ClickOnPointTool.ResizeWindow(BotHelper.memu, 1288, 758);
 
                 btnStart.Text = "Stop";
                 isRunning = true;
@@ -58,10 +58,14 @@ namespace CATSBot
 
         public void doLoop()
         {
+            BotHelper.randomDelay(3000, 500);
             BotHelper.Log("(Re-)Starting main loop.");
 
             if (chkAutoReconnect.Checked)
                 BotLogics.ReconnectLogic.doLogic();
+
+            //if (chkUnlockBoxes.Checked)
+            //    BotLogics.ChestLogic.doLogic(); // uncomment this line to test the chest opener. Please report any false-positives.
 
             BotLogics.AttackLogic.doLogic();
 
@@ -71,11 +75,11 @@ namespace CATSBot
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             if(thread != null && thread.IsAlive)
-                thread.Suspend(); // TODO: Proper Multithreading
+                thread.Suspend(); // TODO: Proper Multithreading       
 
+            //Save and exit
             Settings.getInstance().saveSettings();
-
-            Application.Exit();
+            Application.Exit(); 
         }
 
         private void btnSaveDebug_Click(object sender, EventArgs e)
@@ -99,32 +103,36 @@ namespace CATSBot
                 this.Theme = MetroThemeStyle.Light;
                 metroStyle.Theme = MetroThemeStyle.Light;
 
-                txtLog.BackColor = System.Drawing.Color.White;
-                txtLog.ForeColor = System.Drawing.Color.Black;
-
                 foreach (TabPage tp in tabMain.Controls)
                 {
+                    foreach (Control ctrl in tp.Controls)
+                    {
+                        if (ctrl is NumericUpDown || ctrl is TextBox)
+                        {
+                            ctrl.BackColor = System.Drawing.Color.White;
+                            ctrl.ForeColor = System.Drawing.Color.Black;
+                        }
+                    }
                     tp.BackColor = System.Drawing.Color.White;
                 }
-
-                nudReconnectTime.BackColor = System.Drawing.Color.White;
-                nudReconnectTime.ForeColor = System.Drawing.Color.Black;
             }
             else if (theme == MetroThemeStyle.Dark)
             {
                 this.Theme = MetroThemeStyle.Dark;
                 metroStyle.Theme = MetroThemeStyle.Dark;
 
-                txtLog.BackColor = System.Drawing.ColorTranslator.FromHtml("#111111");
-                txtLog.ForeColor = System.Drawing.Color.White;
-
                 foreach (TabPage tp in tabMain.Controls)
                 {
+                    foreach(Control ctrl in tp.Controls)
+                    {
+                        if(ctrl is NumericUpDown || ctrl is TextBox)
+                        {
+                            ctrl.BackColor = System.Drawing.ColorTranslator.FromHtml("#111111");
+                            ctrl.ForeColor = System.Drawing.Color.White;
+                        }
+                    }
                     tp.BackColor = System.Drawing.ColorTranslator.FromHtml("#111111");
                 }
-
-                nudReconnectTime.BackColor = System.Drawing.ColorTranslator.FromHtml("#111111");
-                nudReconnectTime.ForeColor = System.Drawing.Color.White;
             }
         }
 
@@ -146,11 +154,6 @@ namespace CATSBot
 
         #region Setting-saving "dummys"
         //These are just for setting-saving purposes
-        private void chkUseSidebar_CheckedChanged(object sender, EventArgs e)
-        {
-            Settings.getInstance().memuSidebarEnabled = chkUseSidebar.Checked;
-        }
-
         private void chkAutoReconnect_CheckedChanged(object sender, EventArgs e)
         {
             Settings.getInstance().automaticReconnectEnabled = chkAutoReconnect.Checked;
@@ -160,11 +163,57 @@ namespace CATSBot
         {
             Settings.getInstance().reconnectTime = Convert.ToInt32(nudReconnectTime.Value);
         }
+        
+                private void chkAlwaysTop_CheckedChanged(object sender, EventArgs e)
+        {
+            Settings.getInstance().topmost = chkAlwaysTop.Checked;
+            this.TopMost = Settings.getInstance().topmost;
+        }
+
+        private void frmMain_ResizeEnd(object sender, EventArgs e)
+        {
+            Settings.getInstance().frmSize = this.Size;
+        }
+
+        private void frmMain_LocationChanged(object sender, EventArgs e)
+        {
+            if (this.Location.Y > 0)
+            {
+                Settings.getInstance().frmLoc = this.Location;
+            }
+        }
         #endregion
 
         private void btnResetStats_Click(object sender, EventArgs e)
         {
             BotLogics.AttackLogic.resetStats();
+        }
+
+        private void btnChangeMemuPath_Click(object sender, EventArgs e)
+        {
+            BotHelper.pickMemuDir();
+        }
+
+        private void frmMain_Shown(object sender, EventArgs e)
+        {
+            if (Settings.getInstance().adbPath == "")
+            {
+                // Check default installation path
+                if (File.Exists(@"C:\Program Files\Microvirt\MEmu\adb.exe"))
+                {
+                    Settings.getInstance().adbPath = @"C:\Program Files\Microvirt\MEmu\adb.exe";
+                }
+                else if (File.Exists(@"D:\Program Files\Microvirt\MEmu\adb.exe"))
+                {
+                    Settings.getInstance().adbPath = @"D:\Program Files\Microvirt\MEmu\adb.exe";
+                }
+                else
+                {
+                    BotHelper.pickMemuDir();
+                }
+
+                txtCurrentMemuPath.Text = Settings.getInstance().adbPath;
+            }
         }
     }
 }
