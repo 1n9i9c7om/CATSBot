@@ -3,6 +3,7 @@ using System;
 using System.Threading;
 using System.Windows.Forms;
 using System.IO;
+using System.Drawing;
 
 using CATSBot.Helper;
 
@@ -74,14 +75,11 @@ namespace CATSBot
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             if(thread != null && thread.IsAlive)
-                thread.Suspend(); // TODO: Proper Multithreading
+                thread.Suspend(); // TODO: Proper Multithreading       
 
-            Settings.getInstance().frmLoc = this.Location;
-            Settings.getInstance().frmSize = this.Size;
-
+            //Save and exit
             Settings.getInstance().saveSettings();
-
-            Application.Exit();
+            Application.Exit(); 
         }
 
         private void btnSaveDebug_Click(object sender, EventArgs e)
@@ -172,23 +170,6 @@ namespace CATSBot
             BotLogics.AttackLogic.resetStats();
         }
 
-        //DEBUG
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            ADBHelper.startCATS();
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            ADBHelper.stopCATS();
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            picDebug.Image = ADBHelper.getScreencap();
-        }
-
         private void btnChangeMemuPath_Click(object sender, EventArgs e)
         {
             BotHelper.pickMemuDir();
@@ -213,6 +194,25 @@ namespace CATSBot
                 }
 
                 txtCurrentMemuPath.Text = Settings.getInstance().adbPath;
+            }
+        }
+
+        private void chkAlwaysTop_CheckedChanged(object sender, EventArgs e)
+        {
+            Settings.getInstance().topmost = chkAlwaysTop.Checked;
+            this.TopMost = Settings.getInstance().topmost;
+        }
+
+        private void frmMain_ResizeEnd(object sender, EventArgs e)
+        {
+            Settings.getInstance().frmSize = this.Size;
+        }
+
+        private void frmMain_LocationChanged(object sender, EventArgs e)
+        {
+            if (this.Location.Y > 0)
+            {
+                Settings.getInstance().frmLoc = this.Location;
             }
         }
     }

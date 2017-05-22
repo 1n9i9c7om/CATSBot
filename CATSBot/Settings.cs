@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Drawing;
 
 namespace CATSBot
 {
@@ -35,6 +36,10 @@ namespace CATSBot
         //Style related settings
         public int metroStyle = 4;
         public int metroTheme = 1;
+        public bool topmost = false;
+        public Size frmSize = new Size(289, 605);
+        public Point frmLoc = new Point(100, 100);
+        
 
         //Settings found in the "Settings" tab
         public bool automaticReconnectEnabled = true;
@@ -59,8 +64,8 @@ namespace CATSBot
             main.nudReconnectTime.Value = Convert.ToDecimal(reconnectTime);
             main.txtCurrentMemuPath.Text = (adbPath == "" ? "Not set!" : adbPath.Replace("adb.exe", ""));
 
+            main.chkAlwaysTop.Checked = topmost;
             main.Size = frmSize;
-            main.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             main.Location = frmLoc;
         }
     }
