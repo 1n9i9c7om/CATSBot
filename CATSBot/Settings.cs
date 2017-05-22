@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Drawing;
 
 namespace CATSBot
 {
@@ -44,9 +43,6 @@ namespace CATSBot
         //Settings found in the "Settings" tab
         public bool automaticReconnectEnabled = true;
         public int reconnectTime = 5;
-
-        public Size frmSize = new Size(289, 605);
-        public Point frmLoc = new Point(0, 0);
 
         public string adbPath = "";
 

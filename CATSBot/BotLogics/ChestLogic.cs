@@ -81,8 +81,8 @@ namespace CATSBot.BotLogics
         {
             BotHelper.randomDelay(1000, 100); //make sure to screen is cleared from previous tasks, just in case. Will probably be removed after some testing.
             comparePic = ImageRecognition.CaptureApplication();
-            BotHelper.setDebugPic(comparePic);
-            if(chestsReady())
+
+            if (chestsReady())
             {
                 BotHelper.Log("Completed Chest found!");
                 openClosestChest();
