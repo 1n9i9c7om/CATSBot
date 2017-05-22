@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Drawing;
@@ -44,6 +45,9 @@ namespace CATSBot
         public bool automaticReconnectEnabled = true;
         public int reconnectTime = 5;
 
+        public Size frmSize = new Size(289, 605);
+        public Point frmLoc = new Point(0, 0);
+
         public string adbPath = "";
 
         public bool saveSettings()
@@ -59,6 +63,7 @@ namespace CATSBot
             main.chkAutoReconnect.Checked = automaticReconnectEnabled;
             main.nudReconnectTime.Value = Convert.ToDecimal(reconnectTime);
             main.txtCurrentMemuPath.Text = (adbPath == "" ? "Not set!" : adbPath.Replace("adb.exe", ""));
+
             main.chkAlwaysTop.Checked = topmost;
             main.Size = frmSize;
             main.Location = frmLoc;

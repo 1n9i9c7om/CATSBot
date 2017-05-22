@@ -63,9 +63,9 @@ namespace CATSBot.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap button_claim {
+        internal static System.Drawing.Bitmap arrow_chest_720 {
             get {
-                object obj = ResourceManager.GetObject("button_claim", resourceCulture);
+                object obj = ResourceManager.GetObject("arrow_chest_720", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace CATSBot.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap button_fight {
+        internal static System.Drawing.Bitmap butto_watch_720 {
             get {
-                object obj = ResourceManager.GetObject("button_fight", resourceCulture);
+                object obj = ResourceManager.GetObject("butto_watch_720", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -83,9 +83,9 @@ namespace CATSBot.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap button_ok {
+        internal static System.Drawing.Bitmap button_cancel_720 {
             get {
-                object obj = ResourceManager.GetObject("button_ok", resourceCulture);
+                object obj = ResourceManager.GetObject("button_cancel_720", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -93,9 +93,9 @@ namespace CATSBot.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap button_reconnect {
+        internal static System.Drawing.Bitmap button_claim_1080 {
             get {
-                object obj = ResourceManager.GetObject("button_reconnect", resourceCulture);
+                object obj = ResourceManager.GetObject("button_claim_1080", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -103,9 +103,9 @@ namespace CATSBot.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap button_skip {
+        internal static System.Drawing.Bitmap button_claim_720 {
             get {
-                object obj = ResourceManager.GetObject("button_skip", resourceCulture);
+                object obj = ResourceManager.GetObject("button_claim_720", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -113,9 +113,9 @@ namespace CATSBot.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap label_defeat {
+        internal static System.Drawing.Bitmap button_collect_prizes_720 {
             get {
-                object obj = ResourceManager.GetObject("label_defeat", resourceCulture);
+                object obj = ResourceManager.GetObject("button_collect_prizes_720", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -123,9 +123,189 @@ namespace CATSBot.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap label_victory {
+        internal static System.Drawing.Bitmap button_fight_1080 {
             get {
-                object obj = ResourceManager.GetObject("label_victory", resourceCulture);
+                object obj = ResourceManager.GetObject("button_fight_1080", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap button_fight_720 {
+            get {
+                object obj = ResourceManager.GetObject("button_fight_720", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap button_ok_1080 {
+            get {
+                object obj = ResourceManager.GetObject("button_ok_1080", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap button_ok_720 {
+            get {
+                object obj = ResourceManager.GetObject("button_ok_720", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap button_reconnect_1080 {
+            get {
+                object obj = ResourceManager.GetObject("button_reconnect_1080", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap button_reconnect_720 {
+            get {
+                object obj = ResourceManager.GetObject("button_reconnect_720", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap button_skip_1080 {
+            get {
+                object obj = ResourceManager.GetObject("button_skip_1080", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap button_skip_720 {
+            get {
+                object obj = ResourceManager.GetObject("button_skip_720", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap chest_regular_720 {
+            get {
+                object obj = ResourceManager.GetObject("chest_regular_720", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap chest_sponsor_720 {
+            get {
+                object obj = ResourceManager.GetObject("chest_sponsor_720", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap chest_super_720 {
+            get {
+                object obj = ResourceManager.GetObject("chest_super_720", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap label_bonus_720 {
+            get {
+                object obj = ResourceManager.GetObject("label_bonus_720", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap label_bonus_7201 {
+            get {
+                object obj = ResourceManager.GetObject("label_bonus_7201", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap label_defeat_1080 {
+            get {
+                object obj = ResourceManager.GetObject("label_defeat_1080", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap label_defeat_720 {
+            get {
+                object obj = ResourceManager.GetObject("label_defeat_720", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap label_regularbox_720 {
+            get {
+                object obj = ResourceManager.GetObject("label_regularbox_720", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap label_sponsor_720 {
+            get {
+                object obj = ResourceManager.GetObject("label_sponsor_720", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap label_victory_1080 {
+            get {
+                object obj = ResourceManager.GetObject("label_victory_1080", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap label_victory_720 {
+            get {
+                object obj = ResourceManager.GetObject("label_victory_720", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

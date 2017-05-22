@@ -89,6 +89,13 @@ namespace CATSBot.Helper
             return rndPoint;
         }
 
+        public static Point getRandomLoc(Bitmap sub, float similarityThreshold = 0.941f)
+        {
+            Point loc = getPictureLocation(sub, similarityThreshold);
+
+            return getRandomLoc(loc, sub);
+        }
+
         public static Bitmap CaptureApplication()
         {
             return ADBHelper.getScreencap();

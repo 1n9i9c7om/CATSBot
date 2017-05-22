@@ -21,7 +21,6 @@ namespace CATSBot.Helper
                 firstExecution = false;
                 adbStart("start-server");
                 BotHelper.Log("Starting ADB Server...");
-                BotHelper.randomDelay(1000, 100);
             }
 
             ProcessStartInfo psi = new ProcessStartInfo();
@@ -29,7 +28,7 @@ namespace CATSBot.Helper
             psi.RedirectStandardInput = false;
             psi.RedirectStandardOutput = true;
             psi.Arguments = args;
-            psi.Verb = "runas";
+            //psi.Verb = "runas";
             psi.UseShellExecute = false;
             psi.CreateNoWindow = true;
 
@@ -65,7 +64,7 @@ namespace CATSBot.Helper
             simulateClick(loc.X, loc.Y);
         }
 
-        public static Bitmap getScreencap()
+        public static Bitmap getScreencap(bool keepSize = false)
         {
             try
             {
@@ -81,7 +80,7 @@ namespace CATSBot.Helper
                 //Image screencap = GetCopyImage("catsbot.png");
 
                 Image image = Image.FromFile("catsbot.png");
-                Bitmap returnImage = ImageRecognition.ConvertToFormat(image, System.Drawing.Imaging.PixelFormat.Format24bppRgb);
+                Bitmap returnImage = ImageRecognition.ConvertToFormat(image, System.Drawing.Imaging.PixelFormat.Format24bppRgb, keepSize);
 
                 image.Dispose();
                 return returnImage;
@@ -90,7 +89,7 @@ namespace CATSBot.Helper
             {
                 BotHelper.Log("An error occured during getScreencap");
                 BotHelper.Log(ex.Message);
-                return Properties.Resources.label_defeat;
+                return Properties.Resources.label_defeat_1080;
             }
         }
     }

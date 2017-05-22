@@ -17,6 +17,38 @@ namespace CATSBot.Helper
     {
         static Random rnd = new Random();
         public static frmMain main;
+        static int resolution = 0;
+
+        public static int getResolution(bool update = false)
+        {
+            if(resolution == 0 || update)
+            {
+                try
+                {
+                    resolution = ADBHelper.getScreencap(true).Height;
+                }
+                catch (Exception)
+                {
+                    resolution = 720; //720p
+                }
+            }
+
+            return resolution;
+        }
+
+        public static Bitmap getResourceByName(string name)
+        {
+            object resourceToGet = Properties.Resources.ResourceManager.GetObject(name + "_" + getResolution());
+            if (resourceToGet != null)
+                return (Bitmap)resourceToGet;
+
+            resourceToGet = Properties.Resources.ResourceManager.GetObject(name + "_720");
+            if (resourceToGet != null)
+                return (Bitmap)resourceToGet;
+
+            return Properties.Resources.label_defeat_720;
+
+        }
 
         // Randomize the delay for more security
         public static void randomDelay(int delay, int maxDiff, bool log = false)
@@ -32,7 +64,7 @@ namespace CATSBot.Helper
             Process[] pname = Process.GetProcessesByName("MEmu");
             if (pname.Length == 0)
             {
-                return false;
+                //return false;
             }
 
             return true;
