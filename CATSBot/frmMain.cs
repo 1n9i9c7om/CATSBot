@@ -3,6 +3,7 @@ using System;
 using System.Threading;
 using System.Windows.Forms;
 using System.IO;
+using System.Drawing;
 
 using CATSBot.Helper;
 
@@ -70,19 +71,11 @@ namespace CATSBot
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             if(thread != null && thread.IsAlive)
-                thread.Suspend(); // TODO: Proper Multithreading
+                thread.Suspend(); // TODO: Proper Multithreading       
 
-            //This is implemented in hindsight as it will propbably make proplem with multithreading later if not done correctly
-            if (isRunning == true)
-            {
-                MetroMessageBox.Show(this, "The Bot is still running. Please stop it first!");
-                e.Cancel = true;
-            }
-            else
-            {
-                Settings.getInstance().saveSettings();
-                Application.Exit();
-            }
+            //Save and exit
+            Settings.getInstance().saveSettings();
+            Application.Exit(); 
         }
 
         private void btnSaveDebug_Click(object sender, EventArgs e)
@@ -206,6 +199,17 @@ namespace CATSBot
             this.TopMost = Settings.getInstance().topmost;
         }
 
-        //checks checkbox if saved like this and vice versa
+        private void frmMain_ResizeEnd(object sender, EventArgs e)
+        {
+            Settings.getInstance().frmSize = this.Size;
+        }
+
+        private void frmMain_LocationChanged(object sender, EventArgs e)
+        {
+            if (this.Location.Y > 0)
+            {
+                Settings.getInstance().frmLoc = this.Location;
+            }
+        }
     }
 }
