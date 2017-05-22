@@ -34,6 +34,7 @@ namespace CATSBot
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.txtLog = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.chkUseChestLogic = new MetroFramework.Controls.MetroCheckBox();
             this.btnResetStats = new MetroFramework.Controls.MetroButton();
             this.nudDelayMultiplier = new System.Windows.Forms.NumericUpDown();
             this.metroLabel5 = new MetroFramework.Controls.MetroLabel();
@@ -70,13 +71,13 @@ namespace CATSBot
             this.tabMain.Controls.Add(this.tabPage2);
             this.tabMain.Controls.Add(this.tabPage3);
             this.tabMain.Name = "tabMain";
-            this.tabMain.SelectedIndex = 0;
+            this.tabMain.SelectedIndex = 1;
             this.tabMain.UseSelectable = true;
             // 
             // tabPage1
             // 
-            resources.ApplyResources(this.tabPage1, "tabPage1");
             this.tabPage1.Controls.Add(this.txtLog);
+            resources.ApplyResources(this.tabPage1, "tabPage1");
             this.tabPage1.Name = "tabPage1";
             // 
             // txtLog
@@ -89,8 +90,8 @@ namespace CATSBot
             // 
             // tabPage2
             // 
-            resources.ApplyResources(this.tabPage2, "tabPage2");
             this.tabPage2.BackColor = System.Drawing.Color.White;
+            this.tabPage2.Controls.Add(this.chkUseChestLogic);
             this.tabPage2.Controls.Add(this.btnResetStats);
             this.tabPage2.Controls.Add(this.nudDelayMultiplier);
             this.tabPage2.Controls.Add(this.metroLabel5);
@@ -100,7 +101,16 @@ namespace CATSBot
             this.tabPage2.Controls.Add(this.nudReconnectTime);
             this.tabPage2.Controls.Add(this.chkAutoReconnect);
             this.tabPage2.Controls.Add(this.metroLabel2);
+            resources.ApplyResources(this.tabPage2, "tabPage2");
             this.tabPage2.Name = "tabPage2";
+            // 
+            // chkUseChestLogic
+            // 
+            this.chkUseChestLogic.Checked = true;
+            this.chkUseChestLogic.CheckState = System.Windows.Forms.CheckState.Checked;
+            resources.ApplyResources(this.chkUseChestLogic, "chkUseChestLogic");
+            this.chkUseChestLogic.Name = "chkUseChestLogic";
+            this.chkUseChestLogic.UseSelectable = true;
             // 
             // btnResetStats
             // 
@@ -110,13 +120,13 @@ namespace CATSBot
             // 
             // nudDelayMultiplier
             // 
-            resources.ApplyResources(this.nudDelayMultiplier, "nudDelayMultiplier");
             this.nudDelayMultiplier.DecimalPlaces = 1;
             this.nudDelayMultiplier.Increment = new decimal(new int[] {
             1,
             0,
             0,
             65536});
+            resources.ApplyResources(this.nudDelayMultiplier, "nudDelayMultiplier");
             this.nudDelayMultiplier.Maximum = new decimal(new int[] {
             10,
             0,
@@ -141,38 +151,21 @@ namespace CATSBot
             // 
             // txtCurrentMemuPath
             // 
-            resources.ApplyResources(this.txtCurrentMemuPath, "txtCurrentMemuPath");
             // 
             // 
             // 
-            this.txtCurrentMemuPath.CustomButton.AccessibleDescription = resources.GetString("resource.AccessibleDescription");
-            this.txtCurrentMemuPath.CustomButton.AccessibleName = resources.GetString("resource.AccessibleName");
-            this.txtCurrentMemuPath.CustomButton.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("resource.Anchor")));
-            this.txtCurrentMemuPath.CustomButton.AutoSize = ((bool)(resources.GetObject("resource.AutoSize")));
-            this.txtCurrentMemuPath.CustomButton.AutoSizeMode = ((System.Windows.Forms.AutoSizeMode)(resources.GetObject("resource.AutoSizeMode")));
-            this.txtCurrentMemuPath.CustomButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("resource.BackgroundImage")));
-            this.txtCurrentMemuPath.CustomButton.BackgroundImageLayout = ((System.Windows.Forms.ImageLayout)(resources.GetObject("resource.BackgroundImageLayout")));
-            this.txtCurrentMemuPath.CustomButton.Dock = ((System.Windows.Forms.DockStyle)(resources.GetObject("resource.Dock")));
-            this.txtCurrentMemuPath.CustomButton.FlatStyle = ((System.Windows.Forms.FlatStyle)(resources.GetObject("resource.FlatStyle")));
-            this.txtCurrentMemuPath.CustomButton.Font = ((System.Drawing.Font)(resources.GetObject("resource.Font")));
             this.txtCurrentMemuPath.CustomButton.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image")));
-            this.txtCurrentMemuPath.CustomButton.ImageAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("resource.ImageAlign")));
-            this.txtCurrentMemuPath.CustomButton.ImageIndex = ((int)(resources.GetObject("resource.ImageIndex")));
-            this.txtCurrentMemuPath.CustomButton.ImageKey = resources.GetString("resource.ImageKey");
             this.txtCurrentMemuPath.CustomButton.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("resource.ImeMode")));
             this.txtCurrentMemuPath.CustomButton.Location = ((System.Drawing.Point)(resources.GetObject("resource.Location")));
-            this.txtCurrentMemuPath.CustomButton.MaximumSize = ((System.Drawing.Size)(resources.GetObject("resource.MaximumSize")));
             this.txtCurrentMemuPath.CustomButton.Name = "";
-            this.txtCurrentMemuPath.CustomButton.RightToLeft = ((System.Windows.Forms.RightToLeft)(resources.GetObject("resource.RightToLeft")));
             this.txtCurrentMemuPath.CustomButton.Size = ((System.Drawing.Size)(resources.GetObject("resource.Size")));
             this.txtCurrentMemuPath.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
             this.txtCurrentMemuPath.CustomButton.TabIndex = ((int)(resources.GetObject("resource.TabIndex")));
-            this.txtCurrentMemuPath.CustomButton.TextAlign = ((System.Drawing.ContentAlignment)(resources.GetObject("resource.TextAlign")));
-            this.txtCurrentMemuPath.CustomButton.TextImageRelation = ((System.Windows.Forms.TextImageRelation)(resources.GetObject("resource.TextImageRelation")));
             this.txtCurrentMemuPath.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
             this.txtCurrentMemuPath.CustomButton.UseSelectable = true;
             this.txtCurrentMemuPath.CustomButton.Visible = ((bool)(resources.GetObject("resource.Visible")));
             this.txtCurrentMemuPath.Lines = new string[0];
+            resources.ApplyResources(this.txtCurrentMemuPath, "txtCurrentMemuPath");
             this.txtCurrentMemuPath.MaxLength = 32767;
             this.txtCurrentMemuPath.Name = "txtCurrentMemuPath";
             this.txtCurrentMemuPath.PasswordChar = '\0';
@@ -200,9 +193,9 @@ namespace CATSBot
             // 
             // nudReconnectTime
             // 
-            resources.ApplyResources(this.nudReconnectTime, "nudReconnectTime");
             this.nudReconnectTime.BackColor = System.Drawing.Color.White;
             this.nudReconnectTime.ForeColor = System.Drawing.Color.Black;
+            resources.ApplyResources(this.nudReconnectTime, "nudReconnectTime");
             this.nudReconnectTime.Maximum = new decimal(new int[] {
             120,
             0,
@@ -232,7 +225,6 @@ namespace CATSBot
             // 
             // tabPage3
             // 
-            resources.ApplyResources(this.tabPage3, "tabPage3");
             this.tabPage3.BackColor = System.Drawing.Color.White;
             this.tabPage3.Controls.Add(this.chkAlwaysTop);
             this.tabPage3.Controls.Add(this.btnLightTheme);
@@ -241,6 +233,7 @@ namespace CATSBot
             this.tabPage3.Controls.Add(this.btnChangeStyle);
             this.tabPage3.Controls.Add(this.styleBox);
             this.tabPage3.Controls.Add(this.lbl_style);
+            resources.ApplyResources(this.tabPage3, "tabPage3");
             this.tabPage3.Name = "tabPage3";
             // 
             // chkAlwaysTop
@@ -274,8 +267,8 @@ namespace CATSBot
             // 
             // btnChangeStyle
             // 
-            resources.ApplyResources(this.btnChangeStyle, "btnChangeStyle");
             this.btnChangeStyle.ActiveControl = null;
+            resources.ApplyResources(this.btnChangeStyle, "btnChangeStyle");
             this.btnChangeStyle.Name = "btnChangeStyle";
             this.btnChangeStyle.UseSelectable = true;
             this.btnChangeStyle.Click += new System.EventHandler(this.btnChangeStyle_Click);
@@ -309,8 +302,8 @@ namespace CATSBot
             // 
             // btnStart
             // 
-            resources.ApplyResources(this.btnStart, "btnStart");
             this.btnStart.ActiveControl = null;
+            resources.ApplyResources(this.btnStart, "btnStart");
             this.btnStart.Name = "btnStart";
             this.btnStart.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
             this.btnStart.UseSelectable = true;
@@ -378,5 +371,6 @@ namespace CATSBot
         private MetroFramework.Controls.MetroLabel metroLabel5;
         private MetroFramework.Controls.MetroButton btnResetStats;
         public MetroFramework.Controls.MetroCheckBox chkAlwaysTop;
+        public MetroFramework.Controls.MetroCheckBox chkUseChestLogic;
     }
 }
