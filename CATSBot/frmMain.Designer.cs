@@ -117,6 +117,7 @@ namespace CATSBot
             resources.ApplyResources(this.btnResetStats, "btnResetStats");
             this.btnResetStats.Name = "btnResetStats";
             this.btnResetStats.UseSelectable = true;
+            this.btnResetStats.Click += new System.EventHandler(this.btnResetStats_Click);
             // 
             // nudDelayMultiplier
             // 
