@@ -6,6 +6,7 @@ using System.IO;
 using System.Drawing;
 
 using CATSBot.Helper;
+using System.Net;
 
 namespace CATSBot
 {
@@ -219,6 +220,57 @@ namespace CATSBot
                 }
 
                 txtCurrentMemuPath.Text = Settings.getInstance().adbPath;
+            }
+
+            checkUpdates(); 
+        }
+
+        private bool checkUpdates()
+        {
+            double thisVersion = 0;
+            if (!File.Exists("version"))
+            {
+                // file doesn't exist, update.
+
+                DialogResult dr = MetroMessageBox.Show(this, "There's a new update available. Do you want to download it now?", "Update available", MessageBoxButtons.YesNo);
+                if (dr == DialogResult.Yes)
+                {
+                    System.Diagnostics.Process.Start("CATSBot-Updater.exe");
+                    Application.Exit();
+                }
+
+                return true; 
+            }
+
+            thisVersion = Convert.ToDouble(File.ReadAllText("version"));
+            WebClient wc = new WebClient();
+
+            double currentVersion = Convert.ToDouble(wc.DownloadString("https://catsbot.net/releases/version"));
+
+            if(currentVersion > thisVersion)
+            {
+                DialogResult dr = MetroMessageBox.Show(this, "There's a new update available. Do you want to download it now?", "Update available", MessageBoxButtons.YesNo);
+                if(dr == DialogResult.Yes)
+                {
+                    System.Diagnostics.Process.Start("CATSBot-Updater.exe");
+                    Application.Exit();
+                }
+
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+
+        }
+
+        private void btnCheckUpdates_Click(object sender, EventArgs e)
+        {
+            if(!checkUpdates())
+            {
+                DialogResult dr = MetroMessageBox.Show(this, "You're already using the latest version of CATSBot. :)", "No update available");
             }
         }
     }

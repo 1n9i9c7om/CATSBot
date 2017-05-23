@@ -147,6 +147,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="cats.ico" />
+    <None Include="version">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Resources\720p\chest\button_unlock_720.png" />
     <None Include="Resources\720p\chest\chest_unlock2_720.png" />
     <None Include="Resources\720p\chest\chest_unlock_720.png" />

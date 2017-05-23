@@ -55,6 +55,7 @@ namespace CATSBot
             this.btnStart = new MetroFramework.Controls.MetroTile();
             this.lblStats = new MetroFramework.Controls.MetroLabel();
             this.metroStyle = new MetroFramework.Components.MetroStyleManager(this.components);
+            this.btnCheckUpdates = new MetroFramework.Controls.MetroButton();
             this.tabMain.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -91,6 +92,7 @@ namespace CATSBot
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.White;
+            this.tabPage2.Controls.Add(this.btnCheckUpdates);
             this.tabPage2.Controls.Add(this.chkUseChestLogic);
             this.tabPage2.Controls.Add(this.btnResetStats);
             this.tabPage2.Controls.Add(this.nudDelayMultiplier);
@@ -319,6 +321,13 @@ namespace CATSBot
             // 
             this.metroStyle.Owner = this;
             // 
+            // btnCheckUpdates
+            // 
+            resources.ApplyResources(this.btnCheckUpdates, "btnCheckUpdates");
+            this.btnCheckUpdates.Name = "btnCheckUpdates";
+            this.btnCheckUpdates.UseSelectable = true;
+            this.btnCheckUpdates.Click += new System.EventHandler(this.btnCheckUpdates_Click);
+            // 
             // frmMain
             // 
             resources.ApplyResources(this, "$this");
@@ -373,5 +382,6 @@ namespace CATSBot
         private MetroFramework.Controls.MetroButton btnResetStats;
         public MetroFramework.Controls.MetroCheckBox chkAlwaysTop;
         public MetroFramework.Controls.MetroCheckBox chkUseChestLogic;
+        private MetroFramework.Controls.MetroButton btnCheckUpdates;
     }
 }
