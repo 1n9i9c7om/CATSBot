@@ -7,11 +7,16 @@ using System.Runtime.InteropServices;
 // die einer Assembly zugeordnet sind.
 [assembly: AssemblyTitle("CATSBot-Updater")]
 [assembly: AssemblyDescription("Automic Update Tool for CATSBot")]
-[assembly: AssemblyConfiguration("")]
+#if DEBUG
+ [assembly: AssemblyConfiguration("Debug")]
+#else
+[assembly: AssemblyConfiguration("Release")]
+#endif
+
 [assembly: AssemblyCompany("CATSBot.net")]
 [assembly: AssemblyProduct("CATSBot-Updater")]
 [assembly: AssemblyCopyright("Copyright © CATSBot.net 2017")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyTrademark("CATSBot")]
 [assembly: AssemblyCulture("")]
 
 // Durch Festlegen von ComVisible auf FALSE werden die Typen in dieser Assembly
@@ -32,5 +37,5 @@ using System.Runtime.InteropServices;
 // Sie können alle Werte angeben oder Standardwerte für die Build- und Revisionsnummern verwenden,
 // übernehmen, indem Sie "*" eingeben:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyVersion("1.1.0.2")]
+[assembly: AssemblyFileVersion("1.1.0.2")]
