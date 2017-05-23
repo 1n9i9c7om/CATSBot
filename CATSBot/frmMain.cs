@@ -61,6 +61,8 @@ namespace CATSBot
             BotHelper.randomDelay(3000, 500);
             BotHelper.Log("(Re-)Starting main loop.");
 
+            BotLogics.ClearScreenLogic.doLogic();
+
             if (chkAutoReconnect.Checked)
                 BotLogics.ReconnectLogic.doLogic();
 

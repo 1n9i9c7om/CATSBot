@@ -11,10 +11,21 @@ namespace CATSBot.BotLogics
     {
         static Bitmap comparePic;
         static Random rnd = new Random();
+
+        static bool currentlyUnlocking = true;
         private static bool chestsReady()
         {
             Point chestArrow = ImageRecognition.GetSubPositions(comparePic, BotHelper.getResourceByName("arrow_chest"), 0.791f).FirstOrDefault();
             if (chestArrow.X != 0 && chestArrow.Y != 0)
+                return true;
+
+            return false;
+        }
+
+        private static bool isChestUnlocking()
+        {
+            Point chestTimer = ImageRecognition.GetSubPositions(comparePic, BotHelper.getResourceByName("chest_unlock"), 0.891f).FirstOrDefault();
+            if (chestTimer.X != 0 && chestTimer.Y != 0)
                 return true;
 
             return false;
@@ -66,7 +77,7 @@ namespace CATSBot.BotLogics
                 {
                     // Ugh, they want us to watch an ad. Close the window.
                     Point closeButton = ImageRecognition.GetSubPositions(comparePic, BotHelper.getResourceByName("button_cancel"), 0.901f).FirstOrDefault();
-                    ADBHelper.simulateClick(ImageRecognition.getRandomLoc(closeButton, BotHelper.getResourceByName("chest_sponsor")));
+                    ADBHelper.simulateClick(ImageRecognition.getRandomLoc(closeButton, BotHelper.getResourceByName("button_cancel")));
                 }
                 else
                 {
@@ -81,12 +92,50 @@ namespace CATSBot.BotLogics
         public static void doLogic()
         {
             BotHelper.randomDelay(1000, 100); //make sure to screen is cleared from previous tasks, just in case. Will probably be removed after some testing.
+            currentlyUnlocking = true; 
             comparePic = ImageRecognition.CaptureApplication();
+
+            currentlyUnlocking = isChestUnlocking();
 
             if (chestsReady())
             {
-                BotHelper.Log("Completed Chest found!");
+                BotHelper.Log("Completed box found!");
                 openClosestChest();
+            }
+
+            if (!currentlyUnlocking)
+            {
+                BotHelper.Log("There's no box being unlocked right now, unlocking");
+                List<Point> regularBoxes = ImageRecognition.GetSubPositions(comparePic, BotHelper.getResourceByName("chest_regular"));
+                List<Point> superBoxes = ImageRecognition.GetSubPositions(comparePic, BotHelper.getResourceByName("chest_super"));
+
+                Point firstReg = regularBoxes.FirstOrDefault();
+                Point firstSup = regularBoxes.FirstOrDefault();
+                
+                if (firstReg.X != 0 && firstReg.Y != 0)
+                {
+                    // Open a regular box
+                    BotHelper.Log(" regular box", false);
+                    ADBHelper.simulateClick(ImageRecognition.getRandomLoc(firstReg, BotHelper.getResourceByName("chest_regular")));
+                    BotHelper.randomDelay(1000, 100);
+                    ADBHelper.simulateClick(ImageRecognition.getRandomLoc(BotHelper.getResourceByName("button_unlock")));
+                    BotHelper.randomDelay(1000, 100);
+                    ADBHelper.simulateClick(ImageRecognition.getRandomLoc(BotHelper.getResourceByName("button_cancel"), 0.901f));
+                }
+                else if(firstSup.X != 0 && firstSup.Y != 0)
+                {
+                    // Open a super box
+                    BotHelper.Log(" super box", false);
+                    ADBHelper.simulateClick(ImageRecognition.getRandomLoc(firstSup, BotHelper.getResourceByName("chest_super")));
+                    BotHelper.randomDelay(1000, 100);
+                    ADBHelper.simulateClick(ImageRecognition.getRandomLoc(BotHelper.getResourceByName("button_unlock")));
+                    BotHelper.randomDelay(1000, 100);
+                    ADBHelper.simulateClick(ImageRecognition.getRandomLoc(BotHelper.getResourceByName("button_cancel"), 0.901f));
+                }
+                else
+                {
+                    BotHelper.Log(" ...nevermind. No boxes found.", false);
+                }
             }
 
             BotHelper.Log("Finished ChestLogic!");

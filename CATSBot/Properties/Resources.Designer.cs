@@ -203,6 +203,16 @@ namespace CATSBot.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap button_unlock_720 {
+            get {
+                object obj = ResourceManager.GetObject("button_unlock_720", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap chest_regular_720 {
             get {
                 object obj = ResourceManager.GetObject("chest_regular_720", resourceCulture);
@@ -226,6 +236,26 @@ namespace CATSBot.Properties {
         internal static System.Drawing.Bitmap chest_super_720 {
             get {
                 object obj = ResourceManager.GetObject("chest_super_720", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap chest_unlock_720 {
+            get {
+                object obj = ResourceManager.GetObject("chest_unlock_720", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap chest_unlock2_720 {
+            get {
+                object obj = ResourceManager.GetObject("chest_unlock2_720", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
