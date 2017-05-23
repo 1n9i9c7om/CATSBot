@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // Allgemeine Informationen über eine Assembly werden über die folgenden
 // Attribute gesteuert. Ändern Sie diese Attributwerte, um die Informationen zu ändern,
 // die einer Assembly zugeordnet sind.
-[assembly: AssemblyTitle("C.A.T.S. Bot")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("CATSBot")]
+[assembly: AssemblyDescription("Automation tool for the mobile game CATS")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("CATSBot.net")]
-[assembly: AssemblyProduct("C.A.T.S. Bot")]
+[assembly: AssemblyProduct("CATSBot")]
 [assembly: AssemblyCopyright("Copyright © catsbot.net 2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

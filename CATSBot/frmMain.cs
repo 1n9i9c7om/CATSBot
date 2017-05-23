@@ -227,11 +227,18 @@ namespace CATSBot
 
         private bool checkUpdates()
         {
+            if (!File.Exists("CATSBot-Updater.exe"))
+            {
+                btnCheckUpdates.Visible = false;
+                btnCheckUpdates.Enabled = false;
+                return false;
+            }
+                
+
             double thisVersion = 0;
             if (!File.Exists("version"))
             {
                 // file doesn't exist, update.
-
                 DialogResult dr = MetroMessageBox.Show(this, "There's a new update available. Do you want to download it now?", "Update available", MessageBoxButtons.YesNo);
                 if (dr == DialogResult.Yes)
                 {
