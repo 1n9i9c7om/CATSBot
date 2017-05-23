@@ -53,4 +53,5 @@ namespace CATSBot.BotLogics
 
             checkInstantPromo();
         }
+    }
 }
