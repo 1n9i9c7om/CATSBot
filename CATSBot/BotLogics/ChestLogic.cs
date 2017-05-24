@@ -55,7 +55,11 @@ namespace CATSBot.BotLogics
             // The sponsor chest is the smallest one, so we use this for our random location algorithm to make sure won't miss a chest
             ADBHelper.simulateClick(ImageRecognition.getRandomLoc(closestChest, BotHelper.getResourceByName("chest_sponsor")));
             BotHelper.randomDelay(5000, 50); // it takes some time to open a chest sometimes
+            openChest();
+        }
 
+        public static void openChest()
+        {
             for (int i = 0; i < 16; i++)
             {
                 // just to make sure it'll still be randomized...
@@ -69,7 +73,7 @@ namespace CATSBot.BotLogics
             BotHelper.randomDelay(4000, 100); // it might take a second or two for the bonus chest to appear, better be safe than sorry
             comparePic = ADBHelper.getScreencap();
             Point bonusLabel = ImageRecognition.GetSubPositions(comparePic, BotHelper.getResourceByName("label_bonus")).FirstOrDefault();
-            if(bonusLabel.X != 0 && bonusLabel.Y != 0)
+            if (bonusLabel.X != 0 && bonusLabel.Y != 0)
             {
                 // Bonus item, yay!
                 Point watchButton = ImageRecognition.GetSubPositions(comparePic, BotHelper.getResourceByName("button_watch"), 0.901f).FirstOrDefault();

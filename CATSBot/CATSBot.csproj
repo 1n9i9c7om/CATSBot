@@ -147,6 +147,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="cats.ico" />
+    <None Include="Resources\720p\chest\label_super_box_720.png" />
+    <None Include="Resources\720p\chest\label_legendary_box_720.png" />
+    <None Include="Resources\720p\end\label_league_over_720.png" />
+    <None Include="Resources\720p\end\label_championship_over_720.png" />
+    <None Include="Resources\720p\end\button_claim_onend_720.png" />
+    <None Include="Resources\720p\end\button_champ_back.png" />
+    <None Include="Resources\720p\chest\chest_legendary_720.png" />
     <None Include="version">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

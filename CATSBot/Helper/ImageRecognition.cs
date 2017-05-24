@@ -72,6 +72,11 @@ namespace CATSBot.Helper
             return GetSubPositions(screenshot, sub, similarityThreshold).FirstOrDefault();
         }
 
+        public static Point getPictureLocation(Bitmap main, Bitmap sub, float similarityThreshold = 0.941f)
+        {
+            return GetSubPositions(main, sub, similarityThreshold).FirstOrDefault();
+        }
+
         public static Point getRandomLoc(Point loc, Bitmap sub)
         {
             if (loc == pNull)
