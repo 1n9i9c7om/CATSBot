@@ -20,6 +20,10 @@ namespace CATSBot
             InitializeComponent();
             BotHelper.main = this;
             Settings.getInstance().loadSettings(this);
+
+#if DEBUG
+            this.Text = "CATSBot - DEBUG";
+#endif
         }
 
         private void btnStart_Click(object sender, EventArgs e)
@@ -189,6 +193,11 @@ namespace CATSBot
         {
             Settings.getInstance().useChestLogic = chkUseChestLogic.Checked;
         }
+
+        private void chkAutoUpdate_CheckedChanged(object sender, EventArgs e)
+        {
+            Settings.getInstance().enableAutoUpdater = chkAutoUpdate.Checked;
+        }
         #endregion
 
         private void btnResetStats_Click(object sender, EventArgs e)
@@ -222,7 +231,7 @@ namespace CATSBot
                 txtCurrentMemuPath.Text = Settings.getInstance().adbPath;
             }
 
-            checkUpdates(); 
+            if(Settings.getInstance().enableAutoUpdater) checkUpdates(); 
         }
 
         private bool checkUpdates()

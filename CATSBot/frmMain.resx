@@ -174,6 +174,30 @@
   <data name="&gt;&gt;tabPage1.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="chkAutoUpdate.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 196</value>
+  </data>
+  <data name="chkAutoUpdate.Size" type="System.Drawing.Size, System.Drawing">
+    <value>256, 24</value>
+  </data>
+  <data name="chkAutoUpdate.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="chkAutoUpdate.Text" xml:space="preserve">
+    <value>Check for updates on startup</value>
+  </data>
+  <data name="&gt;&gt;chkAutoUpdate.Name" xml:space="preserve">
+    <value>chkAutoUpdate</value>
+  </data>
+  <data name="&gt;&gt;chkAutoUpdate.Type" xml:space="preserve">
+    <value>MetroFramework.Controls.MetroCheckBox, MetroFramework, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a</value>
+  </data>
+  <data name="&gt;&gt;chkAutoUpdate.Parent" xml:space="preserve">
+    <value>tabPage2</value>
+  </data>
+  <data name="&gt;&gt;chkAutoUpdate.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="btnCheckUpdates.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left</value>
   </data>
@@ -199,7 +223,7 @@
     <value>tabPage2</value>
   </data>
   <data name="&gt;&gt;btnCheckUpdates.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="chkUseChestLogic.Location" type="System.Drawing.Point, System.Drawing">
     <value>5, 166</value>
@@ -211,7 +235,7 @@
     <value>14</value>
   </data>
   <data name="chkUseChestLogic.Text" xml:space="preserve">
-    <value>Open unlocked chests (probably unstable)</value>
+    <value>Unlock and open chests</value>
   </data>
   <data name="&gt;&gt;chkUseChestLogic.Name" xml:space="preserve">
     <value>chkUseChestLogic</value>
@@ -223,7 +247,7 @@
     <value>tabPage2</value>
   </data>
   <data name="&gt;&gt;chkUseChestLogic.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="btnResetStats.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left</value>
@@ -250,7 +274,7 @@
     <value>tabPage2</value>
   </data>
   <data name="&gt;&gt;btnResetStats.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="nudDelayMultiplier.Location" type="System.Drawing.Point, System.Drawing">
     <value>226, 138</value>
@@ -271,7 +295,7 @@
     <value>tabPage2</value>
   </data>
   <data name="&gt;&gt;nudDelayMultiplier.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="metroLabel5.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -298,7 +322,7 @@
     <value>tabPage2</value>
   </data>
   <data name="&gt;&gt;metroLabel5.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="resource.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -337,7 +361,7 @@
     <value>tabPage2</value>
   </data>
   <data name="&gt;&gt;txtCurrentMemuPath.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="btnChangeMemuPath.Location" type="System.Drawing.Point, System.Drawing">
     <value>186, 107</value>
@@ -361,7 +385,7 @@
     <value>tabPage2</value>
   </data>
   <data name="&gt;&gt;btnChangeMemuPath.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="metroLabel4.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -388,7 +412,7 @@
     <value>tabPage2</value>
   </data>
   <data name="&gt;&gt;metroLabel4.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="nudReconnectTime.Location" type="System.Drawing.Point, System.Drawing">
     <value>78, 62</value>
@@ -409,7 +433,7 @@
     <value>tabPage2</value>
   </data>
   <data name="&gt;&gt;nudReconnectTime.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="chkAutoReconnect.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -436,7 +460,7 @@
     <value>tabPage2</value>
   </data>
   <data name="&gt;&gt;chkAutoReconnect.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="metroLabel2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -465,7 +489,7 @@ used the account.</value>
     <value>tabPage2</value>
   </data>
   <data name="&gt;&gt;metroLabel2.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>11</value>
   </data>
   <data name="tabPage2.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 38</value>
