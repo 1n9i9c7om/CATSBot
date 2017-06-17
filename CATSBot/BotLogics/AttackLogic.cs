@@ -30,36 +30,6 @@ namespace CATSBot.BotLogics
             BotHelper.updateStats(0, 0, 0);
         }
 
-        // Note: checkDefense and checkInstantPromo will be removed from AttackLogic and placed into a "ClearScreenLogic" later.
-        // Check if we defended, if yes, click that filthy "Claim" button that's prevent us from clicking "QUICK FIGHT" ;)
-        public static void checkDefense()
-        {
-            Helper.BotHelper.Log("Successful defense check", true, true);
-            Bitmap button_claim = BotHelper.getResourceByName("button_claim");
-            Point claimPoint = ImageRecognition.getPictureLocation(button_claim);
-            if (claimPoint != pNull)
-            {
-                ADBHelper.simulateClick(ImageRecognition.getRandomLoc(claimPoint, button_claim));
-                BotHelper.Log("We defended. Free coins! :)");
-                BotHelper.randomDelay(1000, 100);
-            }
-        }
-
-        // Check if somebody got an instant promotion, because that window will be blocking the bot even after a restart
-        public static void checkInstantPromo()
-        {
-            Bitmap button_ok = BotHelper.getResourceByName("button_ok");
-
-            Helper.BotHelper.Log("Instant Promo Check", true, true);
-            Point claimPoint = ImageRecognition.getPictureLocation(button_ok);
-            if (claimPoint != pNull)
-            {
-                ADBHelper.simulateClick(ImageRecognition.getRandomLoc(claimPoint, button_ok));
-                BotHelper.Log("Someone got instant promoted.");
-                BotHelper.randomDelay(1000, 100);
-            }
-        }
-
         // Try to find the "Quick Fight" button and click on it.
         public static bool searchDuell()
         {
@@ -210,8 +180,6 @@ namespace CATSBot.BotLogics
                 BotHelper.randomDelay(30000, 5);
             }
 
-            checkDefense();
-            checkInstantPromo();
             if (searchDuell())
             {
                 if (waitDuell())

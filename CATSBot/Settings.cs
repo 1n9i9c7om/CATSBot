@@ -38,14 +38,12 @@ namespace CATSBot
         public bool topmost = false;
         public Size frmSize = new Size(289, 605);
         public Point frmLoc = new Point(100, 100);
-        
 
         //Settings found in the "Settings" tab
+        public bool enableAutoUpdater = true;
         public bool automaticReconnectEnabled = true;
         public int reconnectTime = 5;
-
         public bool useChestLogic = false;
-
         public string adbPath = "";
 
         public bool saveSettings()

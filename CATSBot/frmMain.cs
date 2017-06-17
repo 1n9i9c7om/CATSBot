@@ -6,6 +6,7 @@ using System.IO;
 using System.Drawing;
 
 using CATSBot.Helper;
+using System.Net;
 
 namespace CATSBot
 {
@@ -19,6 +20,10 @@ namespace CATSBot
             InitializeComponent();
             BotHelper.main = this;
             Settings.getInstance().loadSettings(this);
+
+#if DEBUG
+            this.Text = "CATSBot - DEBUG";
+#endif
         }
 
         private void btnStart_Click(object sender, EventArgs e)
@@ -60,6 +65,8 @@ namespace CATSBot
         {
             BotHelper.randomDelay(3000, 500);
             BotHelper.Log("(Re-)Starting main loop.");
+
+            BotLogics.ClearScreenLogic.doLogic();
 
             if (chkAutoReconnect.Checked)
                 BotLogics.ReconnectLogic.doLogic();
@@ -186,6 +193,11 @@ namespace CATSBot
         {
             Settings.getInstance().useChestLogic = chkUseChestLogic.Checked;
         }
+
+        private void chkAutoUpdate_CheckedChanged(object sender, EventArgs e)
+        {
+            Settings.getInstance().enableAutoUpdater = chkAutoUpdate.Checked;
+        }
         #endregion
 
         private void btnResetStats_Click(object sender, EventArgs e)
@@ -217,6 +229,64 @@ namespace CATSBot
                 }
 
                 txtCurrentMemuPath.Text = Settings.getInstance().adbPath;
+            }
+
+            if(Settings.getInstance().enableAutoUpdater) checkUpdates(); 
+        }
+
+        private bool checkUpdates()
+        {
+            if (!File.Exists("CATSBot-Updater.exe"))
+            {
+                btnCheckUpdates.Visible = false;
+                btnCheckUpdates.Enabled = false;
+                return false;
+            }
+                
+
+            double thisVersion = 0;
+            if (!File.Exists("version"))
+            {
+                // file doesn't exist, update.
+                DialogResult dr = MetroMessageBox.Show(this, "There's a new update available. Do you want to download it now?", "Update available", MessageBoxButtons.YesNo);
+                if (dr == DialogResult.Yes)
+                {
+                    System.Diagnostics.Process.Start("CATSBot-Updater.exe");
+                    Application.Exit();
+                }
+
+                return true; 
+            }
+
+            thisVersion = Convert.ToDouble(File.ReadAllText("version"));
+            WebClient wc = new WebClient();
+
+            double currentVersion = Convert.ToDouble(wc.DownloadString("https://catsbot.net/releases/version"));
+
+            if(currentVersion > thisVersion)
+            {
+                DialogResult dr = MetroMessageBox.Show(this, "There's a new update available. Do you want to download it now?", "Update available", MessageBoxButtons.YesNo);
+                if(dr == DialogResult.Yes)
+                {
+                    System.Diagnostics.Process.Start("CATSBot-Updater.exe");
+                    Application.Exit();
+                }
+
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+
+        }
+
+        private void btnCheckUpdates_Click(object sender, EventArgs e)
+        {
+            if(!checkUpdates())
+            {
+                DialogResult dr = MetroMessageBox.Show(this, "You're already using the latest version of CATSBot. :)", "No update available");
             }
         }
     }

@@ -139,7 +139,17 @@ namespace CATSBot.Helper
             string debugInformation = "";
             debugInformation += "CATSBot Debug Information" + Environment.NewLine;
             debugInformation += "Time: " + DateTime.Now.ToString("yyyy.MM.dd HH:mm:ss", CultureInfo.InvariantCulture) + Environment.NewLine;
-            debugInformation += "Operating System: " + Environment.OSVersion.VersionString + Environment.NewLine + Environment.NewLine;
+            debugInformation += "Operating System: " + Environment.OSVersion.VersionString + Environment.NewLine;
+
+#if DEBUG
+            debugInformation += "A Debug Build is currently being used!" + Environment.NewLine;
+#endif
+
+            if (File.Exists("version"))
+                debugInformation += "CATSBot Version: " + File.ReadAllText("version") + Environment.NewLine + Environment.NewLine;
+            else
+                debugInformation += "CATSBot Version: version file was deleted!" + Environment.NewLine + Environment.NewLine;
+
 
             int screenCounter = 1;
             foreach (Screen screen in Screen.AllScreens)

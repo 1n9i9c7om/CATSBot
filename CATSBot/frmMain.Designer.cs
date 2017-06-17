@@ -34,6 +34,7 @@ namespace CATSBot
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.txtLog = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.btnCheckUpdates = new MetroFramework.Controls.MetroButton();
             this.chkUseChestLogic = new MetroFramework.Controls.MetroCheckBox();
             this.btnResetStats = new MetroFramework.Controls.MetroButton();
             this.nudDelayMultiplier = new System.Windows.Forms.NumericUpDown();
@@ -55,6 +56,7 @@ namespace CATSBot
             this.btnStart = new MetroFramework.Controls.MetroTile();
             this.lblStats = new MetroFramework.Controls.MetroLabel();
             this.metroStyle = new MetroFramework.Components.MetroStyleManager(this.components);
+            this.chkAutoUpdate = new MetroFramework.Controls.MetroCheckBox();
             this.tabMain.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -91,6 +93,8 @@ namespace CATSBot
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.White;
+            this.tabPage2.Controls.Add(this.chkAutoUpdate);
+            this.tabPage2.Controls.Add(this.btnCheckUpdates);
             this.tabPage2.Controls.Add(this.chkUseChestLogic);
             this.tabPage2.Controls.Add(this.btnResetStats);
             this.tabPage2.Controls.Add(this.nudDelayMultiplier);
@@ -103,6 +107,13 @@ namespace CATSBot
             this.tabPage2.Controls.Add(this.metroLabel2);
             resources.ApplyResources(this.tabPage2, "tabPage2");
             this.tabPage2.Name = "tabPage2";
+            // 
+            // btnCheckUpdates
+            // 
+            resources.ApplyResources(this.btnCheckUpdates, "btnCheckUpdates");
+            this.btnCheckUpdates.Name = "btnCheckUpdates";
+            this.btnCheckUpdates.UseSelectable = true;
+            this.btnCheckUpdates.Click += new System.EventHandler(this.btnCheckUpdates_Click);
             // 
             // chkUseChestLogic
             // 
@@ -117,6 +128,7 @@ namespace CATSBot
             resources.ApplyResources(this.btnResetStats, "btnResetStats");
             this.btnResetStats.Name = "btnResetStats";
             this.btnResetStats.UseSelectable = true;
+            this.btnResetStats.Click += new System.EventHandler(this.btnResetStats_Click);
             // 
             // nudDelayMultiplier
             // 
@@ -318,6 +330,15 @@ namespace CATSBot
             // 
             this.metroStyle.Owner = this;
             // 
+            // chkAutoUpdate
+            // 
+            this.chkAutoUpdate.Checked = true;
+            this.chkAutoUpdate.CheckState = System.Windows.Forms.CheckState.Checked;
+            resources.ApplyResources(this.chkAutoUpdate, "chkAutoUpdate");
+            this.chkAutoUpdate.Name = "chkAutoUpdate";
+            this.chkAutoUpdate.UseSelectable = true;
+            this.chkAutoUpdate.CheckedChanged += new System.EventHandler(this.chkAutoUpdate_CheckedChanged);
+            // 
             // frmMain
             // 
             resources.ApplyResources(this, "$this");
@@ -372,5 +393,7 @@ namespace CATSBot
         private MetroFramework.Controls.MetroButton btnResetStats;
         public MetroFramework.Controls.MetroCheckBox chkAlwaysTop;
         public MetroFramework.Controls.MetroCheckBox chkUseChestLogic;
+        private MetroFramework.Controls.MetroButton btnCheckUpdates;
+        public MetroFramework.Controls.MetroCheckBox chkAutoUpdate;
     }
 }

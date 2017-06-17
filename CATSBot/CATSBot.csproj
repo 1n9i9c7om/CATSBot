@@ -93,6 +93,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BotLogics\ChestLogic.cs" />
+    <Compile Include="BotLogics\ClearScreenLogic.cs" />
     <Compile Include="Helper\ADBHelper.cs" />
     <Compile Include="Helper\BotHelper.cs" />
     <Compile Include="BotLogics\AttackLogic.cs" />
@@ -146,6 +147,19 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="cats.ico" />
+    <None Include="Resources\720p\chest\label_super_box_720.png" />
+    <None Include="Resources\720p\chest\label_legendary_box_720.png" />
+    <None Include="Resources\720p\end\label_league_over_720.png" />
+    <None Include="Resources\720p\end\label_championship_over_720.png" />
+    <None Include="Resources\720p\end\button_claim_onend_720.png" />
+    <None Include="Resources\720p\end\button_champ_back.png" />
+    <None Include="Resources\720p\chest\chest_legendary_720.png" />
+    <None Include="version">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\720p\chest\button_unlock_720.png" />
+    <None Include="Resources\720p\chest\chest_unlock2_720.png" />
+    <None Include="Resources\720p\chest\chest_unlock_720.png" />
     <None Include="Resources\720p\chest\butto_watch_720.png" />
     <None Include="Resources\720p\chest\label_sponsor_720.png" />
     <None Include="Resources\720p\chest\label_regularbox_720.png" />

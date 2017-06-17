@@ -93,6 +93,16 @@ namespace CATSBot.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap button_champ_back {
+            get {
+                object obj = ResourceManager.GetObject("button_champ_back", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap button_claim_1080 {
             get {
                 object obj = ResourceManager.GetObject("button_claim_1080", resourceCulture);
@@ -106,6 +116,16 @@ namespace CATSBot.Properties {
         internal static System.Drawing.Bitmap button_claim_720 {
             get {
                 object obj = ResourceManager.GetObject("button_claim_720", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap button_claim_onend_720 {
+            get {
+                object obj = ResourceManager.GetObject("button_claim_onend_720", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -203,6 +223,16 @@ namespace CATSBot.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap button_unlock_720 {
+            get {
+                object obj = ResourceManager.GetObject("button_unlock_720", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap chest_regular_720 {
             get {
                 object obj = ResourceManager.GetObject("chest_regular_720", resourceCulture);
@@ -233,6 +263,26 @@ namespace CATSBot.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap chest_unlock_720 {
+            get {
+                object obj = ResourceManager.GetObject("chest_unlock_720", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap chest_unlock2_720 {
+            get {
+                object obj = ResourceManager.GetObject("chest_unlock2_720", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap label_bonus_720 {
             get {
                 object obj = ResourceManager.GetObject("label_bonus_720", resourceCulture);
@@ -246,6 +296,16 @@ namespace CATSBot.Properties {
         internal static System.Drawing.Bitmap label_bonus_7201 {
             get {
                 object obj = ResourceManager.GetObject("label_bonus_7201", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap label_championship_over_720 {
+            get {
+                object obj = ResourceManager.GetObject("label_championship_over_720", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -273,6 +333,26 @@ namespace CATSBot.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap label_league_over_720 {
+            get {
+                object obj = ResourceManager.GetObject("label_league_over_720", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap label_legendary_box_720 {
+            get {
+                object obj = ResourceManager.GetObject("label_legendary_box_720", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap label_regularbox_720 {
             get {
                 object obj = ResourceManager.GetObject("label_regularbox_720", resourceCulture);
@@ -286,6 +366,16 @@ namespace CATSBot.Properties {
         internal static System.Drawing.Bitmap label_sponsor_720 {
             get {
                 object obj = ResourceManager.GetObject("label_sponsor_720", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap label_super_box_720 {
+            get {
+                object obj = ResourceManager.GetObject("label_super_box_720", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
