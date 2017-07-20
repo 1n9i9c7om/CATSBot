@@ -114,7 +114,7 @@ namespace CATSBot.BotLogics
                 List<Point> superBoxes = ImageRecognition.GetSubPositions(comparePic, BotHelper.getResourceByName("chest_super"));
 
                 Point firstReg = regularBoxes.FirstOrDefault();
-                Point firstSup = regularBoxes.FirstOrDefault();
+                Point firstSup = superBoxes.FirstOrDefault();
                 
                 if (firstReg.X != 0 && firstReg.Y != 0)
                 {
