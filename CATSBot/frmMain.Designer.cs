@@ -34,6 +34,9 @@ namespace CATSBot
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.txtLog = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.healthThresholdLabel = new System.Windows.Forms.Label();
+            this.chkAutoUpdate = new MetroFramework.Controls.MetroCheckBox();
             this.btnCheckUpdates = new MetroFramework.Controls.MetroButton();
             this.chkUseChestLogic = new MetroFramework.Controls.MetroCheckBox();
             this.btnResetStats = new MetroFramework.Controls.MetroButton();
@@ -56,10 +59,10 @@ namespace CATSBot
             this.btnStart = new MetroFramework.Controls.MetroTile();
             this.lblStats = new MetroFramework.Controls.MetroLabel();
             this.metroStyle = new MetroFramework.Components.MetroStyleManager(this.components);
-            this.chkAutoUpdate = new MetroFramework.Controls.MetroCheckBox();
             this.tabMain.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudDelayMultiplier)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudReconnectTime)).BeginInit();
             this.tabPage3.SuspendLayout();
@@ -93,6 +96,8 @@ namespace CATSBot
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.White;
+            this.tabPage2.Controls.Add(this.numericUpDown1);
+            this.tabPage2.Controls.Add(this.healthThresholdLabel);
             this.tabPage2.Controls.Add(this.chkAutoUpdate);
             this.tabPage2.Controls.Add(this.btnCheckUpdates);
             this.tabPage2.Controls.Add(this.chkUseChestLogic);
@@ -107,6 +112,36 @@ namespace CATSBot
             this.tabPage2.Controls.Add(this.metroLabel2);
             resources.ApplyResources(this.tabPage2, "tabPage2");
             this.tabPage2.Name = "tabPage2";
+            // 
+            // numericUpDown1
+            // 
+            resources.ApplyResources(this.numericUpDown1, "numericUpDown1");
+            this.numericUpDown1.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Value = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.numericUpDown1.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
+            // 
+            // healthThresholdLabel
+            // 
+            resources.ApplyResources(this.healthThresholdLabel, "healthThresholdLabel");
+            this.healthThresholdLabel.Name = "healthThresholdLabel";
+            // 
+            // chkAutoUpdate
+            // 
+            this.chkAutoUpdate.Checked = true;
+            this.chkAutoUpdate.CheckState = System.Windows.Forms.CheckState.Checked;
+            resources.ApplyResources(this.chkAutoUpdate, "chkAutoUpdate");
+            this.chkAutoUpdate.Name = "chkAutoUpdate";
+            this.chkAutoUpdate.UseSelectable = true;
+            this.chkAutoUpdate.CheckedChanged += new System.EventHandler(this.chkAutoUpdate_CheckedChanged);
             // 
             // btnCheckUpdates
             // 
@@ -144,11 +179,6 @@ namespace CATSBot
             0,
             0,
             0});
-            this.nudDelayMultiplier.Minimum = new decimal(new int[] {
-            7,
-            0,
-            0,
-            65536});
             this.nudDelayMultiplier.Name = "nudDelayMultiplier";
             this.nudDelayMultiplier.Value = new decimal(new int[] {
             1,
@@ -330,15 +360,6 @@ namespace CATSBot
             // 
             this.metroStyle.Owner = this;
             // 
-            // chkAutoUpdate
-            // 
-            this.chkAutoUpdate.Checked = true;
-            this.chkAutoUpdate.CheckState = System.Windows.Forms.CheckState.Checked;
-            resources.ApplyResources(this.chkAutoUpdate, "chkAutoUpdate");
-            this.chkAutoUpdate.Name = "chkAutoUpdate";
-            this.chkAutoUpdate.UseSelectable = true;
-            this.chkAutoUpdate.CheckedChanged += new System.EventHandler(this.chkAutoUpdate_CheckedChanged);
-            // 
             // frmMain
             // 
             resources.ApplyResources(this, "$this");
@@ -356,6 +377,7 @@ namespace CATSBot
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudDelayMultiplier)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudReconnectTime)).EndInit();
             this.tabPage3.ResumeLayout(false);
@@ -367,33 +389,34 @@ namespace CATSBot
         }
 
         #endregion
-
-        private MetroFramework.Controls.MetroTabControl tabMain;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.TabPage tabPage3;
-        public MetroFramework.Controls.MetroTile btnStart;
-        public MetroFramework.Controls.MetroLabel lblStats;
+        public System.Windows.Forms.TabPage tabPage1;
+        public System.Windows.Forms.TabPage tabPage2;
+        public System.Windows.Forms.TabPage tabPage3;
         public System.Windows.Forms.TextBox txtLog;
+        public MetroFramework.Controls.MetroComboBox styleBox;
+        public System.Windows.Forms.NumericUpDown nudReconnectTime;
+        public System.Windows.Forms.NumericUpDown nudDelayMultiplier;
+        public System.Windows.Forms.NumericUpDown numericUpDown1;
+        public System.Windows.Forms.Label healthThresholdLabel;
+        private MetroFramework.Controls.MetroTabControl tabMain;
         private MetroFramework.Controls.MetroLabel lbl_style;
         private MetroFramework.Controls.MetroLabel metroLabel2;
-        public MetroFramework.Controls.MetroComboBox styleBox;
         private MetroFramework.Controls.MetroTile btnChangeStyle;
         private MetroFramework.Controls.MetroLabel metroLabel3;
         private MetroFramework.Controls.MetroButton btnLightTheme;
         private MetroFramework.Controls.MetroButton btnDarkTheme;
-        public MetroFramework.Components.MetroStyleManager metroStyle;
-        public MetroFramework.Controls.MetroCheckBox chkAutoReconnect;
-        public System.Windows.Forms.NumericUpDown nudReconnectTime;
         private MetroFramework.Controls.MetroButton btnChangeMemuPath;
         private MetroFramework.Controls.MetroLabel metroLabel4;
-        public MetroFramework.Controls.MetroTextBox txtCurrentMemuPath;
-        private System.Windows.Forms.NumericUpDown nudDelayMultiplier;
         private MetroFramework.Controls.MetroLabel metroLabel5;
         private MetroFramework.Controls.MetroButton btnResetStats;
-        public MetroFramework.Controls.MetroCheckBox chkAlwaysTop;
-        public MetroFramework.Controls.MetroCheckBox chkUseChestLogic;
         private MetroFramework.Controls.MetroButton btnCheckUpdates;
-        public MetroFramework.Controls.MetroCheckBox chkAutoUpdate;
+        private MetroFramework.Controls.MetroTile btnStart;
+        private MetroFramework.Controls.MetroLabel lblStats;
+        private MetroFramework.Components.MetroStyleManager metroStyle;
+        private MetroFramework.Controls.MetroCheckBox chkAutoReconnect;
+        private MetroFramework.Controls.MetroTextBox txtCurrentMemuPath;
+        private MetroFramework.Controls.MetroCheckBox chkAlwaysTop;
+        private MetroFramework.Controls.MetroCheckBox chkUseChestLogic;
+        private MetroFramework.Controls.MetroCheckBox chkAutoUpdate;
     }
 }

@@ -68,6 +68,7 @@ namespace CATSBot.Helper
         {
             try
             {
+                
                 // Grab a screenshot
                 adbStart("shell screencap -p /sdcard/catsbot.png");
                 //BotHelper.randomDelay(100, 5);
@@ -76,6 +77,7 @@ namespace CATSBot.Helper
                 //BotHelper.randomDelay(400, 5);
                 // Remove the file from MEmu
                 adbStart("shell rm /sdcard/catsbot.png");
+                
 
                 //Image screencap = GetCopyImage("catsbot.png");
 

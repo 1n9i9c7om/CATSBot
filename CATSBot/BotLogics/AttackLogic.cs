@@ -11,14 +11,13 @@ namespace CATSBot.BotLogics
     {
         static Point pNull = new Point(0, 0);
         static Random rnd = new Random();
+        public static int maxHealth = 1000;
 
         //This is disabled until re-implemented. ;)
         static int wins = 0;
         static int losses = 0;
         static int winsInARow = 0;
         static int crowns = 0;
-
-        private static int logicErrors = 0;
 
         public static void resetStats()
         {
@@ -56,23 +55,50 @@ namespace CATSBot.BotLogics
         //Check for the skip button. If it's there, an opponent has been found.
         public static bool waitDuell()
         {
+            Point skipPoint = new Point(1150, 650);
+            Rectangle skipButtonRec = new Rectangle(1150, 600, 120, 110);
             Bitmap button_skip = BotHelper.getResourceByName("button_skip");
 
-            BotHelper.Log("Waiting for the duell to start....");
-            int checks = 0;
+            BotHelper.Log("Searching for appropriate opponent....");
+            int checks, attempts = 0, enemyHealth;
+            bool opponentFound = false;
+
+            Thread.Sleep(1000);
             do
             {
-                BotHelper.Log(" " + checks, false);
-                checks++;
-            } while (ImageRecognition.getPictureLocation(button_skip) == pNull && checks <= 55);
+                checks = 0;
+                enemyHealth = 0;
+                do
+                {
+                    checks++;
+                } while (!ImageRecognition.IsButtonThere(button_skip, skipButtonRec) && checks <= 55);
 
-            if (checks >= 55)
+                if (checks >= 35)
+                {
+                    BotHelper.Log("Oops, we timed out.");
+                    return false;
+                }
+
+                enemyHealth = ImageRecognition.GetEnemyHealth();
+
+                BotHelper.Log((attempts + 1) + ". Enemy health: " + enemyHealth);
+
+                if (enemyHealth > maxHealth)
+                {
+                    ADBHelper.simulateClick(ImageRecognition.getRandomLoc(skipPoint, button_skip));
+                    attempts++;
+                }
+                else
+                    opponentFound = true;
+
+            } while (attempts < 20 && !opponentFound);
+
+            if (!opponentFound)
             {
-                BotHelper.Log("Oops, we timed out.");
+                BotHelper.Log("Couldn't find opponent in 20 tries");
                 return false;
             }
-
-            BotHelper.randomDelay(500, 50);
+            
             return true;
         }
 
@@ -168,51 +194,24 @@ namespace CATSBot.BotLogics
         }
 
         //Attack Logic
-        public static void doLogic()
+        public static bool doLogic()
         {
-            if(logicErrors >= 5)
-            {
-                BotHelper.Log("Too many errors. Restarting CATS.");
-                ADBHelper.stopCATS();
-                BotHelper.randomDelay(1000, 5);
-                ADBHelper.startCATS();
-                BotHelper.Log("Waiting for CATS to restart. Waiting 30s.");
-                BotHelper.randomDelay(30000, 5);
-            }
-
             if (searchDuell())
             {
                 if (waitDuell())
-                {
                     if (startDuell())
-                    {
                         BotHelper.Log("AttackLogic successfully completed.");
-                        logicErrors = 0;
-                    }
                     else
-                    {
                         BotHelper.Log("AttackLogic failed during startDuell");
-                        logicErrors++;
-                    }
-                }
                 else
-                {
                     BotHelper.Log("AttackLogic failed during waitDUell");
-                    logicErrors++;
-                }
             }           
             else
             {
-                BotHelper.Log("AttackLogic failed during searchDuell");
-                BotHelper.Log("Please make sure that your games language is set to English and that MEmu is set to 1280x720 in windowed mode.");
-                logicErrors++;
-                Thread.Sleep(5000); //give the user time to see this message :P
+                return false;
             }
 
-            if(logicErrors > 0)
-            {
-                BotHelper.Log("We had " + logicErrors + " errors in a row during AttackLogic, restarting at 5 errors");
-            }
+            return true;
         }
     }
 }
