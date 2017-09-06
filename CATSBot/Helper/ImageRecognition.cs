@@ -66,6 +66,33 @@ namespace CATSBot.Helper
             return possiblepos;
         }
 
+        public static bool IsButtonThere(Bitmap button, Rectangle whereToLook)
+        {
+            Bitmap screenshot = CaptureApplication();
+            Rectangle smaller = new Rectangle(whereToLook.X / 4, whereToLook.Y / 4, whereToLook.Width / 4, whereToLook.Height / 4);
+            Bitmap buttonBmp = screenshot.Clone(smaller, screenshot.PixelFormat);
+            List<Point> buttonPoints = GetSubPositions(buttonBmp, button);
+            if (buttonPoints == null) return false;
+            return buttonPoints.Any();
+        }
+
+        public static int GetEnemyHealth()
+        {
+            Bitmap screenshot = ADBHelper.getScreencap(true);
+            Rectangle enemyHealthRec = new Rectangle(642, 75, 300, 45);
+            Bitmap enemyHealthBmp = screenshot.Clone(enemyHealthRec, screenshot.PixelFormat);
+            int enemyhealth = 0;
+
+            tessnet2.Tesseract ocr = new tessnet2.Tesseract();
+            ocr.SetVariable("tessedit_char_whitelist", "0123456789"); // digits only
+            ocr.Init(@"E:\Kunkli Richárd\Documents\GitHub\CATSBot\CATSBot\CATSBot\Resources\Tessdata\", "eng", false); // To use correct tessdata
+
+            List<tessnet2.Word> result = ocr.DoOCR(enemyHealthBmp, Rectangle.Empty);
+            if (result == null || result.Count != 1 || !int.TryParse(result.ElementAt(0).Text, out enemyhealth)) return 0;
+
+            return enemyhealth;
+        }
+
         public static Point getPictureLocation(Bitmap sub, float similarityThreshold = 0.941f)
         {
             Bitmap screenshot = CaptureApplication();

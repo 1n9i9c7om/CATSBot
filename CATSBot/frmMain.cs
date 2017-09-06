@@ -15,6 +15,7 @@ namespace CATSBot
         Thread thread;
         bool isRunning = false;
 
+
         public frmMain()
         {
             InitializeComponent();
@@ -63,18 +64,34 @@ namespace CATSBot
 
         public void doLoop()
         {
-            BotHelper.randomDelay(3000, 500);
-            BotHelper.Log("(Re-)Starting main loop.");
+            int fails = 0;
+            do
+            {
+                Thread.Sleep(1500);
+                BotHelper.Log("(Re-)Starting main loop.");
 
-            BotLogics.ClearScreenLogic.doLogic();
+                if (!BotLogics.AttackLogic.doLogic())
+                {
+                    BotLogics.ClearScreenLogic.doLogic();
+                    fails++;
+                }
+                else fails = 0;
 
-            if (chkAutoReconnect.Checked)
-                BotLogics.ReconnectLogic.doLogic();
+                if (chkAutoReconnect.Checked)
+                    BotLogics.ReconnectLogic.doLogic();
 
-            if (chkUseChestLogic.Checked)
-                BotLogics.ChestLogic.doLogic(); // uncomment this line to test the chest opener. Please report any false-positives.
+                if (chkUseChestLogic.Checked)
+                    BotLogics.ChestLogic.doLogic(); // uncomment this line to test the chest opener. Please report any false-positives.
 
-            BotLogics.AttackLogic.doLogic();
+
+            } while (fails < 5);
+            
+            BotHelper.Log("Too many errors. Restarting CATS.");
+            ADBHelper.stopCATS();
+            BotHelper.randomDelay(1000, 5);
+            ADBHelper.startCATS();
+            BotHelper.Log("Waiting for CATS to restart. Waiting 30s.");
+            Thread.Sleep(30000);
 
             doLoop();
         }
@@ -288,6 +305,11 @@ namespace CATSBot
             {
                 DialogResult dr = MetroMessageBox.Show(this, "You're already using the latest version of CATSBot. :)", "No update available");
             }
+        }
+
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+            BotLogics.AttackLogic.maxHealth = (int)numericUpDown1.Value;
         }
     }
 }

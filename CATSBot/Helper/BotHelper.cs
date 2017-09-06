@@ -53,9 +53,9 @@ namespace CATSBot.Helper
         // Randomize the delay for more security
         public static void randomDelay(int delay, int maxDiff, bool log = false)
         {
-            int actualDelay = rnd.Next(delay - maxDiff, delay + maxDiff);
+            /*int actualDelay = rnd.Next(delay - maxDiff, delay + maxDiff);
             if(log) Log("Using delay: " + actualDelay);
-            Thread.Sleep(actualDelay);
+            Thread.Sleep(actualDelay);*/
         }
 
         public static bool isMemuRunning()

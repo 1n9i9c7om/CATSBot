@@ -174,6 +174,54 @@
   <data name="&gt;&gt;tabPage1.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="numericUpDown1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>101, 231</value>
+  </data>
+  <data name="numericUpDown1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 20</value>
+  </data>
+  <data name="numericUpDown1.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;numericUpDown1.Name" xml:space="preserve">
+    <value>numericUpDown1</value>
+  </data>
+  <data name="&gt;&gt;numericUpDown1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;numericUpDown1.Parent" xml:space="preserve">
+    <value>tabPage2</value>
+  </data>
+  <data name="&gt;&gt;numericUpDown1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="healthThresholdLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="healthThresholdLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 233</value>
+  </data>
+  <data name="healthThresholdLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>88, 13</value>
+  </data>
+  <data name="healthThresholdLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="healthThresholdLabel.Text" xml:space="preserve">
+    <value>Health Threshold</value>
+  </data>
+  <data name="&gt;&gt;healthThresholdLabel.Name" xml:space="preserve">
+    <value>healthThresholdLabel</value>
+  </data>
+  <data name="&gt;&gt;healthThresholdLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;healthThresholdLabel.Parent" xml:space="preserve">
+    <value>tabPage2</value>
+  </data>
+  <data name="&gt;&gt;healthThresholdLabel.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
   <data name="chkAutoUpdate.Location" type="System.Drawing.Point, System.Drawing">
     <value>5, 196</value>
   </data>
@@ -196,7 +244,7 @@
     <value>tabPage2</value>
   </data>
   <data name="&gt;&gt;chkAutoUpdate.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>2</value>
   </data>
   <data name="btnCheckUpdates.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left</value>
@@ -223,7 +271,7 @@
     <value>tabPage2</value>
   </data>
   <data name="&gt;&gt;btnCheckUpdates.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>3</value>
   </data>
   <data name="chkUseChestLogic.Location" type="System.Drawing.Point, System.Drawing">
     <value>5, 166</value>
@@ -247,7 +295,7 @@
     <value>tabPage2</value>
   </data>
   <data name="&gt;&gt;chkUseChestLogic.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>4</value>
   </data>
   <data name="btnResetStats.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left</value>
@@ -274,7 +322,7 @@
     <value>tabPage2</value>
   </data>
   <data name="&gt;&gt;btnResetStats.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>5</value>
   </data>
   <data name="nudDelayMultiplier.Location" type="System.Drawing.Point, System.Drawing">
     <value>226, 138</value>
@@ -295,7 +343,7 @@
     <value>tabPage2</value>
   </data>
   <data name="&gt;&gt;nudDelayMultiplier.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>6</value>
   </data>
   <data name="metroLabel5.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -322,7 +370,7 @@
     <value>tabPage2</value>
   </data>
   <data name="&gt;&gt;metroLabel5.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>7</value>
   </data>
   <data name="resource.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -331,10 +379,10 @@
     <value>NoControl</value>
   </data>
   <data name="resource.Location" type="System.Drawing.Point, System.Drawing">
-    <value>150, 1</value>
+    <value>82, 1</value>
   </data>
   <data name="resource.Size" type="System.Drawing.Size, System.Drawing">
-    <value>21, 21</value>
+    <value>11, 11</value>
   </data>
   <data name="resource.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -361,13 +409,10 @@
     <value>tabPage2</value>
   </data>
   <data name="&gt;&gt;txtCurrentMemuPath.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>8</value>
   </data>
   <data name="btnChangeMemuPath.Location" type="System.Drawing.Point, System.Drawing">
     <value>186, 107</value>
-  </data>
-  <data name="btnChangeMemuPath.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
   </data>
   <data name="btnChangeMemuPath.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -385,7 +430,7 @@
     <value>tabPage2</value>
   </data>
   <data name="&gt;&gt;btnChangeMemuPath.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>9</value>
   </data>
   <data name="metroLabel4.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -412,7 +457,7 @@
     <value>tabPage2</value>
   </data>
   <data name="&gt;&gt;metroLabel4.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>10</value>
   </data>
   <data name="nudReconnectTime.Location" type="System.Drawing.Point, System.Drawing">
     <value>78, 62</value>
@@ -433,7 +478,7 @@
     <value>tabPage2</value>
   </data>
   <data name="&gt;&gt;nudReconnectTime.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>11</value>
   </data>
   <data name="chkAutoReconnect.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -460,7 +505,7 @@
     <value>tabPage2</value>
   </data>
   <data name="&gt;&gt;chkAutoReconnect.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>12</value>
   </data>
   <data name="metroLabel2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -489,7 +534,7 @@ used the account.</value>
     <value>tabPage2</value>
   </data>
   <data name="&gt;&gt;metroLabel2.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>13</value>
   </data>
   <data name="tabPage2.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 38</value>
@@ -595,9 +640,6 @@ used the account.</value>
   </data>
   <data name="metroLabel3.Location" type="System.Drawing.Point, System.Drawing">
     <value>10, 122</value>
-  </data>
-  <data name="metroLabel3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 19</value>
   </data>
   <data name="metroLabel3.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -764,6 +806,9 @@ used the account.</value>
   <data name="tabMain.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 53</value>
   </data>
+  <data name="tabMain.Padding" type="System.Drawing.Point, System.Drawing">
+    <value>6, 8</value>
+  </data>
   <data name="tabMain.Size" type="System.Drawing.Size, System.Drawing">
     <value>274, 459</value>
   </data>
@@ -784,6 +829,9 @@ used the account.</value>
   </data>
   <data name="btnStart.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left, Right</value>
+  </data>
+  <data name="btnStart.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 48pt</value>
   </data>
   <data name="btnStart.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 519</value>
@@ -839,9 +887,6 @@ used the account.</value>
   <data name="&gt;&gt;lblStats.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <metadata name="metroStyle.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -1390,13 +1435,13 @@ used the account.</value>
 </value>
   </data>
   <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>289, 605</value>
+    <value>289, 568</value>
   </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>Manual</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>CATSBot | catsbot.net</value>
+    <value>CATSBbot.net</value>
   </data>
   <data name="&gt;&gt;metroStyle.Name" xml:space="preserve">
     <value>metroStyle</value>
